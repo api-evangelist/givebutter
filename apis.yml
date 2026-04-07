@@ -9,8 +9,8 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Fundraising
   - Donations
+  - Fundraising
   - Nonprofits
 created: '2025-01-07'
 modified: '2026-03-16'
@@ -26,8 +26,8 @@ apis:
       supports JSON, and all requests return and require a valid JSON object.
     humanURL: https://docs.givebutter.com/reference/reference-getting-started
     tags:
-      - Fundraising
       - Donations
+      - Fundraising
     properties:
       - type: Documentation
         url: https://docs.givebutter.com/reference/reference-getting-started
