@@ -45,6 +45,11 @@ common:
     url: https://givebutter.com/
   - type: Documentation
     url: https://docs.givebutter.com/
+  - type: Integrations
+    url: https://givebutter.com/integrations
+integrations:
+  - name: Meta integration
+  - name: icon integration
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
