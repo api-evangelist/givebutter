@@ -41,6 +41,10 @@ apis:
       - type: Webhooks
         url: https://docs.givebutter.com/reference/webhooks
 common:
+  - type: GitHubOrganization
+    url: https://github.com/givebutter
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/givebutter
   - type: Website
     url: https://givebutter.com/
   - type: Documentation
