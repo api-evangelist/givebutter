@@ -1,0 +1,542 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Givebutter API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/campaigns",
+            "params": [
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List campaigns"
+        },
+        {
+          "info": {
+            "name": "Create a campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.givebutter.com/v1/campaigns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a campaign"
+        },
+        {
+          "info": {
+            "name": "Retrieve a campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/campaigns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a campaign"
+        },
+        {
+          "info": {
+            "name": "Update a campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.givebutter.com/v1/campaigns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a campaign"
+        },
+        {
+          "info": {
+            "name": "Delete a campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.givebutter.com/v1/campaigns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a campaign"
+        },
+        {
+          "info": {
+            "name": "List campaign members (individual fundraisers)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/campaigns/:id/members",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List campaign members (individual fundraisers)"
+        },
+        {
+          "info": {
+            "name": "List campaign teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/campaigns/:id/teams",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List campaign teams"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/contacts",
+            "params": [
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List contacts"
+        },
+        {
+          "info": {
+            "name": "Create a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.givebutter.com/v1/contacts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a contact"
+        },
+        {
+          "info": {
+            "name": "Retrieve a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/contacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a contact"
+        },
+        {
+          "info": {
+            "name": "Update a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.givebutter.com/v1/contacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a contact"
+        },
+        {
+          "info": {
+            "name": "Archive (soft delete) a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.givebutter.com/v1/contacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Archive (soft delete) a contact"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/transactions",
+            "params": [
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List transactions"
+        },
+        {
+          "info": {
+            "name": "Create a transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.givebutter.com/v1/transactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a transaction"
+        },
+        {
+          "info": {
+            "name": "Get a transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/transactions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a transaction"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Funds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List funds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/funds"
+          },
+          "docs": "List funds"
+        },
+        {
+          "info": {
+            "name": "Create a fund",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.givebutter.com/v1/funds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a fund"
+        },
+        {
+          "info": {
+            "name": "Retrieve a fund",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/funds/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a fund"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tickets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tickets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/tickets"
+          },
+          "docs": "List tickets"
+        },
+        {
+          "info": {
+            "name": "Retrieve a ticket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/tickets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a ticket"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Payouts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List payouts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/payouts"
+          },
+          "docs": "List payouts"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List recurring plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/plans"
+          },
+          "docs": "List recurring plans"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/webhooks"
+          },
+          "docs": "List webhooks"
+        },
+        {
+          "info": {
+            "name": "Create a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.givebutter.com/v1/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a webhook"
+        },
+        {
+          "info": {
+            "name": "Delete a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.givebutter.com/v1/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a webhook"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Discount Codes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List discount codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/discount-codes"
+          },
+          "docs": "List discount codes"
+        },
+        {
+          "info": {
+            "name": "Create a discount code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.givebutter.com/v1/discount-codes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a discount code"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

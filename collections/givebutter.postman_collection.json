@@ -1,0 +1,2549 @@
+{
+  "item": [
+    {
+      "id": "eafb0666-7056-424f-a132-00ffefcff09a",
+      "name": "Campaigns",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6b3499b4-0a36-415f-b1da-70a714ff028c",
+          "name": "List campaigns",
+          "request": {
+            "name": "List campaigns",
+            "description": {},
+            "url": {
+              "path": [
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10ad70bc-2165-47c3-aee9-3202ccb85c0e",
+              "name": "Paginated list of campaigns",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 7264,\n      \"code\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"slug\": \"string\",\n      \"goal\": 7965,\n      \"raised\": 3518,\n      \"donors\": 6056,\n      \"currency\": \"string\",\n      \"status\": \"string\",\n      \"created_at\": \"1949-10-20T15:17:57.835Z\"\n    },\n    {\n      \"id\": 4200,\n      \"code\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"slug\": \"string\",\n      \"goal\": 4921,\n      \"raised\": 4729,\n      \"donors\": 394,\n      \"currency\": \"string\",\n      \"status\": \"string\",\n      \"created_at\": \"1960-10-21T10:40:38.890Z\"\n    }\n  ],\n  \"meta\": {\n    \"current_page\": 7714,\n    \"per_page\": 1807,\n    \"total\": 6011\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0c9a61c-18d1-4444-9ab9-8dc10bfd1512",
+          "name": "Create a campaign",
+          "request": {
+            "name": "Create a campaign",
+            "description": {},
+            "url": {
+              "path": [
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"goal\": \"<integer>\",\n  \"raised\": \"<integer>\",\n  \"donors\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"status\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "23886642-b51d-418c-a5c1-7cf5a8f0730c",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"goal\": \"<integer>\",\n  \"raised\": \"<integer>\",\n  \"donors\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"status\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9597,\n  \"code\": \"string\",\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"slug\": \"string\",\n  \"goal\": 1249,\n  \"raised\": 3235,\n  \"donors\": 7576,\n  \"currency\": \"string\",\n  \"status\": \"string\",\n  \"created_at\": \"2006-05-23T23:46:23.039Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a7b7c91-4d57-4f7a-9fa7-3165c89ec2eb",
+          "name": "Retrieve a campaign",
+          "request": {
+            "name": "Retrieve a campaign",
+            "description": {},
+            "url": {
+              "path": [
+                "campaigns",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3d3251d-f6fa-4d8a-8e77-b446b86ba4cf",
+              "name": "Campaign",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9597,\n  \"code\": \"string\",\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"slug\": \"string\",\n  \"goal\": 1249,\n  \"raised\": 3235,\n  \"donors\": 7576,\n  \"currency\": \"string\",\n  \"status\": \"string\",\n  \"created_at\": \"2006-05-23T23:46:23.039Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f963b766-d755-4378-84eb-49f5e9cd59d7",
+          "name": "Update a campaign",
+          "request": {
+            "name": "Update a campaign",
+            "description": {},
+            "url": {
+              "path": [
+                "campaigns",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"goal\": \"<integer>\",\n  \"raised\": \"<integer>\",\n  \"donors\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"status\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42b8c345-951c-480e-82f8-7dac9f2ec26c",
+              "name": "Updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"goal\": \"<integer>\",\n  \"raised\": \"<integer>\",\n  \"donors\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"status\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9597,\n  \"code\": \"string\",\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"slug\": \"string\",\n  \"goal\": 1249,\n  \"raised\": 3235,\n  \"donors\": 7576,\n  \"currency\": \"string\",\n  \"status\": \"string\",\n  \"created_at\": \"2006-05-23T23:46:23.039Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85729b33-4452-41de-b18c-8691b2b569b0",
+          "name": "Delete a campaign",
+          "request": {
+            "name": "Delete a campaign",
+            "description": {},
+            "url": {
+              "path": [
+                "campaigns",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d735f37-75c8-498a-9821-4088a3bafa87",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6dfc538-da54-4b60-881a-34cb1b167ef2",
+          "name": "List campaign members (individual fundraisers)",
+          "request": {
+            "name": "List campaign members (individual fundraisers)",
+            "description": {},
+            "url": {
+              "path": [
+                "campaigns",
+                ":id",
+                "members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0330665f-aa71-4117-9433-47db43bf3bcd",
+              "name": "Members",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":id",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5066,\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"raised\": 2586,\n    \"goal\": 9230\n  },\n  {\n    \"id\": 1819,\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"raised\": 2226,\n    \"goal\": 3334\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6c0c1e9-00b5-4e73-a496-919ab25953ad",
+          "name": "List campaign teams",
+          "request": {
+            "name": "List campaign teams",
+            "description": {},
+            "url": {
+              "path": [
+                "campaigns",
+                ":id",
+                "teams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9195ff70-81b8-464d-ae8b-09028879fe3c",
+              "name": "Teams",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":id",
+                    "teams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 3905,\n    \"name\": \"string\",\n    \"raised\": 5344,\n    \"goal\": 1559\n  },\n  {\n    \"id\": 9159,\n    \"name\": \"string\",\n    \"raised\": 313,\n    \"goal\": 2365\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "cd89636f-64a9-4c86-b107-0623edd5bef0",
+      "name": "Contacts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d69510c4-9e0a-4424-a265-450812e01d5e",
+          "name": "List contacts",
+          "request": {
+            "name": "List contacts",
+            "description": {},
+            "url": {
+              "path": [
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c3204d8-7a55-4f36-80f9-c1ad386e6336",
+              "name": "Contacts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 6031,\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"emails\": [\n      {\n        \"type\": \"string\",\n        \"value\": \"yzGQJayYpD@RL.xoyx\"\n      },\n      {\n        \"type\": \"string\",\n        \"value\": \"EQVc9aRG@yjswwT.ulev\"\n      }\n    ],\n    \"phones\": [\n      {\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"type\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": 3477,\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"emails\": [\n      {\n        \"type\": \"string\",\n        \"value\": \"Ra0WL@BbsaarsUajqi.lp\"\n      },\n      {\n        \"type\": \"string\",\n        \"value\": \"wr3FD@AygUmHFQuzq.oyhj\"\n      }\n    ],\n    \"phones\": [\n      {\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"type\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0a38da9-38a3-4d27-91ca-fea9fb96ffd5",
+          "name": "Create a contact",
+          "request": {
+            "name": "Create a contact",
+            "description": {},
+            "url": {
+              "path": [
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"emails\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<email>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<email>\"\n    }\n  ],\n  \"phones\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"addresses\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7f6f5b2c-2f60-4880-a242-9f3854a005f6",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"emails\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<email>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<email>\"\n    }\n  ],\n  \"phones\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"addresses\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3396,\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"emails\": [\n    {\n      \"type\": \"string\",\n      \"value\": \"86TVTV0XMwBGr@uPZQjDIdNkQJdVCbQJW.wn\"\n    },\n    {\n      \"type\": \"string\",\n      \"value\": \"xYZJu@KnWzENIkkbDAnLoeWPwGQrRTpytnbOViu.um\"\n    }\n  ],\n  \"phones\": [\n    {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1dc7916d-5ce6-4808-ab72-18d963e9977b",
+          "name": "Retrieve a contact",
+          "request": {
+            "name": "Retrieve a contact",
+            "description": {},
+            "url": {
+              "path": [
+                "contacts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b581dcd0-8d08-4efd-b236-12bd7a69024a",
+              "name": "Contact",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3396,\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"emails\": [\n    {\n      \"type\": \"string\",\n      \"value\": \"86TVTV0XMwBGr@uPZQjDIdNkQJdVCbQJW.wn\"\n    },\n    {\n      \"type\": \"string\",\n      \"value\": \"xYZJu@KnWzENIkkbDAnLoeWPwGQrRTpytnbOViu.um\"\n    }\n  ],\n  \"phones\": [\n    {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a3cb67b-b3d0-4ca5-9d01-be46fd85acd6",
+          "name": "Update a contact",
+          "request": {
+            "name": "Update a contact",
+            "description": {},
+            "url": {
+              "path": [
+                "contacts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"emails\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<email>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<email>\"\n    }\n  ],\n  \"phones\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"addresses\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dcaf6014-9239-4ceb-84fa-6387656f63c1",
+              "name": "Updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"emails\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<email>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<email>\"\n    }\n  ],\n  \"phones\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"addresses\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "358cd5e2-33ac-4be8-822b-d777f5cf5aa4",
+          "name": "Archive (soft delete) a contact",
+          "request": {
+            "name": "Archive (soft delete) a contact",
+            "description": {},
+            "url": {
+              "path": [
+                "contacts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2a977ec-79c4-4887-bf65-48e39fee0441",
+              "name": "Archived",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ee4061c8-b00d-4733-a68e-5dfc6797c4b8",
+      "name": "Transactions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "70755350-758e-4780-8cf7-799a8038eb25",
+          "name": "List transactions",
+          "request": {
+            "name": "List transactions",
+            "description": {},
+            "url": {
+              "path": [
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93baa5e1-41d0-4509-b285-4589f9879a2a",
+              "name": "Transactions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"number\": \"string\",\n    \"campaign_id\": 2696,\n    \"amount\": 1546.3117527550396,\n    \"currency\": \"string\",\n    \"status\": \"string\",\n    \"method\": \"string\",\n    \"created_at\": \"1964-10-26T13:33:04.595Z\",\n    \"giving_space\": {\n      \"name\": \"string\",\n      \"amount\": 9216.990127889345\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"number\": \"string\",\n    \"campaign_id\": 46,\n    \"amount\": 5629.571397019566,\n    \"currency\": \"string\",\n    \"status\": \"string\",\n    \"method\": \"string\",\n    \"created_at\": \"1956-02-26T08:05:43.643Z\",\n    \"giving_space\": {\n      \"name\": \"string\",\n      \"amount\": 3860.901777712592\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3cfc71d-d1bc-49c8-9d07-632ed426d81c",
+          "name": "Create a transaction",
+          "request": {
+            "name": "Create a transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"campaign_id\": \"<integer>\",\n  \"amount\": \"<float>\",\n  \"currency\": \"<string>\",\n  \"status\": \"<string>\",\n  \"method\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"giving_space\": {\n    \"name\": \"<string>\",\n    \"amount\": \"<number>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5b22a37e-9c79-4962-96e5-65a3a0e8319c",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"campaign_id\": \"<integer>\",\n  \"amount\": \"<float>\",\n  \"currency\": \"<string>\",\n  \"status\": \"<string>\",\n  \"method\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"giving_space\": {\n    \"name\": \"<string>\",\n    \"amount\": \"<number>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"number\": \"string\",\n  \"campaign_id\": 9874,\n  \"amount\": 7546.780616773665,\n  \"currency\": \"string\",\n  \"status\": \"string\",\n  \"method\": \"string\",\n  \"created_at\": \"1959-11-24T13:55:51.555Z\",\n  \"giving_space\": {\n    \"name\": \"string\",\n    \"amount\": 8558.307932415377\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32e90c24-d4d4-4bcd-b9b7-33b9bd4561d9",
+          "name": "Get a transaction",
+          "request": {
+            "name": "Get a transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "transactions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00731c23-99f3-48e9-a162-afad0acc95a8",
+              "name": "Transaction",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"number\": \"string\",\n  \"campaign_id\": 9874,\n  \"amount\": 7546.780616773665,\n  \"currency\": \"string\",\n  \"status\": \"string\",\n  \"method\": \"string\",\n  \"created_at\": \"1959-11-24T13:55:51.555Z\",\n  \"giving_space\": {\n    \"name\": \"string\",\n    \"amount\": 8558.307932415377\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "bb87c29b-2dd5-4087-816c-954ba8d0e9ea",
+      "name": "Funds",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d55d7d58-8181-479d-a684-1066ec4acf33",
+          "name": "List funds",
+          "request": {
+            "name": "List funds",
+            "description": {},
+            "url": {
+              "path": [
+                "funds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e22e46f-fd32-4d48-9099-aca5fb6d8c04",
+              "name": "Funds",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "funds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 9420,\n    \"code\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"goal\": 2076,\n    \"raised\": 2581\n  },\n  {\n    \"id\": 599,\n    \"code\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"goal\": 6618,\n    \"raised\": 3772\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d78b527e-b0fe-45e5-864e-7d95de647266",
+          "name": "Create a fund",
+          "request": {
+            "name": "Create a fund",
+            "description": {},
+            "url": {
+              "path": [
+                "funds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"goal\": \"<integer>\",\n  \"raised\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c86edd33-709f-4937-9304-13a180e6d4d9",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "funds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"goal\": \"<integer>\",\n  \"raised\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f301e62-e624-4b17-8eff-ff6b77468691",
+          "name": "Retrieve a fund",
+          "request": {
+            "name": "Retrieve a fund",
+            "description": {},
+            "url": {
+              "path": [
+                "funds",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79ccf670-4586-43f1-97a9-b4e549345ef4",
+              "name": "Fund",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "funds",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 343,\n  \"code\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"goal\": 6800,\n  \"raised\": 4367\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b7504462-a7dd-4520-aed9-0d92209000ef",
+      "name": "Tickets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4a6b0cd6-38b3-48d4-b566-10622bafd0a6",
+          "name": "List tickets",
+          "request": {
+            "name": "List tickets",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa4e0037-4951-4171-bc1c-9329c5b4b552",
+              "name": "Tickets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8425,\n    \"campaign_id\": 7704,\n    \"type\": \"string\",\n    \"price\": 8839.11296040778,\n    \"currency\": \"string\",\n    \"status\": \"string\"\n  },\n  {\n    \"id\": 6522,\n    \"campaign_id\": 9005,\n    \"type\": \"string\",\n    \"price\": 3129.1951728078325,\n    \"currency\": \"string\",\n    \"status\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69d5d184-9ad1-4be6-a474-e07eb3a4687b",
+          "name": "Retrieve a ticket",
+          "request": {
+            "name": "Retrieve a ticket",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "87f896b6-e76b-40e7-a666-2f111008cd07",
+              "name": "Ticket",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2280,\n  \"campaign_id\": 4694,\n  \"type\": \"string\",\n  \"price\": 8258.085394066151,\n  \"currency\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "89a2b81a-8b27-442a-af2b-a79eca592e5c",
+      "name": "Payouts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dc35a683-6103-4d93-b902-5bd2a8ac2053",
+          "name": "List payouts",
+          "request": {
+            "name": "List payouts",
+            "description": {},
+            "url": {
+              "path": [
+                "payouts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9c3ead6-0a83-4a8e-b402-af04378277af",
+              "name": "Payouts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 3774,\n    \"amount\": 6110.56678056044,\n    \"currency\": \"string\",\n    \"status\": \"string\",\n    \"deposited_at\": \"1992-02-22T12:20:34.090Z\"\n  },\n  {\n    \"id\": 75,\n    \"amount\": 7761.16819191684,\n    \"currency\": \"string\",\n    \"status\": \"string\",\n    \"deposited_at\": \"2005-04-15T18:55:33.212Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5c688450-f3a7-4662-b4fd-fd8b168519c8",
+      "name": "Plans",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4fe90e87-0d12-4faf-8ccb-480054eefdf1",
+          "name": "List recurring plans",
+          "request": {
+            "name": "List recurring plans",
+            "description": {},
+            "url": {
+              "path": [
+                "plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "09006437-a0fe-4ed3-a8e0-95f36251e66a",
+              "name": "Plans",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 3390,\n    \"amount\": 9030.874625934222,\n    \"currency\": \"string\",\n    \"frequency\": \"monthly\",\n    \"status\": \"string\",\n    \"contact_id\": 4409\n  },\n  {\n    \"id\": 9365,\n    \"amount\": 5323.177830554699,\n    \"currency\": \"string\",\n    \"frequency\": \"monthly\",\n    \"status\": \"string\",\n    \"contact_id\": 4070\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3a947677-c1b1-485e-bd56-79c5c9a61ccd",
+      "name": "Webhooks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c8138965-1866-46f8-8a26-4ce9b70051f1",
+          "name": "List webhooks",
+          "request": {
+            "name": "List webhooks",
+            "description": {},
+            "url": {
+              "path": [
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6ffeb6c-51d9-4b75-bea3-a96fbdf65d72",
+              "name": "Webhooks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 9454,\n    \"url\": \"http://jKVBFB.hgrqGZuWF\",\n    \"events\": [\n      \"string\",\n      \"string\"\n    ],\n    \"active\": true\n  },\n  {\n    \"id\": 9810,\n    \"url\": \"http://oeeTNzzbYJEfIatUfekjwPgutdGZS.xslajstEvdxtPW6,ywfriluk7i3JDxz2MWzLlaiKPnOaF6Wt.0wyveBoqY\",\n    \"events\": [\n      \"string\",\n      \"string\"\n    ],\n    \"active\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f11f77c-93db-47c6-83cf-1fc85c2969e4",
+          "name": "Create a webhook",
+          "request": {
+            "name": "Create a webhook",
+            "description": {},
+            "url": {
+              "path": [
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "324e0e07-bb20-4dc3-988f-f689e2269552",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac231df1-97e1-45a2-af47-cda9890a18b8",
+          "name": "Delete a webhook",
+          "request": {
+            "name": "Delete a webhook",
+            "description": {},
+            "url": {
+              "path": [
+                "webhooks",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad7e6da3-f553-4123-b6d9-fbb1a911f375",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "dce25a2f-b49c-435e-965e-5e625dbc3239",
+      "name": "Discount Codes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6eb27db9-18b7-4a92-9814-cf393e70d32a",
+          "name": "List discount codes",
+          "request": {
+            "name": "List discount codes",
+            "description": {},
+            "url": {
+              "path": [
+                "discount-codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b63a2ef9-0d09-4185-a80b-0e9b7b8e1576",
+              "name": "Discount codes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discount-codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 3090,\n    \"code\": \"string\",\n    \"amount_off\": 5265.944702348534,\n    \"percent_off\": 3366.6675928301183,\n    \"max_uses\": 2892,\n    \"expires_at\": \"1990-06-21T10:30:11.996Z\"\n  },\n  {\n    \"id\": 7188,\n    \"code\": \"string\",\n    \"amount_off\": 97.92606519715252,\n    \"percent_off\": 921.0477644903481,\n    \"max_uses\": 8854,\n    \"expires_at\": \"1948-06-24T21:31:47.002Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4378f9f4-beef-4283-9cf8-414ed8b87bf7",
+          "name": "Create a discount code",
+          "request": {
+            "name": "Create a discount code",
+            "description": {},
+            "url": {
+              "path": [
+                "discount-codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"amount_off\": \"<number>\",\n  \"percent_off\": \"<number>\",\n  \"max_uses\": \"<integer>\",\n  \"expires_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bb84bd3b-3a25-458d-ae47-6993bed8db8b",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discount-codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"amount_off\": \"<number>\",\n  \"percent_off\": \"<number>\",\n  \"max_uses\": \"<integer>\",\n  \"expires_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.givebutter.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "508e7ee3-d8fb-4893-8a55-94303b455fc9",
+    "name": "Givebutter API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Best-effort OpenAPI 3.1 description of the Givebutter REST API covering\ncampaigns, contacts, transactions, funds, households, tickets, plans,\npayouts, pledges, webhooks, and discount codes. Authentication uses\nBearer-token authentication with an API key. Sourced from\nhttps://docs.givebutter.com/.\n\n\nContact Support:\n Name: Givebutter API Docs",
+      "type": "text/plain"
+    }
+  }
+}
