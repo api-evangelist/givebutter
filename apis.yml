@@ -51,7 +51,7 @@ common:
     url: https://docs.givebutter.com/
   - type: Integrations
     url: https://givebutter.com/integrations
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.givebutter.com/llms.txt
 integrations:
   - name: Meta integration
