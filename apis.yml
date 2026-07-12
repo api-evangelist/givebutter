@@ -41,6 +41,10 @@ apis:
       - type: Webhooks
         url: https://docs.givebutter.com/reference/webhooks
 common:
+  - type: DomainSecurity
+    url: security/givebutter-domain-security.yml
+  - type: Authentication
+    url: authentication/givebutter-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/givebutter
   - type: LinkedIn

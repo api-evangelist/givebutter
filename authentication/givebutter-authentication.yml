@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/givebutter-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: API Key
+  description: Bearer token authentication using a personal API key.
+  sources:
+  - openapi/givebutter-openapi.yml

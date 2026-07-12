@@ -1,0 +1,28 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: givebutter.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 14 02:43:35 2026 GMT
+  hsts: true
+  hsts_max_age: 15552000
+- host: docs.givebutter.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  2 01:21:05 2026 GMT
+  hsts: true
+  hsts_max_age: 15552000
+- host: api.givebutter.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 15 07:53:47 2026 GMT
+  hsts: null
+domains:
+- domain: givebutter.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
