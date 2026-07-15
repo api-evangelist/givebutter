@@ -41,6 +41,8 @@ apis:
       - type: Webhooks
         url: https://docs.givebutter.com/reference/webhooks
 common:
+  - type: AgenticAccess
+    url: agentic-access/givebutter-agentic-access.yml
   - type: DomainSecurity
     url: security/givebutter-domain-security.yml
   - type: Authentication
