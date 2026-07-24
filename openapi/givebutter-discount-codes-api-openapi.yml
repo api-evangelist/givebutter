@@ -1,0 +1,79 @@
+openapi: 3.1.0
+info:
+  title: Givebutter Campaigns Discount Codes API
+  version: 1.0.0
+  description: 'Best-effort OpenAPI 3.1 description of the Givebutter REST API covering
+
+    campaigns, contacts, transactions, funds, households, tickets, plans,
+
+    payouts, pledges, webhooks, and discount codes. Authentication uses
+
+    Bearer-token authentication with an API key. Sourced from
+
+    https://docs.givebutter.com/.
+
+    '
+  contact:
+    name: Givebutter API Docs
+    url: https://docs.givebutter.com/reference/reference-getting-started
+servers:
+- url: https://api.givebutter.com/v1
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Discount Codes
+paths:
+  /discount-codes:
+    get:
+      summary: List discount codes
+      operationId: listDiscountCodes
+      tags:
+      - Discount Codes
+      responses:
+        '200':
+          description: Discount codes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DiscountCode'
+    post:
+      summary: Create a discount code
+      operationId: createDiscountCode
+      tags:
+      - Discount Codes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiscountCode'
+      responses:
+        '201':
+          description: Created
+components:
+  schemas:
+    DiscountCode:
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        amount_off:
+          type: number
+        percent_off:
+          type: number
+        max_uses:
+          type: integer
+        expires_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: Bearer token authentication using a personal API key.

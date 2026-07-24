@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: Givebutter Campaigns Funds API
+  version: 1.0.0
+  description: 'Best-effort OpenAPI 3.1 description of the Givebutter REST API covering
+
+    campaigns, contacts, transactions, funds, households, tickets, plans,
+
+    payouts, pledges, webhooks, and discount codes. Authentication uses
+
+    Bearer-token authentication with an API key. Sourced from
+
+    https://docs.givebutter.com/.
+
+    '
+  contact:
+    name: Givebutter API Docs
+    url: https://docs.givebutter.com/reference/reference-getting-started
+servers:
+- url: https://api.givebutter.com/v1
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Funds
+paths:
+  /funds:
+    get:
+      summary: List funds
+      operationId: listFunds
+      tags:
+      - Funds
+      responses:
+        '200':
+          description: Funds
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Fund'
+    post:
+      summary: Create a fund
+      operationId: createFund
+      tags:
+      - Funds
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Fund'
+      responses:
+        '201':
+          description: Created
+  /funds/{id}:
+    parameters:
+    - $ref: '#/components/parameters/IdInt'
+    get:
+      summary: Retrieve a fund
+      operationId: getFund
+      tags:
+      - Funds
+      responses:
+        '200':
+          description: Fund
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fund'
+components:
+  schemas:
+    Fund:
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        goal:
+          type: integer
+        raised:
+          type: integer
+  parameters:
+    IdInt:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: Bearer token authentication using a personal API key.
