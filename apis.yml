@@ -5,9 +5,22 @@ description: >-
   for interacting with your Givebutter account. The Givebutter API supports
   JSON, and all requests return and require a valid JSON object.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
 tags:
   - Donations
   - Fundraising
@@ -18,28 +31,117 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/givebutter/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: givebutter:givebutter
-    name: Givebutter
-    description: >-
-      The Givebutter API is organized around REST and provides a stateless
-      interface for interacting with your Givebutter account. The Givebutter API
-      supports JSON, and all requests return and require a valid JSON object.
-      The API uses Bearer token authentication with API keys and provides
-      endpoints for campaigns, contacts, transactions, funds, households,
-      tickets, discount codes, webhooks, payouts, recurring plans, and pledges.
-    humanURL: https://docs.givebutter.com/reference/reference-getting-started
-    baseURL: https://api.givebutter.com/v1
-    tags:
-      - Donations
-      - Fundraising
-      - Nonprofits
-    properties:
-      - type: Documentation
-        url: https://docs.givebutter.com/reference/reference-getting-started
-      - type: Authentication
-        url: https://docs.givebutter.com/reference/authentication
-      - type: Webhooks
-        url: https://docs.givebutter.com/reference/webhooks
+- aid: givebutter:givebutter
+  name: Givebutter
+  description: >-
+    The Givebutter API is organized around REST and provides a stateless interface for interacting with
+    your Givebutter account. The Givebutter API supports JSON, and all requests return and require a valid
+    JSON object. The API uses Bearer token authentication with API keys and provides endpoints for campaigns,
+    contacts, transactions, funds, households, tickets, discount codes, webhooks, payouts, recurring plans,
+    and pledges.
+  humanURL: https://docs.givebutter.com/reference/reference-getting-started
+  baseURL: https://api.givebutter.com/v1
+  tags:
+  - Donations
+  - Fundraising
+  - Nonprofits
+  properties:
+  - type: Documentation
+    url: https://docs.givebutter.com/reference/reference-getting-started
+  - type: Authentication
+    url: https://docs.givebutter.com/reference/authentication
+  - type: Webhooks
+    url: https://docs.givebutter.com/reference/webhooks
+- aid: givebutter:givebutter-campaigns-api
+  name: Givebutter Campaigns API
+  description: The Campaigns API from Givebutter — 4 operation(s) for campaigns.
+  humanURL: https://docs.givebutter.com/reference/reference-getting-started
+  baseURL: https://api.givebutter.com/v1
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/givebutter-campaigns-api-openapi.yml
+- aid: givebutter:givebutter-contacts-api
+  name: Givebutter Contacts API
+  description: The Contacts API from Givebutter — 2 operation(s) for contacts.
+  humanURL: https://docs.givebutter.com/reference/reference-getting-started
+  baseURL: https://api.givebutter.com/v1
+  tags:
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/givebutter-contacts-api-openapi.yml
+- aid: givebutter:givebutter-discount-codes-api
+  name: Givebutter Discount Codes API
+  description: The Discount Codes API from Givebutter — 1 operation(s) for discount codes.
+  humanURL: https://docs.givebutter.com/reference/reference-getting-started
+  baseURL: https://api.givebutter.com/v1
+  tags:
+  - Discount Codes
+  properties:
+  - type: OpenAPI
+    url: openapi/givebutter-discount-codes-api-openapi.yml
+- aid: givebutter:givebutter-funds-api
+  name: Givebutter Funds API
+  description: The Funds API from Givebutter — 2 operation(s) for funds.
+  humanURL: https://docs.givebutter.com/reference/reference-getting-started
+  baseURL: https://api.givebutter.com/v1
+  tags:
+  - Funds
+  properties:
+  - type: OpenAPI
+    url: openapi/givebutter-funds-api-openapi.yml
+- aid: givebutter:givebutter-payouts-api
+  name: Givebutter Payouts API
+  description: The Payouts API from Givebutter — 1 operation(s) for payouts.
+  humanURL: https://docs.givebutter.com/reference/reference-getting-started
+  baseURL: https://api.givebutter.com/v1
+  tags:
+  - Payouts
+  properties:
+  - type: OpenAPI
+    url: openapi/givebutter-payouts-api-openapi.yml
+- aid: givebutter:givebutter-plans-api
+  name: Givebutter Plans API
+  description: The Plans API from Givebutter — 1 operation(s) for plans.
+  humanURL: https://docs.givebutter.com/reference/reference-getting-started
+  baseURL: https://api.givebutter.com/v1
+  tags:
+  - Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/givebutter-plans-api-openapi.yml
+- aid: givebutter:givebutter-tickets-api
+  name: Givebutter Tickets API
+  description: The Tickets API from Givebutter — 2 operation(s) for tickets.
+  humanURL: https://docs.givebutter.com/reference/reference-getting-started
+  baseURL: https://api.givebutter.com/v1
+  tags:
+  - Tickets
+  properties:
+  - type: OpenAPI
+    url: openapi/givebutter-tickets-api-openapi.yml
+- aid: givebutter:givebutter-transactions-api
+  name: Givebutter Transactions API
+  description: The Transactions API from Givebutter — 2 operation(s) for transactions.
+  humanURL: https://docs.givebutter.com/reference/reference-getting-started
+  baseURL: https://api.givebutter.com/v1
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/givebutter-transactions-api-openapi.yml
+- aid: givebutter:givebutter-webhooks-api
+  name: Givebutter Webhooks API
+  description: The Webhooks API from Givebutter — 2 operation(s) for webhooks.
+  humanURL: https://docs.givebutter.com/reference/reference-getting-started
+  baseURL: https://api.givebutter.com/v1
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/givebutter-webhooks-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/givebutter-agentic-access.yml
