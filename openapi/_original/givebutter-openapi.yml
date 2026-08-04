@@ -1,0 +1,505 @@
+openapi: 3.1.0
+info:
+  title: Givebutter API
+  version: "1.0.0"
+  description: |
+    Best-effort OpenAPI 3.1 description of the Givebutter REST API covering
+    campaigns, contacts, transactions, funds, households, tickets, plans,
+    payouts, pledges, webhooks, and discount codes. Authentication uses
+    Bearer-token authentication with an API key. Sourced from
+    https://docs.givebutter.com/.
+  contact:
+    name: Givebutter API Docs
+    url: https://docs.givebutter.com/reference/reference-getting-started
+servers:
+  - url: https://api.givebutter.com/v1
+    description: Production
+security:
+  - bearerAuth: []
+paths:
+  /campaigns:
+    get:
+      summary: List campaigns
+      operationId: listCampaigns
+      tags: [Campaigns]
+      parameters:
+        - $ref: "#/components/parameters/PerPage"
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: Paginated list of campaigns
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CampaignList"
+    post:
+      summary: Create a campaign
+      operationId: createCampaign
+      tags: [Campaigns]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Campaign"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Campaign"
+  /campaigns/{id}:
+    parameters:
+      - $ref: "#/components/parameters/IdInt"
+    get:
+      summary: Retrieve a campaign
+      operationId: getCampaign
+      tags: [Campaigns]
+      responses:
+        "200":
+          description: Campaign
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Campaign" }
+    patch:
+      summary: Update a campaign
+      operationId: updateCampaign
+      tags: [Campaigns]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Campaign" }
+      responses:
+        "200": { description: Updated, content: { application/json: { schema: { $ref: "#/components/schemas/Campaign" } } } }
+    delete:
+      summary: Delete a campaign
+      operationId: deleteCampaign
+      tags: [Campaigns]
+      responses:
+        "204": { description: Deleted }
+  /campaigns/{id}/members:
+    parameters:
+      - $ref: "#/components/parameters/IdInt"
+    get:
+      summary: List campaign members (individual fundraisers)
+      operationId: listCampaignMembers
+      tags: [Campaigns]
+      responses:
+        "200":
+          description: Members
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/CampaignMember" }
+  /campaigns/{id}/teams:
+    parameters:
+      - $ref: "#/components/parameters/IdInt"
+    get:
+      summary: List campaign teams
+      operationId: listCampaignTeams
+      tags: [Campaigns]
+      responses:
+        "200":
+          description: Teams
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/CampaignTeam" }
+  /contacts:
+    get:
+      summary: List contacts
+      operationId: listContacts
+      tags: [Contacts]
+      parameters:
+        - $ref: "#/components/parameters/PerPage"
+        - $ref: "#/components/parameters/Page"
+        - in: query
+          name: email
+          schema: { type: string, format: email }
+      responses:
+        "200":
+          description: Contacts
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Contact" }
+    post:
+      summary: Create a contact
+      operationId: createContact
+      tags: [Contacts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Contact" }
+      responses:
+        "201": { description: Created, content: { application/json: { schema: { $ref: "#/components/schemas/Contact" } } } }
+  /contacts/{id}:
+    parameters:
+      - $ref: "#/components/parameters/IdInt"
+    get:
+      summary: Retrieve a contact
+      operationId: getContact
+      tags: [Contacts]
+      responses:
+        "200": { description: Contact, content: { application/json: { schema: { $ref: "#/components/schemas/Contact" } } } }
+    patch:
+      summary: Update a contact
+      operationId: updateContact
+      tags: [Contacts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Contact" }
+      responses:
+        "200": { description: Updated }
+    delete:
+      summary: Archive (soft delete) a contact
+      operationId: deleteContact
+      tags: [Contacts]
+      responses:
+        "204": { description: Archived }
+  /transactions:
+    get:
+      summary: List transactions
+      operationId: listTransactions
+      tags: [Transactions]
+      parameters:
+        - $ref: "#/components/parameters/PerPage"
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: Transactions
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Transaction" }
+    post:
+      summary: Create a transaction
+      operationId: createTransaction
+      tags: [Transactions]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Transaction" }
+      responses:
+        "201": { description: Created, content: { application/json: { schema: { $ref: "#/components/schemas/Transaction" } } } }
+  /transactions/{id}:
+    parameters:
+      - $ref: "#/components/parameters/IdString"
+    get:
+      summary: Get a transaction
+      operationId: getTransaction
+      tags: [Transactions]
+      responses:
+        "200": { description: Transaction, content: { application/json: { schema: { $ref: "#/components/schemas/Transaction" } } } }
+  /funds:
+    get:
+      summary: List funds
+      operationId: listFunds
+      tags: [Funds]
+      responses:
+        "200":
+          description: Funds
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Fund" }
+    post:
+      summary: Create a fund
+      operationId: createFund
+      tags: [Funds]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Fund" }
+      responses:
+        "201": { description: Created }
+  /funds/{id}:
+    parameters:
+      - $ref: "#/components/parameters/IdInt"
+    get:
+      summary: Retrieve a fund
+      operationId: getFund
+      tags: [Funds]
+      responses:
+        "200": { description: Fund, content: { application/json: { schema: { $ref: "#/components/schemas/Fund" } } } }
+  /tickets:
+    get:
+      summary: List tickets
+      operationId: listTickets
+      tags: [Tickets]
+      responses:
+        "200":
+          description: Tickets
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Ticket" }
+  /tickets/{id}:
+    parameters:
+      - $ref: "#/components/parameters/IdInt"
+    get:
+      summary: Retrieve a ticket
+      operationId: getTicket
+      tags: [Tickets]
+      responses:
+        "200": { description: Ticket, content: { application/json: { schema: { $ref: "#/components/schemas/Ticket" } } } }
+  /payouts:
+    get:
+      summary: List payouts
+      operationId: listPayouts
+      tags: [Payouts]
+      responses:
+        "200":
+          description: Payouts
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Payout" }
+  /plans:
+    get:
+      summary: List recurring plans
+      operationId: listPlans
+      tags: [Plans]
+      responses:
+        "200":
+          description: Plans
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Plan" }
+  /webhooks:
+    get:
+      summary: List webhooks
+      operationId: listWebhooks
+      tags: [Webhooks]
+      responses:
+        "200":
+          description: Webhooks
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Webhook" }
+    post:
+      summary: Create a webhook
+      operationId: createWebhook
+      tags: [Webhooks]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Webhook" }
+      responses:
+        "201": { description: Created }
+  /webhooks/{id}:
+    parameters:
+      - $ref: "#/components/parameters/IdInt"
+    delete:
+      summary: Delete a webhook
+      operationId: deleteWebhook
+      tags: [Webhooks]
+      responses:
+        "204": { description: Deleted }
+  /discount-codes:
+    get:
+      summary: List discount codes
+      operationId: listDiscountCodes
+      tags: [Discount Codes]
+      responses:
+        "200":
+          description: Discount codes
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/DiscountCode" }
+    post:
+      summary: Create a discount code
+      operationId: createDiscountCode
+      tags: [Discount Codes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/DiscountCode" }
+      responses:
+        "201": { description: Created }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: Bearer token authentication using a personal API key.
+  parameters:
+    PerPage:
+      in: query
+      name: per_page
+      schema: { type: integer, minimum: 1, maximum: 100, default: 20 }
+    Page:
+      in: query
+      name: page
+      schema: { type: integer, minimum: 1, default: 1 }
+    IdInt:
+      in: path
+      name: id
+      required: true
+      schema: { type: integer }
+    IdString:
+      in: path
+      name: id
+      required: true
+      schema: { type: string }
+  schemas:
+    CampaignList:
+      type: object
+      properties:
+        data:
+          type: array
+          items: { $ref: "#/components/schemas/Campaign" }
+        meta:
+          type: object
+          properties:
+            current_page: { type: integer }
+            per_page: { type: integer }
+            total: { type: integer }
+    Campaign:
+      type: object
+      properties:
+        id: { type: integer }
+        code: { type: string }
+        type: { type: string }
+        title: { type: string }
+        slug: { type: string }
+        goal: { type: integer }
+        raised: { type: integer }
+        donors: { type: integer }
+        currency: { type: string }
+        status: { type: string }
+        created_at: { type: string, format: date-time }
+    CampaignMember:
+      type: object
+      properties:
+        id: { type: integer }
+        first_name: { type: string }
+        last_name: { type: string }
+        raised: { type: integer }
+        goal: { type: integer }
+    CampaignTeam:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        raised: { type: integer }
+        goal: { type: integer }
+    Contact:
+      type: object
+      properties:
+        id: { type: integer }
+        first_name: { type: string }
+        last_name: { type: string }
+        emails:
+          type: array
+          items:
+            type: object
+            properties:
+              type: { type: string }
+              value: { type: string, format: email }
+        phones:
+          type: array
+          items:
+            type: object
+            properties:
+              type: { type: string }
+              value: { type: string }
+        addresses:
+          type: array
+          items:
+            type: object
+        tags:
+          type: array
+          items: { type: string }
+    Transaction:
+      type: object
+      properties:
+        id: { type: string }
+        number: { type: string }
+        campaign_id: { type: integer }
+        amount: { type: number, format: float }
+        currency: { type: string }
+        status: { type: string }
+        method: { type: string }
+        created_at: { type: string, format: date-time }
+        giving_space:
+          type: object
+          properties:
+            name: { type: string }
+            amount: { type: number }
+    Fund:
+      type: object
+      properties:
+        id: { type: integer }
+        code: { type: string }
+        name: { type: string }
+        description: { type: string }
+        goal: { type: integer }
+        raised: { type: integer }
+    Ticket:
+      type: object
+      properties:
+        id: { type: integer }
+        campaign_id: { type: integer }
+        type: { type: string }
+        price: { type: number }
+        currency: { type: string }
+        status: { type: string }
+    Payout:
+      type: object
+      properties:
+        id: { type: integer }
+        amount: { type: number }
+        currency: { type: string }
+        status: { type: string }
+        deposited_at: { type: string, format: date-time }
+    Plan:
+      type: object
+      properties:
+        id: { type: integer }
+        amount: { type: number }
+        currency: { type: string }
+        frequency: { type: string, enum: [monthly, quarterly, yearly] }
+        status: { type: string }
+        contact_id: { type: integer }
+    Webhook:
+      type: object
+      properties:
+        id: { type: integer }
+        url: { type: string, format: uri }
+        events:
+          type: array
+          items: { type: string }
+        active: { type: boolean }
+    DiscountCode:
+      type: object
+      properties:
+        id: { type: integer }
+        code: { type: string }
+        amount_off: { type: number }
+        percent_off: { type: number }
+        max_uses: { type: integer }
+        expires_at: { type: string, format: date-time }

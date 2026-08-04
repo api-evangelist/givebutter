@@ -1,0 +1,30 @@
+{
+  "provider": "givebutter",
+  "sources": [
+    "givebutter-campaigns-api-openapi.yml",
+    "givebutter-contacts-api-openapi.yml",
+    "givebutter-discount-codes-api-openapi.yml",
+    "givebutter-funds-api-openapi.yml",
+    "givebutter-payouts-api-openapi.yml",
+    "givebutter-plans-api-openapi.yml",
+    "givebutter-tickets-api-openapi.yml",
+    "givebutter-transactions-api-openapi.yml",
+    "givebutter-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "givebutter-campaigns-api-openapi.yml",
+    "givebutter-contacts-api-openapi.yml",
+    "givebutter-discount-codes-api-openapi.yml",
+    "givebutter-funds-api-openapi.yml",
+    "givebutter-payouts-api-openapi.yml",
+    "givebutter-plans-api-openapi.yml",
+    "givebutter-tickets-api-openapi.yml",
+    "givebutter-transactions-api-openapi.yml",
+    "givebutter-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
