@@ -1,0 +1,209 @@
+{
+  "item": [
+    {
+      "id": "c32fa818-ba1b-46e8-8c86-1d61842457b8",
+      "name": "Tickets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd0819ed-36f9-431b-856f-6c0ac15ede09",
+          "name": "List tickets",
+          "request": {
+            "name": "List tickets",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f4db24d-8bfa-460e-a572-2f43d523bf97",
+              "name": "Tickets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4739,\n    \"campaign_id\": 3862,\n    \"type\": \"string\",\n    \"price\": 8690.19279949636,\n    \"currency\": \"string\",\n    \"status\": \"string\"\n  },\n  {\n    \"id\": 1468,\n    \"campaign_id\": 724,\n    \"type\": \"string\",\n    \"price\": 5069.7272842033935,\n    \"currency\": \"string\",\n    \"status\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9355242-5cda-4784-9e5c-d8648bedc86c",
+          "name": "Retrieve a ticket",
+          "request": {
+            "name": "Retrieve a ticket",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "788baade-4431-4788-8bd3-d514e7852826",
+              "name": "Ticket",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 322,\n  \"campaign_id\": 5560,\n  \"type\": \"string\",\n  \"price\": 916.86647037854,\n  \"currency\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.givebutter.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5e813e49-e5c5-4a2f-b7e7-b88050d277fd",
+    "name": "Givebutter Campaigns Tickets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Best-effort OpenAPI 3.1 description of the Givebutter REST API covering\ncampaigns, contacts, transactions, funds, households, tickets, plans,\npayouts, pledges, webhooks, and discount codes. Authentication uses\nBearer-token authentication with an API key. Sourced from\nhttps://docs.givebutter.com/.\n\n\nContact Support:\n Name: Givebutter API Docs",
+      "type": "text/plain"
+    }
+  }
+}

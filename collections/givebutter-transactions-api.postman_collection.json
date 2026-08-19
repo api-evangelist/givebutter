@@ -1,0 +1,325 @@
+{
+  "item": [
+    {
+      "id": "6c654e41-ac1c-47af-9efc-ac02734ba41c",
+      "name": "Transactions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "43fa0df4-0239-46cd-a30a-d9c6b0a8bfcc",
+          "name": "List transactions",
+          "request": {
+            "name": "List transactions",
+            "description": {},
+            "url": {
+              "path": [
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6acfaa27-58f5-4530-99e9-2c751a6511bf",
+              "name": "Transactions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"number\": \"string\",\n    \"campaign_id\": 6649,\n    \"amount\": 8096.164806688294,\n    \"currency\": \"string\",\n    \"status\": \"string\",\n    \"method\": \"string\",\n    \"created_at\": \"1988-05-27T19:10:03.885Z\",\n    \"giving_space\": {\n      \"name\": \"string\",\n      \"amount\": 8306.61147681989\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"number\": \"string\",\n    \"campaign_id\": 4878,\n    \"amount\": 6939.581264562737,\n    \"currency\": \"string\",\n    \"status\": \"string\",\n    \"method\": \"string\",\n    \"created_at\": \"1961-12-29T08:49:04.455Z\",\n    \"giving_space\": {\n      \"name\": \"string\",\n      \"amount\": 9657.907051758328\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94b3689d-d221-4fea-bd2f-c4686e27ac4f",
+          "name": "Create a transaction",
+          "request": {
+            "name": "Create a transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"campaign_id\": \"<integer>\",\n  \"amount\": \"<float>\",\n  \"currency\": \"<string>\",\n  \"status\": \"<string>\",\n  \"method\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"giving_space\": {\n    \"name\": \"<string>\",\n    \"amount\": \"<number>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "77d94f99-457d-4475-8671-206f7a42f69f",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"campaign_id\": \"<integer>\",\n  \"amount\": \"<float>\",\n  \"currency\": \"<string>\",\n  \"status\": \"<string>\",\n  \"method\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"giving_space\": {\n    \"name\": \"<string>\",\n    \"amount\": \"<number>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"number\": \"string\",\n  \"campaign_id\": 857,\n  \"amount\": 1570.6012331017128,\n  \"currency\": \"string\",\n  \"status\": \"string\",\n  \"method\": \"string\",\n  \"created_at\": \"1987-08-12T14:34:43.307Z\",\n  \"giving_space\": {\n    \"name\": \"string\",\n    \"amount\": 9030.92610986667\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95a299b6-7149-4d34-a8b2-69cccb40b9dc",
+          "name": "Get a transaction",
+          "request": {
+            "name": "Get a transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "transactions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d5b02f07-2b39-4a66-a5f1-9548aff21d95",
+              "name": "Transaction",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"number\": \"string\",\n  \"campaign_id\": 857,\n  \"amount\": 1570.6012331017128,\n  \"currency\": \"string\",\n  \"status\": \"string\",\n  \"method\": \"string\",\n  \"created_at\": \"1987-08-12T14:34:43.307Z\",\n  \"giving_space\": {\n    \"name\": \"string\",\n    \"amount\": 9030.92610986667\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.givebutter.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a0adf028-0b65-4f84-b3f7-c2d906592c34",
+    "name": "Givebutter Campaigns Transactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Best-effort OpenAPI 3.1 description of the Givebutter REST API covering\ncampaigns, contacts, transactions, funds, households, tickets, plans,\npayouts, pledges, webhooks, and discount codes. Authentication uses\nBearer-token authentication with an API key. Sourced from\nhttps://docs.givebutter.com/.\n\n\nContact Support:\n Name: Givebutter API Docs",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Givebutter Campaigns Plans API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List recurring plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/plans"
+          },
+          "docs": "List recurring plans"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

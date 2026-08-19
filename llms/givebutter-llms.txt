@@ -1,0 +1,97 @@
+# Givebutter
+
+> Documentation for the Givebutter API, widgets, and webhooks.
+
+## Docs
+
+- [Getting Started](https://docs.givebutter.com/widgets/getting-started.md): Learn how to embed donation forms and buttons directly on your own website.
+- [Interactive Examples](https://docs.givebutter.com/widgets/examples.md): See Givebutter Widgets in action with interactive, customizable examples.
+- [Button Widget](https://docs.givebutter.com/widgets/widget-types/button.md): Embed a customizable donation button that opens a popup form on your site.
+- [Form Widget](https://docs.givebutter.com/widgets/widget-types/form.md): Embed a full donation form directly on your page for a seamless giving experience.
+- [Goal Bar Widget](https://docs.givebutter.com/widgets/widget-types/goal-bar.md): Display a visual fundraising progress bar to motivate donors and showcase campaign momentum.
+- [Signup Form Widget](https://docs.givebutter.com/widgets/widget-types/signup-form.md): Capture email subscribers and grow your mailing list with an embedded signup form.
+- [GoDaddy](https://docs.givebutter.com/widgets/website-builders/godaddy.md): Add Givebutter widgets to your GoDaddy Website Builder site.
+- [Squarespace](https://docs.givebutter.com/widgets/website-builders/squarespace.md): Embed Givebutter widgets on your Squarespace website using Code Injection.
+- [Weebly](https://docs.givebutter.com/widgets/website-builders/weebly.md): Install Givebutter widgets on your Weebly website.
+- [Wix](https://docs.givebutter.com/widgets/website-builders/wix.md): Add Givebutter donation widgets to your Wix website.
+- [WordPress](https://docs.givebutter.com/widgets/website-builders/wordpress.md): Add Givebutter donation widgets to your WordPress website with the free plugin.
+- [URL Prefill Parameters](https://docs.givebutter.com/widgets/advanced/url-prefill.md): Pre-fill donation amount and frequency using URL parameters.
+- [Analytics & Attribution](https://docs.givebutter.com/widgets/advanced/analytics.md): Track where your donations come from with automatic attribution data capture.
+- [Authentication](https://docs.givebutter.com/api-reference/authentication.md): Securely authenticate API requests using Bearer token authentication with API keys.
+- [Pagination](https://docs.givebutter.com/api-reference/pagination.md): Efficiently work with large datasets using cursor-based and offset pagination in the Givebutter API.
+- [Rate Limits](https://docs.givebutter.com/api-reference/rate-limits.md): Understand API rate limits to ensure reliable access.
+- [Errors](https://docs.givebutter.com/api-reference/errors.md): The Givebutter API uses standard HTTP status codes to indicate the success or failure of requests.
+- [List all discount codes](https://docs.givebutter.com/api-reference/campaign-discount-codes/list-all-discount-codes.md)
+- [Create a discount code](https://docs.givebutter.com/api-reference/campaign-discount-codes/create-a-discount-code.md)
+- [Get a discount code](https://docs.givebutter.com/api-reference/campaign-discount-codes/get-a-discount-code.md)
+- [Update a discount code](https://docs.givebutter.com/api-reference/campaign-discount-codes/update-a-discount-code.md)
+- [Delete a discount code](https://docs.givebutter.com/api-reference/campaign-discount-codes/delete-a-discount-code.md)
+- [List all campaign members](https://docs.givebutter.com/api-reference/campaign-members/list-all-campaign-members.md)
+- [Get a campaign member](https://docs.givebutter.com/api-reference/campaign-members/get-a-campaign-member.md)
+- [Delete a campaign member](https://docs.givebutter.com/api-reference/campaign-members/delete-a-campaign-member.md)
+- [List all campaign teams](https://docs.givebutter.com/api-reference/campaign-teams/list-all-campaign-teams.md)
+- [Get a campaign team](https://docs.givebutter.com/api-reference/campaign-teams/get-a-campaign-team.md)
+- [Delete a campaign team](https://docs.givebutter.com/api-reference/campaign-teams/delete-a-campaign-team.md)
+- [List all campaign tickets](https://docs.givebutter.com/api-reference/campaign-tickets/list-all-campaign-tickets.md)
+- [Create a campaign ticket](https://docs.givebutter.com/api-reference/campaign-tickets/create-a-campaign-ticket.md)
+- [Get a campaign ticket](https://docs.givebutter.com/api-reference/campaign-tickets/get-a-campaign-ticket.md)
+- [List all campaigns](https://docs.givebutter.com/api-reference/campaigns/list-all-campaigns.md)
+- [Create a campaign](https://docs.givebutter.com/api-reference/campaigns/create-a-campaign.md)
+- [Get a campaign](https://docs.givebutter.com/api-reference/campaigns/get-a-campaign.md)
+- [Update a campaign](https://docs.givebutter.com/api-reference/campaigns/update-a-campaign.md)
+- [Delete a campaign](https://docs.givebutter.com/api-reference/campaigns/delete-a-campaign.md)
+- [List all contact activities](https://docs.givebutter.com/api-reference/contact-activities/list-all-contact-activities.md)
+- [Create a contact activity](https://docs.givebutter.com/api-reference/contact-activities/create-a-contact-activity.md)
+- [Get a contact activity](https://docs.givebutter.com/api-reference/contact-activities/get-a-contact-activity.md)
+- [Update a contact activity](https://docs.givebutter.com/api-reference/contact-activities/update-a-contact-activity.md)
+- [Delete a contact activity](https://docs.givebutter.com/api-reference/contact-activities/delete-a-contact-activity.md)
+- [Add tags to a contact](https://docs.givebutter.com/api-reference/contact-tags/add-tags-to-a-contact.md)
+- [Remove tags from a contact](https://docs.givebutter.com/api-reference/contact-tags/remove-tags-from-a-contact.md)
+- [Sync tags for a contact](https://docs.givebutter.com/api-reference/contact-tags/sync-tags-for-a-contact.md)
+- [List all contacts](https://docs.givebutter.com/api-reference/contacts/list-all-contacts.md)
+- [Create a contact](https://docs.givebutter.com/api-reference/contacts/create-a-contact.md)
+- [Get a contact](https://docs.givebutter.com/api-reference/contacts/get-a-contact.md)
+- [Update a contact](https://docs.givebutter.com/api-reference/contacts/update-a-contact.md)
+- [Delete a contact](https://docs.givebutter.com/api-reference/contacts/delete-a-contact.md)
+- [Restore a contact](https://docs.givebutter.com/api-reference/contacts/restore-a-contact.md)
+- [List all funds](https://docs.givebutter.com/api-reference/funds/list-all-funds.md)
+- [Create a fund](https://docs.givebutter.com/api-reference/funds/create-a-fund.md)
+- [Get a fund](https://docs.givebutter.com/api-reference/funds/get-a-fund.md)
+- [Update a fund](https://docs.givebutter.com/api-reference/funds/update-a-fund.md)
+- [Delete a fund](https://docs.givebutter.com/api-reference/funds/delete-a-fund.md)
+- [List all contacts associated with a household](https://docs.givebutter.com/api-reference/household-contacts/list-all-contacts-associated-with-a-household.md)
+- [Add a contact to a household](https://docs.givebutter.com/api-reference/household-contacts/add-a-contact-to-a-household.md)
+- [Get a contact associated with a household](https://docs.givebutter.com/api-reference/household-contacts/get-a-contact-associated-with-a-household.md)
+- [Remove a contact from a household](https://docs.givebutter.com/api-reference/household-contacts/remove-a-contact-from-a-household.md)
+- [List all households](https://docs.givebutter.com/api-reference/households/list-all-households.md)
+- [Create a household](https://docs.givebutter.com/api-reference/households/create-a-household.md)
+- [Get a household](https://docs.givebutter.com/api-reference/households/get-a-household.md)
+- [Update a household](https://docs.givebutter.com/api-reference/households/update-a-household.md)
+- [Delete a household](https://docs.givebutter.com/api-reference/households/delete-a-household.md)
+- [List all messages](https://docs.givebutter.com/api-reference/messages/list-all-messages.md)
+- [Get a message](https://docs.givebutter.com/api-reference/messages/get-a-message.md)
+- [List all payouts](https://docs.givebutter.com/api-reference/payouts/list-all-payouts.md)
+- [Get a payout](https://docs.givebutter.com/api-reference/payouts/get-a-payout.md)
+- [List all pledges](https://docs.givebutter.com/api-reference/pledges/list-all-pledges.md)
+- [Get a pledge](https://docs.givebutter.com/api-reference/pledges/get-a-pledge.md)
+- [List all recurring plans](https://docs.givebutter.com/api-reference/recurring-plans/list-all-recurring-plans.md)
+- [Get a recurring plan](https://docs.givebutter.com/api-reference/recurring-plans/get-a-recurring-plan.md)
+- [List all tickets](https://docs.givebutter.com/api-reference/tickets/list-all-tickets.md)
+- [Get a ticket](https://docs.givebutter.com/api-reference/tickets/get-a-ticket.md)
+- [List all transactions](https://docs.givebutter.com/api-reference/transactions/list-all-transactions.md)
+- [Create a transaction](https://docs.givebutter.com/api-reference/transactions/create-a-transaction.md)
+- [Get a transaction](https://docs.givebutter.com/api-reference/transactions/get-a-transaction.md)
+- [Update a transaction](https://docs.givebutter.com/api-reference/transactions/update-a-transaction.md)
+- [List all webhook activities](https://docs.givebutter.com/api-reference/webhook-activities/list-all-webhook-activities.md)
+- [Get a webhook activity](https://docs.givebutter.com/api-reference/webhook-activities/get-a-webhook-activity.md)
+- [List all webhooks](https://docs.givebutter.com/api-reference/webhooks/list-all-webhooks.md)
+- [Create a webhook](https://docs.givebutter.com/api-reference/webhooks/create-a-webhook.md)
+- [Get a webhook](https://docs.givebutter.com/api-reference/webhooks/get-a-webhook.md)
+- [Update a webhook](https://docs.givebutter.com/api-reference/webhooks/update-a-webhook.md)
+- [Delete a webhook](https://docs.givebutter.com/api-reference/webhooks/delete-a-webhook.md)
+
+## OpenAPI Specs
+
+- [api](https://docs.givebutter.com/api-reference/api.json)
+- [givebutter-api](https://docs.givebutter.com/api-reference/givebutter-api.json)
+- [openapi](https://docs.givebutter.com/openapi.json)

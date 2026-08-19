@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Givebutter Campaigns Funds API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Funds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List funds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/funds"
+          },
+          "docs": "List funds"
+        },
+        {
+          "info": {
+            "name": "Create a fund",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.givebutter.com/v1/funds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a fund"
+        },
+        {
+          "info": {
+            "name": "Retrieve a fund",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.givebutter.com/v1/funds/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a fund"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

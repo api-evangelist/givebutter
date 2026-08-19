@@ -1,0 +1,204 @@
+{
+  "item": [
+    {
+      "id": "74bf62c5-eac2-417e-be21-260634f9ac5a",
+      "name": "Discount Codes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b5db9d0e-1f0c-44f0-a869-ce4d95fed0c5",
+          "name": "List discount codes",
+          "request": {
+            "name": "List discount codes",
+            "description": {},
+            "url": {
+              "path": [
+                "discount-codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22fda1e8-b5b0-4e10-a9db-e381801ef328",
+              "name": "Discount codes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discount-codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1326,\n    \"code\": \"string\",\n    \"amount_off\": 366.43358238647727,\n    \"percent_off\": 5326.382478137516,\n    \"max_uses\": 7643,\n    \"expires_at\": \"1984-12-27T11:14:00.913Z\"\n  },\n  {\n    \"id\": 4126,\n    \"code\": \"string\",\n    \"amount_off\": 3770.2575790823457,\n    \"percent_off\": 9209.589406735062,\n    \"max_uses\": 1751,\n    \"expires_at\": \"2023-08-21T17:48:08.581Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f4051ff-12a6-4552-b22a-afe3466c1f74",
+          "name": "Create a discount code",
+          "request": {
+            "name": "Create a discount code",
+            "description": {},
+            "url": {
+              "path": [
+                "discount-codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"amount_off\": \"<number>\",\n  \"percent_off\": \"<number>\",\n  \"max_uses\": \"<integer>\",\n  \"expires_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "866056c5-eb60-4392-b51e-e35a889301d2",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discount-codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"amount_off\": \"<number>\",\n  \"percent_off\": \"<number>\",\n  \"max_uses\": \"<integer>\",\n  \"expires_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.givebutter.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d78f6755-2c8d-4820-ab6e-4897d9139c86",
+    "name": "Givebutter Campaigns Discount Codes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Best-effort OpenAPI 3.1 description of the Givebutter REST API covering\ncampaigns, contacts, transactions, funds, households, tickets, plans,\npayouts, pledges, webhooks, and discount codes. Authentication uses\nBearer-token authentication with an API key. Sourced from\nhttps://docs.givebutter.com/.\n\n\nContact Support:\n Name: Givebutter API Docs",
+      "type": "text/plain"
+    }
+  }
+}
