@@ -1,170 +1,1423 @@
 openapi: 3.1.0
 info:
-  title: Givebutter Campaigns Contacts API
+  title: Givebutter Contacts API
   version: 1.0.0
-  description: 'Best-effort OpenAPI 3.1 description of the Givebutter REST API covering
-
-    campaigns, contacts, transactions, funds, households, tickets, plans,
-
-    payouts, pledges, webhooks, and discount codes. Authentication uses
-
-    Bearer-token authentication with an API key. Sourced from
-
-    https://docs.givebutter.com/.
-
-    '
+  description: The Contacts surface of the Givebutter Public API — 6 operation(s). Split by tag from Givebutter's
+    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12). Operations, schemas and
+    responses are verbatim from the provider's spec.
   contact:
-    name: Givebutter API Docs
-    url: https://docs.givebutter.com/reference/reference-getting-started
+    name: Givebutter API Documentation
+    url: https://docs.givebutter.com/api-reference/authentication
 servers:
-- url: https://api.givebutter.com/v1
-  description: Production
+- url: https://api.givebutter.com/
 security:
-- bearerAuth: []
+- http: []
 tags:
 - name: Contacts
 paths:
-  /contacts:
+  /v1/contacts:
     get:
-      summary: List contacts
-      operationId: listContacts
+      operationId: contacts.index
+      summary: List all contacts
       tags:
       - Contacts
       parameters:
-      - $ref: '#/components/parameters/PerPage'
-      - $ref: '#/components/parameters/Page'
-      - in: query
-        name: email
+      - name: type
+        in: query
         schema:
-          type: string
-          format: email
+          $ref: '#/components/schemas/ContactType'
+      - name: createdAfter
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      - name: createdBefore
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      - name: updatedAfter
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      - name: updatedBefore
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      - name: totalContributionsMin
+        in: query
+        schema:
+          type:
+          - number
+          - 'null'
+      - name: totalContributionsMax
+        in: query
+        schema:
+          type:
+          - number
+          - 'null'
+      - name: recurringContributionsMin
+        in: query
+        schema:
+          type:
+          - number
+          - 'null'
+      - name: recurringContributionsMax
+        in: query
+        schema:
+          type:
+          - number
+          - 'null'
+      - name: tags
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: sortBy
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+          enum:
+          - name_or_company
+          - primary_email
+          - point_of_contact
+          - created_at
+          - total_contributions
+          - recurring_contributions
+          - last_donation_amount
+      - name: sortByDesc
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+          enum:
+          - name_or_company
+          - primary_email
+          - point_of_contact
+          - created_at
+          - total_contributions
+          - recurring_contributions
+          - last_donation_amount
+      - name: email
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: primaryEmail
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: firstName
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+          maxLength: 1000
+      - name: lastName
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+          maxLength: 1000
       responses:
         '200':
-          description: Contacts
+          description: Paginated set of `ContactResource`
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Contact'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ContactResource'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type:
+                        - string
+                        - 'null'
+                      last:
+                        type:
+                        - string
+                        - 'null'
+                      prev:
+                        type:
+                        - string
+                        - 'null'
+                      next:
+                        type:
+                        - string
+                        - 'null'
+                    required:
+                    - first
+                    - last
+                    - prev
+                    - next
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        minimum: 1
+                      from:
+                        type:
+                        - integer
+                        - 'null'
+                        minimum: 1
+                      last_page:
+                        type: integer
+                        minimum: 1
+                      links:
+                        type: array
+                        description: Generated paginator links.
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type:
+                              - string
+                              - 'null'
+                            label:
+                              type: string
+                            active:
+                              type: boolean
+                          required:
+                          - url
+                          - label
+                          - active
+                      path:
+                        type:
+                        - string
+                        - 'null'
+                        description: Base path for paginator generated URLs.
+                      per_page:
+                        type: integer
+                        description: Number of items shown per page.
+                        minimum: 0
+                      to:
+                        type:
+                        - integer
+                        - 'null'
+                        description: Number of the last item in the slice.
+                        minimum: 1
+                      total:
+                        type: integer
+                        description: Total number of items being paginated.
+                        minimum: 0
+                    required:
+                    - current_page
+                    - from
+                    - last_page
+                    - links
+                    - path
+                    - per_page
+                    - to
+                    - total
+                required:
+                - data
+                - links
+                - meta
+        '403':
+          $ref: '#/components/responses/AuthorizationException'
+        '422':
+          $ref: '#/components/responses/ValidationException'
     post:
+      operationId: contacts.store
       summary: Create a contact
-      operationId: createContact
       tags:
       - Contacts
       requestBody:
-        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Contact'
+              allOf:
+              - $ref: '#/components/schemas/StoreContactRequest'
+              - type: object
+                properties:
+                  force_create:
+                    type: boolean
+                    default: false
       responses:
-        '201':
-          description: Created
+        '200':
+          description: '`ContactResource`'
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Contact'
-  /contacts/{id}:
-    parameters:
-    - $ref: '#/components/parameters/IdInt'
+                $ref: '#/components/schemas/ContactResource'
+        '422':
+          $ref: '#/components/responses/ValidationException'
+  /v1/contacts/{contact}:
     get:
-      summary: Retrieve a contact
-      operationId: getContact
+      operationId: contacts.show
+      summary: Get a contact
       tags:
       - Contacts
+      parameters:
+      - name: contact
+        in: path
+        required: true
+        description: The contact ID
+        schema:
+          type: integer
       responses:
         '200':
-          description: Contact
+          description: '`ContactResource`'
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Contact'
-    patch:
+                $ref: '#/components/schemas/ContactResource'
+        '403':
+          $ref: '#/components/responses/AuthorizationException'
+        '404':
+          $ref: '#/components/responses/ModelNotFoundException'
+    put:
+      operationId: contacts.update
       summary: Update a contact
-      operationId: updateContact
       tags:
       - Contacts
-      requestBody:
+      parameters:
+      - name: contact
+        in: path
         required: true
+        description: The contact ID
+        schema:
+          type: integer
+      requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Contact'
+              $ref: '#/components/schemas/UpdateContactRequest'
       responses:
         '200':
-          description: Updated
+          description: '`ContactResource`'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResource'
+        '403':
+          $ref: '#/components/responses/AuthorizationException'
+        '422':
+          $ref: '#/components/responses/ValidationException'
+        '404':
+          $ref: '#/components/responses/ModelNotFoundException'
     delete:
-      summary: Archive (soft delete) a contact
-      operationId: deleteContact
+      operationId: contacts.destroy
+      summary: Delete a contact
       tags:
       - Contacts
+      parameters:
+      - name: contact
+        in: path
+        required: true
+        description: The contact ID
+        schema:
+          type: integer
       responses:
-        '204':
-          description: Archived
+        '200':
+          description: ''
+        '403':
+          $ref: '#/components/responses/AuthorizationException'
+        '404':
+          $ref: '#/components/responses/ModelNotFoundException'
+  /v1/contacts/{contact}/restore:
+    patch:
+      operationId: contact.restore
+      summary: Restore a contact
+      tags:
+      - Contacts
+      parameters:
+      - name: contact
+        in: path
+        required: true
+        description: The contact ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: '`ContactResource`'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResource'
+        '403':
+          $ref: '#/components/responses/AuthorizationException'
+        '404':
+          $ref: '#/components/responses/ModelNotFoundException'
 components:
-  parameters:
-    Page:
-      in: query
-      name: page
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    PerPage:
-      in: query
-      name: per_page
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    IdInt:
-      in: path
-      name: id
-      required: true
-      schema:
-        type: integer
+  responses:
+    AuthorizationException:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    ValidationException:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Errors overview.
+              errors:
+                type: object
+                description: A detailed description of each field that failed validation.
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+            required:
+            - message
+            - errors
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
   schemas:
-    Contact:
+    AssociatedCompanyResource:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        company_name:
+          type: string
+        name_display:
+          type: string
+        title:
+          type: string
+        twitter_url:
+          type: string
+        linkedin_url:
+          type: string
+        facebook_url:
+          type: string
+        tiktok_url:
+          type: string
+        instagram_url:
+          type: string
+        website_url:
+          type: string
+        image_url:
+          type:
+          - string
+          - 'null'
+        emails:
+          type: object
+          additionalProperties: {}
+        phones:
+          type: object
+          additionalProperties: {}
+        primary_email:
+          type: string
+        primary_phone:
+          type: string
+        is_email_subscribed:
+          type: string
+        is_phone_subscribed:
+          type: string
+        is_address_subscribed:
+          type: string
+        address_unsubscribed_at:
+          type: string
+        note:
+          type: string
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressResource'
+        primary_address:
+          $ref: '#/components/schemas/AddressResource'
+        archived_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        first_time_supporter_at:
+          type: string
+      required:
+      - id
+      - type
+      - company_name
+      - name_display
+      - title
+      - twitter_url
+      - linkedin_url
+      - facebook_url
+      - tiktok_url
+      - instagram_url
+      - website_url
+      - image_url
+      - emails
+      - phones
+      - primary_email
+      - primary_phone
+      - is_email_subscribed
+      - is_phone_subscribed
+      - is_address_subscribed
+      - address_unsubscribed_at
+      - note
+      - addresses
+      - primary_address
+      - archived_at
+      - created_at
+      - updated_at
+      - first_time_supporter_at
+      title: AssociatedCompanyResource
+    UpdateContactRequest:
+      type: object
+      properties:
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: Required for individual contacts. Optional for company contacts, which require company_name
+            instead.
+          maxLength: 255
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: Required for individual contacts. Optional for company contacts, which require company_name
+            instead.
+          maxLength: 255
+        middle_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        preferred_name:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          maxLength: 255
+        gender:
+          $ref: '#/components/schemas/GenderEnum'
+        pronouns:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          maxLength: 255
+        suffix:
+          type:
+          - string
+          - 'null'
+          maxLength: 32
+        prefix:
+          type:
+          - string
+          - 'null'
+          maxLength: 32
+        type:
+          description: 'Determines which fields are required: individual contacts require a name, company contacts
+            require company_name.'
+          $ref: '#/components/schemas/ContactType'
+        company_name:
+          type:
+          - string
+          - 'null'
+          description: Required for company contacts. Optional for individual contacts, which require first_name
+            and last_name instead.
+          maxLength: 255
+        employer:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        company:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        title:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        twitter_url:
+          type:
+          - string
+          - 'null'
+        linkedin_url:
+          type:
+          - string
+          - 'null'
+        facebook_url:
+          type:
+          - string
+          - 'null'
+        tiktok_url:
+          type:
+          - string
+          - 'null'
+        website_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 2048
+        note:
+          type:
+          - string
+          - 'null'
+        bio:
+          type:
+          - string
+          - 'null'
+          maxLength: 2000
+        external_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        contact_since:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dob:
+          type: string
+        email_opt_in:
+          type:
+          - boolean
+          - 'null'
+        sms_opt_in:
+          type:
+          - boolean
+          - 'null'
+        address_subscription:
+          type:
+          - boolean
+          - 'null'
+        custom_fields:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            maxLength: 64
+        remove_emails:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: email
+        remove_phones:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        remove_address_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+        emails:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+            properties:
+              value:
+                type:
+                - string
+                - 'null'
+                format: email
+              type:
+                type:
+                - string
+                - 'null'
+              is_primary:
+                type: boolean
+        phones:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+            properties:
+              value:
+                type:
+                - string
+                - 'null'
+              type:
+                type:
+                - string
+                - 'null'
+              is_primary:
+                type: boolean
+        addresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              address_1:
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+              address_2:
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+              city:
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+              state:
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+              zipcode:
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+              country:
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+              is_primary:
+                type: boolean
+      title: UpdateContactRequest
+    PointOfContactResource:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        prefix:
+          type: string
+        first_name:
+          type: string
+        middle_name:
+          type: string
+        last_name:
+          type: string
+        suffix:
+          type: string
+        gender:
+          type: string
+        pronouns:
+          type: string
+        dob:
+          type: string
+        employer:
+          type: string
+        title:
+          type: string
+        twitter_url:
+          type: string
+        linkedin_url:
+          type: string
+        facebook_url:
+          type: string
+        tiktok_url:
+          type: string
+        instagram_url:
+          type: string
+        website_url:
+          type: string
+        emails:
+          type: object
+          additionalProperties: {}
+        phones:
+          type: object
+          additionalProperties: {}
+        primary_email:
+          type: string
+        primary_phone:
+          type: string
+        is_email_subscribed:
+          type: string
+        is_phone_subscribed:
+          type: string
+        is_address_subscribed:
+          type: string
+        address_unsubscribed_at:
+          type: string
+        archived_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        first_time_supporter_at:
+          type: string
+      required:
+      - id
+      - type
+      - prefix
+      - first_name
+      - middle_name
+      - last_name
+      - suffix
+      - gender
+      - pronouns
+      - dob
+      - employer
+      - title
+      - twitter_url
+      - linkedin_url
+      - facebook_url
+      - tiktok_url
+      - instagram_url
+      - website_url
+      - emails
+      - phones
+      - primary_email
+      - primary_phone
+      - is_email_subscribed
+      - is_phone_subscribed
+      - is_address_subscribed
+      - address_unsubscribed_at
+      - archived_at
+      - created_at
+      - updated_at
+      - first_time_supporter_at
+      title: PointOfContactResource
+    App.Http.Resources.API.AddressResource:
+      type: object
+      properties:
+        address_1:
+          type: string
+        address_2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        state:
+          type:
+          - string
+          - 'null'
+        zipcode:
+          type:
+          - string
+          - 'null'
+        country:
+          type: string
+        type:
+          type: string
+        is_primary:
+          type: boolean
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - address_1
+      - address_2
+      - city
+      - state
+      - zipcode
+      - country
+      - type
+      - is_primary
+      - created_at
+      - updated_at
+      title: App.Http.Resources.API.AddressResource
+    ExternalIdResource:
       type: object
       properties:
         id:
           type: integer
+        label:
+          type: string
+        external_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - label
+      - external_id
+      - created_at
+      - updated_at
+      title: ExternalIdResource
+    GenderEnum:
+      type: string
+      enum:
+      - male
+      - female
+      - other
+      title: GenderEnum
+    AddressResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        account_id:
+          type:
+          - integer
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        address_1:
+          type: string
+        address_2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        state:
+          type:
+          - string
+          - 'null'
+        zipcode:
+          type:
+          - string
+          - 'null'
+        country:
+          type: string
+        type:
+          type: string
+        is_primary:
+          type: boolean
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - id
+      - account_id
+      - name
+      - address_1
+      - address_2
+      - city
+      - state
+      - zipcode
+      - country
+      - type
+      - is_primary
+      - created_at
+      - updated_at
+      title: AddressResource
+    PhoneResource:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      required:
+      - type
+      - value
+      title: PhoneResource
+    StoreContactRequest:
+      type: object
+      properties:
+        first_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        last_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        middle_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        preferred_name:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          maxLength: 255
+        primary_email:
+          type:
+          - string
+          - 'null'
+        primary_phone:
+          type:
+          - string
+          - 'null'
+        company_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        external_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        contact_since:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        type:
+          $ref: '#/components/schemas/ContactType'
+        gender:
+          $ref: '#/components/schemas/GenderEnum'
+        pronouns:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          maxLength: 255
+        suffix:
+          type:
+          - string
+          - 'null'
+          maxLength: 32
+        prefix:
+          type:
+          - string
+          - 'null'
+          maxLength: 32
+        address_1:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        address_2:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        city:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        state:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        zipcode:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        country:
+          type:
+          - string
+          - 'null'
+        primary_address_1:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        primary_address_2:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        primary_city:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        primary_state:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        primary_zipcode:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        primary_country:
+          type:
+          - string
+          - 'null'
+        emails:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        phones:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        dob:
+          type: string
+        employer:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        company:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        title:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        twitter_url:
+          type:
+          - string
+          - 'null'
+        linkedin_url:
+          type:
+          - string
+          - 'null'
+        facebook_url:
+          type:
+          - string
+          - 'null'
+        tiktok_url:
+          type:
+          - string
+          - 'null'
+        instagram_url:
+          type:
+          - string
+          - 'null'
+        note:
+          type:
+          - string
+          - 'null'
+        email_subscription:
+          type:
+          - boolean
+          - 'null'
+        phone_subscription:
+          type:
+          - boolean
+          - 'null'
+        address_subscription:
+          type:
+          - boolean
+          - 'null'
+        custom_fields:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            maxLength: 64
+        addresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+            properties:
+              address_1:
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+              address_2:
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+              city:
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+              state:
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+              zipcode:
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+              country:
+                type:
+                - string
+                - 'null'
+      title: StoreContactRequest
+    EmailResource:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      required:
+      - type
+      - value
+      title: EmailResource
+    ContactResource:
+      type: object
+      properties:
+        id:
+          type: string
+        external_id:
+          type: string
+        contact_since:
+          type: string
+        type:
+          type: string
+        prefix:
+          type: string
         first_name:
           type: string
+        preferred_name:
+          type: string
+        middle_name:
+          type: string
         last_name:
+          type: string
+        suffix:
+          type: string
+        gender:
+          type: string
+        pronouns:
+          type: string
+        dob:
+          type: string
+        company:
+          type: string
+        employer:
+          type: string
+        company_name:
+          type: string
+        point_of_contact:
+          anyOf:
+          - $ref: '#/components/schemas/PointOfContactResource'
+          - type: 'null'
+        associated_companies:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AssociatedCompanyResource'
+        title:
+          type: string
+        website_url:
+          type: string
+        twitter_url:
+          type: string
+        linkedin_url:
+          type: string
+        facebook_url:
+          type: string
+        tiktok_url:
+          type: string
+        instagram_url:
           type: string
         emails:
           type: array
           items:
-            type: object
-            properties:
-              type:
-                type: string
-              value:
-                type: string
-                format: email
+            $ref: '#/components/schemas/EmailResource'
         phones:
           type: array
           items:
-            type: object
-            properties:
-              type:
-                type: string
-              value:
-                type: string
+            $ref: '#/components/schemas/PhoneResource'
+        primary_email:
+          type: string
+        primary_phone:
+          type: string
+        note:
+          type: string
         addresses:
           type: array
           items:
-            type: object
+            $ref: '#/components/schemas/App.Http.Resources.API.AddressResource'
+        primary_address:
+          anyOf:
+          - $ref: '#/components/schemas/App.Http.Resources.API.AddressResource'
+          - type: 'null'
+        last_donation_amount:
+          type: string
+        stats:
+          type: object
+          properties:
+            total_contributions:
+              type: string
+            recurring_contributions:
+              type: string
+          required:
+          - total_contributions
+          - recurring_contributions
         tags:
+          type: string
+        custom_fields:
+          type: array
+          items: {}
+        external_ids:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/ExternalIdResource'
+        is_email_subscribed:
+          type: string
+        is_phone_subscribed:
+          type: string
+        is_address_subscribed:
+          type: string
+        email_opt_in:
+          type: string
+        sms_opt_in:
+          type: string
+        address_unsubscribed_at:
+          type: string
+        archived_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        salutation_name:
+          type: string
+      required:
+      - id
+      - external_id
+      - contact_since
+      - type
+      - prefix
+      - first_name
+      - preferred_name
+      - middle_name
+      - last_name
+      - suffix
+      - gender
+      - pronouns
+      - dob
+      - company
+      - employer
+      - company_name
+      - title
+      - website_url
+      - twitter_url
+      - linkedin_url
+      - facebook_url
+      - tiktok_url
+      - instagram_url
+      - emails
+      - phones
+      - primary_email
+      - primary_phone
+      - note
+      - addresses
+      - primary_address
+      - last_donation_amount
+      - stats
+      - tags
+      - custom_fields
+      - external_ids
+      - is_email_subscribed
+      - is_phone_subscribed
+      - is_address_subscribed
+      - email_opt_in
+      - sms_opt_in
+      - address_unsubscribed_at
+      - archived_at
+      - created_at
+      - updated_at
+      - salutation_name
+      title: ContactResource
+    ContactType:
+      type: string
+      enum:
+      - individual
+      - company
+      title: ContactType
   securitySchemes:
-    bearerAuth:
+    http:
       type: http
       scheme: bearer
-      bearerFormat: API Key
-      description: Bearer token authentication using a personal API key.
+x-source: https://givebutter.com/docs/api.json
+x-harvested: '2026-09-12'

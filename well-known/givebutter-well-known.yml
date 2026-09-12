@@ -1,0 +1,137 @@
+generated: '2026-09-12'
+method: probed
+source: live GET of the named /.well-known/ paths on every host this record knows
+description: >-
+  Named-path /.well-known probe across the Givebutter registrable domain, www, the API host,
+  the docs host, the MCP host and the authorization server named in the MCP protected-resource
+  document. Four documents were served: an A2A agent card on the docs host, an RFC 9728
+  protected-resource document on the MCP host, and RFC 8414 + OpenID Connect discovery on
+  auth.givebutter.com. Everything else 404s. givebutter.com answers every /.well-known/ path
+  with its Webflow 404 page, and api.givebutter.com answers every path with a 401 JSON body
+  (auth is enforced before routing), so neither is a served document.
+hosts:
+- host: givebutter.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: www.givebutter.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: api.givebutter.com
+  note: every path returns HTTP 401 {"error":{"message":"Unauthorized"}} — the API host authenticates
+    before routing, so no discovery document is reachable anonymously
+  documents:
+  - path: /.well-known/security.txt
+    status: 401
+  - path: /.well-known/openid-configuration
+    status: 401
+  - path: /.well-known/oauth-authorization-server
+    status: 401
+  - path: /.well-known/oauth-protected-resource
+    status: 401
+  - path: /.well-known/api-catalog
+    status: 401
+  - path: /.well-known/ai-plugin.json
+    status: 401
+  - path: /.well-known/agent-card.json
+    status: 401
+  - path: /.well-known/agent.json
+    status: 401
+- host: docs.givebutter.com
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: well-known/givebutter-agent-card.json
+    content_type: application/json
+    note: A2A AgentCard, protocolVersion 0.3 — also saved to a2a/givebutter-agent-card.json and graded
+      there. Points at a provider-served Agent Skill at /.well-known/agent-skills/givebutter/skill.md
+  - path: /.well-known/agent-skills/givebutter/skill.md
+    status: 200
+    file: skills/givebutter-givebutter.md
+    content_type: text/markdown
+    note: not a registered well-known name; discovered from the agent card's skills[0].url
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: mcp.givebutter.com
+  documents:
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: well-known/givebutter-oauth-protected-resource.json
+    content_type: application/json
+    note: RFC 9728. resource https://mcp.givebutter.com/mcp, authorization_servers [https://auth.givebutter.com],
+      scopes_supported [mcp]
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: auth.givebutter.com
+  note: third host, discovered from the MCP protected-resource document's authorization_servers[]
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: well-known/givebutter-oauth-authorization-server.json
+    content_type: application/json
+    note: RFC 8414. PKCE S256, dynamic client registration (RFC 7591) at /oauth/register
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: well-known/givebutter-openid-configuration.json
+    content_type: application/json
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+summary:
+  hosts_probed: 6
+  documents_served: 4
+  security_txt: false
+  api_catalog: false
+  agent_card: true
+  oauth_metadata: true
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,120 @@
+openapi: 3.1.0
+info:
+  title: Givebutter Sso Accounts API
+  version: 1.0.0
+  description: The Sso Accounts surface of the Givebutter Public API — 1 operation(s). Split by tag from Givebutter's
+    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12). Operations, schemas and
+    responses are verbatim from the provider's spec.
+  contact:
+    name: Givebutter API Documentation
+    url: https://docs.givebutter.com/api-reference/authentication
+servers:
+- url: https://api.givebutter.com/
+security:
+- http: []
+tags:
+- name: Sso Accounts
+paths:
+  /sso/v1/account:
+    get:
+      operationId: sso.account
+      tags:
+      - Sso Accounts
+      responses:
+        '200':
+          description: '`SsoAccountResource`'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SsoAccountResource'
+        '401':
+          $ref: '#/components/responses/AuthenticationException'
+components:
+  responses:
+    AuthenticationException:
+      description: Unauthenticated
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+  schemas:
+    SsoAccountResource:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        logo:
+          type: string
+        cover:
+          type: string
+        tagline:
+          type: string
+        description:
+          type: string
+        slug:
+          type: string
+        url:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        website:
+          type: string
+        facebook:
+          type: string
+        linkedin:
+          type: string
+        twitter:
+          type: string
+        snapchat:
+          type: string
+        instagram:
+          type: string
+        tiktok:
+          type: string
+        youtube:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        last_campaign_id:
+          type: string
+      required:
+      - id
+      - name
+      - logo
+      - cover
+      - tagline
+      - description
+      - slug
+      - url
+      - phone
+      - email
+      - website
+      - facebook
+      - linkedin
+      - twitter
+      - snapchat
+      - instagram
+      - tiktok
+      - youtube
+      - created_at
+      - updated_at
+      - last_campaign_id
+      title: SsoAccountResource
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+x-source: https://givebutter.com/docs/api.json
+x-harvested: '2026-09-12'

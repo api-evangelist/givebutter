@@ -1,0 +1,58 @@
+generated: '2026-09-12'
+method: probed
+source: https://auth.givebutter.com/.well-known/oauth-authorization-server
+docs: null
+description: >-
+  Givebutter runs an OAuth 2.1 authorization server at auth.givebutter.com. It is NOT used by the
+  REST API — that takes a single account-level Bearer API key with no scopes. The scopes below are
+  what the authorization server itself advertises in its RFC 8414 metadata, and they gate the MCP
+  server at https://mcp.givebutter.com/mcp plus a Wix integration surface. No scope reference page
+  exists in the documentation; these values were read from the live discovery document, which is the
+  only place they are published.
+authorization_server:
+  issuer: https://auth.givebutter.com
+  authorization_endpoint: https://auth.givebutter.com/oauth/authorize
+  token_endpoint: https://auth.givebutter.com/oauth/token
+  registration_endpoint: https://auth.givebutter.com/oauth/register
+  grant_types_supported:
+  - authorization_code
+  - refresh_token
+  response_types_supported:
+  - code
+  code_challenge_methods_supported:
+  - S256
+  token_endpoint_auth_methods_supported:
+  - none
+  - client_secret_basic
+  - client_secret_post
+  metadata_file: well-known/givebutter-oauth-authorization-server.json
+  openid_configuration: well-known/givebutter-openid-configuration.json
+scopes:
+- name: mcp
+  description: Access to the Givebutter MCP server at https://mcp.givebutter.com/mcp. Declared as the
+    required scope in the RFC 9728 protected-resource document for that endpoint.
+  surface: mcp
+  source: https://mcp.givebutter.com/.well-known/oauth-protected-resource
+- name: openid
+  description: OpenID Connect sign-in; returns an ID token.
+  surface: identity
+- name: profile
+  description: Basic profile claims on the ID token.
+  surface: identity
+- name: email
+  description: Email claim on the ID token.
+  surface: identity
+- name: wix:account.read
+  description: Read access to Givebutter account data for the Wix integration.
+  surface: partner-integration
+- name: wix:campaigns.read
+  description: Read access to campaign data for the Wix integration.
+  surface: partner-integration
+scope_count: 6
+notes:
+- The REST API (api.givebutter.com/v1) has no OAuth scheme and no scopes — one key, full account
+  access. An agent given a Givebutter API key holds every permission the account has.
+- Scope granularity exists only on the OAuth/MCP path, and there the only scope is the coarse "mcp".
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

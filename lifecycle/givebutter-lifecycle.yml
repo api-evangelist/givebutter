@@ -1,0 +1,58 @@
+generated: '2026-09-12'
+method: searched
+source: https://status.givebutter.com/ + https://givebutter.com/docs/api.json + https://docs.givebutter.com/llms.txt
+description: >-
+  Versioning, availability and deprecation posture for the Givebutter API, from what Givebutter
+  actually publishes. A live status page exists with a machine-readable summary; a dated changelog,
+  a written deprecation policy and an SLA do not.
+versioning:
+  scheme: URI path
+  current: v1
+  evidence: every operation in the published OpenAPI is under /v1/ (plus /sso/v1/ for the two SSO
+    operations); the documented base URL is https://api.givebutter.com/v1/
+  spec_version: '1.0.0'
+  spec_source: https://givebutter.com/docs/api.json
+  media_type_versioning: false
+  header_versioning: false
+status_page:
+  url: https://status.givebutter.com/
+  status: 200
+  platform: Instatus
+  machine_readable: https://status.givebutter.com/summary.json
+  observed: '{"page":{"name":"Givebutter","url":"https://status.givebutter.com","status":"UP"}}'
+  checked: '2026-09-12'
+deprecation:
+  policy_published: false
+  sunset_header: unknown
+  deprecation_header: unknown
+  rfc8594: unknown
+  deprecated_operations: []
+  note: >-
+    No deprecation or sunset policy page was found, and no operation in the published OpenAPI carries
+    deprecated: true. The API has visibly changed shape without one: Givebutter's own SDK
+    (@givebutter/sdk@1.0.6) calls PATCH on campaigns, contacts, funds and webhooks, while the current
+    published spec declares those updates as PUT — a breaking change with no published notice.
+sla:
+  published: false
+  note: No uptime or support SLA is published on the pricing page or in the docs.
+changelog:
+  published: false
+  checked: '2026-09-12'
+  probes:
+  - url: https://givebutter.com/changelog
+    status: 404
+  - url: https://givebutter.com/product-updates
+    status: 404
+  - url: https://givebutter.com/whats-new
+    status: 404
+  note: >-
+    No dated API changelog was found on the docs host or the marketing site, so no changelog
+    artifact is written. Product news appears in the blog, which is not a versioned change record.
+    (Note that https://givebutter.com/<slug> is the giving-hub namespace — /security, /releases and
+    /ai all return HTTP 200 because they resolve to donor campaign pages, not company pages.)
+support:
+  contact: https://givebutter.com/contact
+  help_center: https://help.givebutter.com/en/
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

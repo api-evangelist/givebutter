@@ -1,0 +1,140 @@
+generated: '2026-09-12'
+method: searched
+source: https://docs.givebutter.com/api-reference/pagination + /authentication + /errors + /rate-limits, cross-checked
+  against openapi/_original/givebutter-docs-api.json
+description: Cross-cutting runtime semantics for the Givebutter API — what an agent or client has to know that
+  is not in any single operation. Every value here is either stated on a Givebutter documentation page or read
+  out of Givebutter's own published OpenAPI.
+auth:
+  style: bearer-token
+  header: 'Authorization: Bearer <API key>'
+  issuance: Dashboard → Settings → Integrations → API Keys
+  scoped: false
+  docs: https://docs.givebutter.com/api-reference/authentication
+  note: The REST API uses a single account-level API key shown once at creation. OAuth 2.1 exists but is scoped
+    to the MCP server (see authentication/ and scopes/).
+pagination:
+  style: page-number
+  params:
+  - name: page
+    default: 1
+    note: 1-indexed
+  - name: per_page
+    default: 20
+    max: 100
+  response_fields:
+    envelope: data
+    links:
+    - first
+    - last
+    - prev
+    - next
+    meta:
+    - current_page
+    - from
+    - to
+    - last_page
+    - per_page
+    - total
+    - path
+  cursor_support: false
+  docs: https://docs.givebutter.com/api-reference/pagination
+  note: Laravel-style paginator. Follow links.next until it is null; prev/next are null at the edges. Note that
+    `page` and `per_page` are documented on the Pagination page but are NOT declared as parameters on most operations
+    in the published OpenAPI — only GET /v1/households declares `page` — so a client generated straight from the
+    spec will not expose paging.
+error_envelope:
+  format: vendor
+  rfc9457: false
+  shape:
+    message: human-readable string
+    errors: object keyed by field name, each an array of validation messages (422 only)
+  example_422: '{"message":"The given data was invalid.","errors":{"email":["The email field is required."]}}'
+  example_401: '{"message":"Unauthenticated."}'
+  docs: https://docs.givebutter.com/api-reference/errors
+  see: errors/givebutter-problem-types.yml
+rate_limit_signaling:
+  limit: 500 requests per minute
+  status_on_exhaustion: 429
+  headers_documented:
+  - Retry-After
+  headers_absent:
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - RateLimit-Policy
+  docs: https://docs.givebutter.com/api-reference/rate-limits
+  note: Only Retry-After is documented. No pre-exhaustion budget header is published, so a client cannot see how
+    much of the 500/minute budget it has left until it is already throttled.
+  see: rate-limits/givebutter-rate-limits.yml
+idempotency:
+  coverage: none
+  mechanism: null
+  header: null
+  retention: null
+  scope: []
+  evidence: No idempotency key, request-replay or deduplication mechanism appears anywhere in the published documentation
+    (docs.givebutter.com/llms-full.txt contains no occurrence of "idempoten") or in any operation, parameter or
+    header of the published OpenAPI. Mutating operations include POST /v1/transactions, which records money movement.
+  docs: null
+request_tracing:
+  request_id_header: null
+  note: No request-id or correlation header is documented, and none appears in the spec. Webhook deliveries can
+    be inspected after the fact through GET /v1/webhooks/{webhook}/activities.
+versioning:
+  style: URI path (/v1)
+  see: lifecycle/givebutter-lifecycle.yml
+field_expansion:
+  supported: false
+  note: No expand/include/fields mechanism is published. The only related query parameter is `scope` on GET /v1/campaigns
+    and GET /v1/transactions (enum all|benefiting|chapters), which filters which records are returned rather than
+    expanding a record.
+metadata:
+  custom_fields: true
+  note: Contacts and campaigns carry custom-field structures; there is no generic key/value metadata object of
+    the Stripe kind.
+reversibility:
+  grade: documented
+  note: Givebutter publishes reversal paths for its CRM objects but states no window for any of them, and publishes
+    no reversal at all for the money-moving operation. A reversal path with no stated window grades `documented`,
+    not `verified`.
+  surfaces:
+  - write: POST /v1/transactions (transactions.store)
+    reversal: null
+    window: null
+    note: No refund, void or reverse operation exists in the published OpenAPI. The API emits a refund.created
+      webhook event, so refunds happen — but only through the dashboard, not the API. An agent that creates a
+      transaction cannot undo it through this contract.
+  - write: DELETE /v1/contacts/{contact} (contacts.destroy)
+    reversal: PATCH /v1/contacts/{contact}/restore (contact.restore)
+    window: null
+    docs: https://docs.givebutter.com/api-reference/contacts/restore-a-contact
+    note: Delete is an archive; a restore operation is published. No retention window is stated anywhere in the
+      docs, so how long a contact stays restorable is unknown.
+  - write: DELETE /v1/funds/{fund} (funds.destroy)
+    reversal: null
+    window: null
+    note: The SDK names this method archiveFund, implying a soft delete, but no restore operation is published
+      for funds.
+  - write: DELETE /v1/campaigns/{campaign} (campaigns.destroy)
+    reversal: null
+    window: null
+  - write: POST /v1/contacts/{contact}/tags/add (contactTag.store)
+    reversal: POST /v1/contacts/{contact}/tags/remove (contactTag.destroy)
+    window: not applicable
+    note: Tag add/remove/sync are symmetric and fully reversible at any time.
+  - write: POST /v1/webhooks (webhooks.store)
+    reversal: DELETE /v1/webhooks/{webhook} (webhooks.destroy)
+    window: not applicable
+dry_run_mode:
+  supported: false
+  note: No dry-run, preview or simulation parameter is published, and no sandbox or test mode is documented —
+    there is no way to rehearse a write against this API.
+cross_links:
+  errors: errors/givebutter-problem-types.yml
+  rate_limits: rate-limits/givebutter-rate-limits.yml
+  authentication: authentication/givebutter-authentication.yml
+  lifecycle: lifecycle/givebutter-lifecycle.yml
+  scopes: scopes/givebutter-scopes.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

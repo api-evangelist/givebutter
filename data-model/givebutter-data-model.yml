@@ -1,0 +1,403 @@
+generated: '2026-09-12'
+method: derived
+source: openapi/_original/givebutter-docs-api.json (https://givebutter.com/docs/api.json)
+description: 'Entity-relationship graph derived from Givebutter''s own published OpenAPI: 51 component schemas,
+  of which 33 are resource objects. Relationships are read from $ref links between resource schemas and from *_id
+  reference fields. Nothing here is inferred from prose.'
+identifier_style: integer surrogate ids on path parameters (contact, campaign, fund, webhook are typed integer);
+  no prefixed string ids
+entities:
+- name: Address
+  schema: AddressResource
+  fields: 13
+  identifier:
+    field: id
+    type: integer
+  id_reference_fields:
+  - field: account_id
+    target_hint: account
+- name: Address
+  schema: App.Http.Resources.API.AddressResource
+  fields: 10
+  note: Schema name leaks the provider's internal Laravel class path (App.Http.Resources.API.AddressResource)
+    and duplicates the plain AddressResource schema — a generator artifact in the published spec, not a distinct
+    entity.
+- name: Household
+  schema: App.Http.Resources.API.HouseholdResource
+  fields: 9
+  identifier:
+    field: id
+    type: integer
+  relationships:
+  - field: contacts
+    target: ContactResource
+    type: has_many
+  id_reference_fields:
+  - field: head_contact_id
+    target_hint: head_contact
+  - field: account_id
+    target_hint: account
+  operations:
+  - households.contacts.destroy
+  - households.contacts.store
+  - households.show
+  - households.store
+  - households.update
+  note: Schema name leaks the provider's internal Laravel class path (App.Http.Resources.API.HouseholdResource)
+    and duplicates the plain HouseholdResource schema — a generator artifact in the published spec, not a distinct
+    entity.
+- name: AssociatedCompany
+  schema: AssociatedCompanyResource
+  fields: 27
+  identifier:
+    field: id
+    type: string
+  relationships:
+  - field: addresses
+    target: AddressResource
+    type: has_many
+  - field: primary_address
+    target: AddressResource
+    type: has_one
+- name: CampaignDiscountCode
+  schema: CampaignDiscountCodeResource
+  fields: 15
+  identifier:
+    field: id
+    type: string
+  id_reference_fields:
+  - field: campaign_id
+    target_hint: campaign
+  operations:
+  - campaigns.discount-codes.index
+  - campaigns.discount-codes.show
+  - campaigns.discount-codes.store
+  - campaigns.discount-codes.update
+- name: CampaignItemTicket
+  schema: CampaignItemTicketResource
+  fields: 15
+  identifier:
+    field: id
+    type: string
+  id_reference_fields:
+  - field: campaign_id
+    target_hint: campaign
+  operations:
+  - campaigns.items.tickets.index
+  - campaigns.items.tickets.show
+  - campaigns.items.tickets.store
+- name: CampaignMember
+  schema: CampaignMemberResource
+  fields: 14
+  identifier:
+    field: id
+    type: string
+  operations:
+  - campaigns.members.index
+  - campaigns.members.show
+- name: Campaign
+  schema: CampaignResource
+  fields: 22
+  identifier:
+    field: id
+    type: string
+  relationships:
+  - field: event
+    target: EventResource
+    type: has_one
+  - field: settings
+    target: CampaignSettingResource
+    type: has_many
+  id_reference_fields:
+  - field: account_id
+    target_hint: account
+  - field: event_id
+    target_hint: event
+  operations:
+  - campaigns.index
+  - campaigns.show
+  - campaigns.store
+  - campaigns.update
+  - sso.campaigns.show
+- name: CampaignSetting
+  schema: CampaignSettingResource
+  fields: 2
+- name: CampaignTeam
+  schema: CampaignTeamResource
+  fields: 11
+  identifier:
+    field: id
+    type: string
+  operations:
+  - campaigns.teams.index
+  - campaigns.teams.show
+- name: ContactActivity
+  schema: ContactActivityResource
+  fields: 10
+  identifier:
+    field: id
+    type: string
+  relationships:
+  - field: resource
+    target: TransactionResource
+    type: has_one
+  - field: resource
+    target: RecurringPlanResource
+    type: has_one
+  - field: resource
+    target: TicketResource
+    type: has_one
+  - field: resource
+    target: MessageResource
+    type: has_one
+  - field: created_by
+    target: PublicUserResource
+    type: has_one
+  operations:
+  - contacts.activities.index
+  - contacts.activities.show
+  - contacts.activities.store
+  - contacts.activities.update
+- name: Contact
+  schema: ContactResource
+  fields: 47
+  identifier:
+    field: id
+    type: string
+  relationships:
+  - field: point_of_contact
+    target: PointOfContactResource
+    type: has_one
+  - field: emails
+    target: EmailResource
+    type: has_many
+  - field: phones
+    target: PhoneResource
+    type: has_many
+  - field: addresses
+    target: App.Http.Resources.API.AddressResource
+    type: has_many
+  - field: primary_address
+    target: App.Http.Resources.API.AddressResource
+    type: has_one
+  - field: external_ids
+    target: ExternalIdResource
+    type: has_many
+  id_reference_fields:
+  - field: external_id
+    target_hint: external
+  operations:
+  - contact.restore
+  - contactTag.destroy
+  - contactTag.store
+  - contactTag.sync
+  - contacts.index
+  - contacts.show
+  - contacts.store
+  - contacts.update
+  - households.contacts.index
+  - households.contacts.show
+- name: CustomFieldResponse
+  schema: CustomFieldResponseResource
+  fields: 8
+  identifier:
+    field: id
+    type: integer
+  id_reference_fields:
+  - field: field_id
+    target_hint: field
+- name: Dedication
+  schema: DedicationResource
+  fields: 5
+- name: Email
+  schema: EmailResource
+  fields: 2
+- name: Event
+  schema: EventResource
+  fields: 16
+  id_reference_fields:
+  - field: google_place_id
+    target_hint: google_place
+- name: ExternalId
+  schema: ExternalIdResource
+  fields: 5
+  identifier:
+    field: id
+    type: integer
+  id_reference_fields:
+  - field: external_id
+    target_hint: external
+- name: Fund
+  schema: FundResource
+  fields: 7
+  identifier:
+    field: id
+    type:
+    - string
+    - 'null'
+  operations:
+  - funds.index
+  - funds.show
+  - funds.store
+  - funds.update
+- name: GivingSpace
+  schema: GivingSpaceResource
+  fields: 6
+  identifier:
+    field: id
+    type: string
+- name: Household
+  schema: HouseholdResource
+  fields: 9
+  identifier:
+    field: id
+    type: integer
+  id_reference_fields:
+  - field: head_contact_id
+    target_hint: head_contact
+  - field: account_id
+    target_hint: account
+  operations:
+  - households.index
+- name: Message
+  schema: MessageResource
+  fields: 13
+  identifier:
+    field: id
+    type: string
+  operations:
+  - messages.index
+  - messages.show
+- name: Payout
+  schema: PayoutResource
+  fields: 15
+  identifier:
+    field: id
+    type: string
+  id_reference_fields:
+  - field: campaign_id
+    target_hint: campaign
+  operations:
+  - payouts.index
+  - payouts.show
+- name: Phone
+  schema: PhoneResource
+  fields: 2
+- name: Pledge
+  schema: PledgeResource
+  fields: 26
+  identifier:
+    field: id
+    type: string
+  id_reference_fields:
+  - field: contact_id
+    target_hint: contact
+  - field: campaign_id
+    target_hint: campaign
+  - field: fund_id
+    target_hint: fund
+  operations:
+  - pledges.index
+  - pledges.show
+- name: PointOfContact
+  schema: PointOfContactResource
+  fields: 30
+  identifier:
+    field: id
+    type: string
+- name: PublicUser
+  schema: PublicUserResource
+  fields: 4
+  identifier:
+    field: id
+    type: string
+- name: RecurringPlan
+  schema: RecurringPlanResource
+  fields: 16
+  identifier:
+    field: id
+    type: string
+  id_reference_fields:
+  - field: contact_id
+    target_hint: contact
+  operations:
+  - plans.index
+  - plans.show
+- name: SsoAccount
+  schema: SsoAccountResource
+  fields: 21
+  identifier:
+    field: id
+    type: string
+  id_reference_fields:
+  - field: last_campaign_id
+    target_hint: last_campaign
+  operations:
+  - sso.account
+- name: Ticket
+  schema: TicketResource
+  fields: 17
+  identifier:
+    field: id
+    type: string
+  relationships:
+  - field: custom_fields
+    target: CustomFieldResponseResource
+    type: has_many
+  id_reference_fields:
+  - field: transaction_id
+    target_hint: transaction
+  operations:
+  - tickets.index
+  - tickets.show
+- name: TransactionLineItem
+  schema: TransactionLineItemResource
+  fields: 9
+- name: Transaction
+  schema: TransactionResource
+  fields: 0
+  operations:
+  - transactions.index
+  - transactions.show
+  - transactions.store
+  - transactions.update
+- name: WebhookActivity
+  schema: WebhookActivityResource
+  fields: 10
+  identifier:
+    field: id
+    type: string
+  id_reference_fields:
+  - field: webhook_id
+    target_hint: webhook
+  operations:
+  - webhooks.activities.index
+  - webhooks.activities.show
+- name: Webhook
+  schema: WebhookResource
+  fields: 11
+  identifier:
+    field: id
+    type: string
+  operations:
+  - webhooks.index
+  - webhooks.show
+  - webhooks.store
+  - webhooks.update
+summary:
+  resource_schemas: 33
+  total_schemas: 51
+  entities_with_relationships: 6
+  relationship_edges: 17
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+findings:
+- Two schemas are published under their internal Laravel class paths (App.Http.Resources.API.AddressResource,
+  App.Http.Resources.API.HouseholdResource), duplicating AddressResource and HouseholdResource. A generated client
+  will emit two types for one entity.
+- Identifiers are bare integers, not prefixed strings, so an id carries no type information; an agent holding
+  4821 cannot tell a contact from a campaign.
+- 'The relationship graph is shallow: 6 of 33 resource schemas carry an inline $ref to another resource. Most
+  association is expressed through *_id integer fields (account_id, head_contact_id, campaign_id) that the spec
+  does not link to a target schema.'

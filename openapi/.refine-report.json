@@ -25,6 +25,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "givebutter-campaigns-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "givebutter-contacts-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "givebutter-discount-codes-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "givebutter-funds-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "givebutter-payouts-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "givebutter-plans-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "givebutter-tickets-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "givebutter-transactions-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "givebutter-webhooks-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

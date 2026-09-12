@@ -1,14 +1,80 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/givebutter-openapi.yml
+generated: '2026-09-12'
+method: searched
+source: https://docs.givebutter.com/api-reference/authentication
+docs: https://docs.givebutter.com/api-reference/authentication
+derived_from: openapi/_original/givebutter-docs-api.json + well-known/givebutter-oauth-authorization-server.json
+description: >-
+  Givebutter authenticates two different surfaces two different ways. The REST API takes a single
+  account-level Bearer API key created in the dashboard, with no scopes and no expiry. The MCP server
+  takes an OAuth 2.1 access token from auth.givebutter.com. Everything here is from Givebutter's own
+  authentication page and its own live discovery documents.
 summary:
   types:
   - http
+  - oauth2
+  surfaces: 2
 schemes:
-- name: bearerAuth
+- name: http
   type: http
   scheme: bearer
-  bearerFormat: API Key
-  description: Bearer token authentication using a personal API key.
+  bearerFormat: API key
+  applies_to: https://api.givebutter.com/v1
+  in: header
+  header: Authorization
+  value: Bearer <API key>
+  scoped: false
+  expiry: none published
+  rotation: manual — create and revoke keys in the dashboard
+  issuance: Dashboard / Settings / Integrations / API Keys; the key is displayed once at creation
+  applied_globally: true
+  spec_ref: components.securitySchemes.http (security applied at the document level to all 70 operations)
+  docs: https://docs.givebutter.com/api-reference/authentication
+  failure_modes:
+  - status: 401
+    body: '{"message":"Unauthenticated."}'
+    causes: missing header, wrong key, revoked key, or the key sent without the Bearer prefix
+  - status: 403
+    body: '{"message":"This action is unauthorized."}'
+    causes: valid key, insufficient permission or another organization's resource
   sources:
-  - openapi/givebutter-openapi.yml
+  - openapi/_original/givebutter-docs-api.json
+  - https://docs.givebutter.com/api-reference/authentication
+- name: oauth2
+  type: oauth2
+  applies_to: https://mcp.givebutter.com/mcp
+  issuer: https://auth.givebutter.com
+  flows:
+    authorizationCode:
+      authorizationUrl: https://auth.givebutter.com/oauth/authorize
+      tokenUrl: https://auth.givebutter.com/oauth/token
+      refreshUrl: https://auth.givebutter.com/oauth/token
+      pkce: S256
+      dynamic_client_registration: https://auth.givebutter.com/oauth/register
+      scopes:
+        mcp: Access to the Givebutter MCP server
+        openid: OpenID Connect sign-in
+        profile: Basic profile claims
+        email: Email claim
+        wix:account.read: Read account data for the Wix integration
+        wix:campaigns.read: Read campaign data for the Wix integration
+  discovery:
+  - well-known/givebutter-oauth-authorization-server.json
+  - well-known/givebutter-openid-configuration.json
+  - well-known/givebutter-oauth-protected-resource.json
+  method: probed
+  sources:
+  - https://auth.givebutter.com/.well-known/oauth-authorization-server
+  - https://mcp.givebutter.com/.well-known/oauth-protected-resource
+  note: >-
+    This scheme is NOT declared in the published OpenAPI — it is only discoverable from the live
+    well-known documents. A client reading the spec alone would not know Givebutter runs an
+    authorization server.
+findings:
+- The REST key is all-or-nothing. There are no scopes, no read-only key type and no per-resource
+  permission published, so an agent holding a key can create transactions and delete campaigns.
+- No key expiry or rotation policy is published.
+- mTLS, HMAC request signing and webhook signature verification are not documented; webhook
+  authenticity cannot be verified from the published documentation.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,63 +1,229 @@
 openapi: 3.1.0
 info:
-  title: Givebutter Campaigns Payouts API
+  title: Givebutter Payouts API
   version: 1.0.0
-  description: 'Best-effort OpenAPI 3.1 description of the Givebutter REST API covering
-
-    campaigns, contacts, transactions, funds, households, tickets, plans,
-
-    payouts, pledges, webhooks, and discount codes. Authentication uses
-
-    Bearer-token authentication with an API key. Sourced from
-
-    https://docs.givebutter.com/.
-
-    '
+  description: The Payouts surface of the Givebutter Public API — 2 operation(s). Split by tag from Givebutter's
+    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12). Operations, schemas and
+    responses are verbatim from the provider's spec.
   contact:
-    name: Givebutter API Docs
-    url: https://docs.givebutter.com/reference/reference-getting-started
+    name: Givebutter API Documentation
+    url: https://docs.givebutter.com/api-reference/authentication
 servers:
-- url: https://api.givebutter.com/v1
-  description: Production
+- url: https://api.givebutter.com/
 security:
-- bearerAuth: []
+- http: []
 tags:
 - name: Payouts
 paths:
-  /payouts:
+  /v1/payouts:
     get:
-      summary: List payouts
-      operationId: listPayouts
+      operationId: payouts.index
+      summary: List all payouts
       tags:
       - Payouts
       responses:
         '200':
-          description: Payouts
+          description: Paginated set of `PayoutResource`
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Payout'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PayoutResource'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type:
+                        - string
+                        - 'null'
+                      last:
+                        type:
+                        - string
+                        - 'null'
+                      prev:
+                        type:
+                        - string
+                        - 'null'
+                      next:
+                        type:
+                        - string
+                        - 'null'
+                    required:
+                    - first
+                    - last
+                    - prev
+                    - next
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        minimum: 1
+                      from:
+                        type:
+                        - integer
+                        - 'null'
+                        minimum: 1
+                      last_page:
+                        type: integer
+                        minimum: 1
+                      links:
+                        type: array
+                        description: Generated paginator links.
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type:
+                              - string
+                              - 'null'
+                            label:
+                              type: string
+                            active:
+                              type: boolean
+                          required:
+                          - url
+                          - label
+                          - active
+                      path:
+                        type:
+                        - string
+                        - 'null'
+                        description: Base path for paginator generated URLs.
+                      per_page:
+                        type: integer
+                        description: Number of items shown per page.
+                        minimum: 0
+                      to:
+                        type:
+                        - integer
+                        - 'null'
+                        description: Number of the last item in the slice.
+                        minimum: 1
+                      total:
+                        type: integer
+                        description: Total number of items being paginated.
+                        minimum: 0
+                    required:
+                    - current_page
+                    - from
+                    - last_page
+                    - links
+                    - path
+                    - per_page
+                    - to
+                    - total
+                required:
+                - data
+                - links
+                - meta
+  /v1/payouts/{payout}:
+    get:
+      operationId: payouts.show
+      summary: Get a payout
+      tags:
+      - Payouts
+      parameters:
+      - name: payout
+        in: path
+        required: true
+        description: The payout number
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '`PayoutResource`'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayoutResource'
+        '403':
+          $ref: '#/components/responses/AuthorizationException'
+        '404':
+          $ref: '#/components/responses/ModelNotFoundException'
 components:
   schemas:
-    Payout:
+    PayoutResource:
       type: object
       properties:
         id:
-          type: integer
-        amount:
-          type: number
-        currency:
+          type: string
+        campaign_id:
+          type: string
+        method:
           type: string
         status:
           type: string
-        deposited_at:
+        amount:
+          type: number
+        fee:
+          type: number
+        tip:
+          type: number
+        payout:
+          type: number
+        currency:
           type: string
-          format: date-time
+        address:
+          type: string
+        memo:
+          type: string
+        expected_at:
+          type: string
+        paid_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - campaign_id
+      - method
+      - status
+      - amount
+      - fee
+      - tip
+      - payout
+      - currency
+      - memo
+      - expected_at
+      - paid_at
+      - created_at
+      - updated_at
+      title: PayoutResource
+  responses:
+    AuthorizationException:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
   securitySchemes:
-    bearerAuth:
+    http:
       type: http
       scheme: bearer
-      bearerFormat: API Key
-      description: Bearer token authentication using a personal API key.
+x-source: https://givebutter.com/docs/api.json
+x-harvested: '2026-09-12'

@@ -1,0 +1,28 @@
+generated: '2026-09-12'
+method: searched
+source: https://docs.givebutter.com/.well-known/agent-skills/givebutter/skill.md
+description: >-
+  Agent Skills for Givebutter. The single skill here is PROVIDER-PUBLISHED and saved verbatim —
+  it was discovered from skills[0].url in the A2A agent card served at
+  https://docs.givebutter.com/.well-known/agent-card.json. Nothing in this directory was authored
+  by API Evangelist.
+skills:
+- name: Givebutter
+  file: skills/givebutter-givebutter.md
+  method: searched
+  source: https://docs.givebutter.com/.well-known/agent-skills/givebutter/skill.md
+  http_status: 200
+  content_type: text/markdown
+  bytes: 12224
+  description: >-
+    Use when building donation widgets for websites, managing fundraising campaigns via API,
+    creating and updating donor contacts, recording transactions, setting up webhooks for
+    real-time events, or integrating Givebutter with external systems.
+  covers:
+  - Widgets library install and the givebutter-* web components
+  - REST API base URL, Bearer authentication and pagination
+  - Campaigns, contacts, transactions and webhook flows
+  api: givebutter:givebutter
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

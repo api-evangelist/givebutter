@@ -1,0 +1,470 @@
+generated: '2026-09-12'
+method: derived
+source: mcp/givebutter-mcp.yml + openapi/_original/givebutter-docs-api.json + the first-party npm packages @givebutter/mcp@1.0.9
+  and @givebutter/sdk@1.0.6
+description: Binding of every tool Givebutter's own MCP server exposes to the operation it calls in Givebutter's
+  own published OpenAPI. The live remote server at https://mcp.givebutter.com/mcp is OAuth-gated (401 with an
+  RFC 9728 challenge on anonymous tools/list), so the tool set was read instead from the provider's published
+  stdio server @givebutter/mcp@1.0.9, which generates one tool per operation in @givebutter/sdk (name = givebutter_<alias>,
+  inputSchema = that operation's parameters via zod-to-json-schema). Tool names and bindings are therefore first-party,
+  not guessed; the REMOTE server's tool set is unverified and may differ.
+surfaces:
+  openapi:
+    file: openapi/_original/givebutter-docs-api.json
+    source: https://givebutter.com/docs/api.json
+    operations: 70
+    gated: false
+  mcp:
+    url: https://mcp.givebutter.com/mcp
+    gated: true
+    note: anonymous tools/list returns 401 -32001 "Missing or invalid bearer token"; OAuth via https://auth.givebutter.com
+  mcp_stdio:
+    package: '@givebutter/mcp'
+    version: 1.0.9
+    published: '2025-05-21'
+    gated: false
+    note: tool list read from the published package; requires GIVEBUTTER_API_KEY + GIVEBUTTER_API_BASE_URL
+  graphql: null
+crosswalk:
+- tool: givebutter_listCampaigns
+  category: Campaigns
+  rest:
+  - campaigns.index
+  binding: GET /v1/campaigns
+  confidence: high
+  note: List all campaigns
+- tool: givebutter_createCampaign
+  category: Campaigns
+  rest:
+  - campaigns.store
+  binding: POST /v1/campaigns
+  confidence: high
+  note: Create a campaign
+- tool: givebutter_getCampaign
+  category: Campaigns
+  rest:
+  - campaigns.show
+  binding: GET /v1/campaigns/{campaign}
+  confidence: high
+  note: Get a campaign
+- tool: givebutter_deleteCampaign
+  category: Campaigns
+  rest:
+  - campaigns.destroy
+  binding: DELETE /v1/campaigns/{campaign}
+  confidence: high
+  note: Delete a campaign
+- tool: givebutter_listCampaignDiscountCodes
+  category: Campaign Discount Codes
+  rest:
+  - campaigns.discount-codes.index
+  binding: GET /v1/campaigns/{campaign}/discount-codes
+  confidence: high
+  note: List all discount codes
+- tool: givebutter_createCampaignDiscountCode
+  category: Campaign Discount Codes
+  rest:
+  - campaigns.discount-codes.store
+  binding: POST /v1/campaigns/{campaign}/discount-codes
+  confidence: high
+  note: Create a discount code
+- tool: givebutter_getCampaignDiscountCode
+  category: Campaign Discount Codes
+  rest:
+  - campaigns.discount-codes.show
+  binding: GET /v1/campaigns/{campaign}/discount-codes/{discountCode}
+  confidence: high
+  note: Get a discount code
+- tool: givebutter_updateCampaignDiscountCode
+  category: Campaign Discount Codes
+  rest:
+  - campaigns.discount-codes.update
+  binding: PUT /v1/campaigns/{campaign}/discount-codes/{discountCode}
+  confidence: high
+  note: Update a discount code
+- tool: givebutter_deleteCampaignDiscountCode
+  category: Campaign Discount Codes
+  rest:
+  - campaigns.discount-codes.destroy
+  binding: DELETE /v1/campaigns/{campaign}/discount-codes/{discountCode}
+  confidence: high
+  note: Delete a discount code
+- tool: givebutter_listCampaignMembers
+  category: Campaign Members
+  rest:
+  - campaigns.members.index
+  binding: GET /v1/campaigns/{campaign}/members
+  confidence: high
+  note: List all campaign members
+- tool: givebutter_createCampaignMember
+  category: Campaign Members
+  rest:
+  - campaigns.members.index
+  binding: GET /v1/campaigns/{campaign}/members
+  confidence: medium
+  note: 'VERB DRIFT: the first-party SDK/MCP server calls POST /v1/campaigns/{campaign}/members; the published
+    OpenAPI declares this operation as GET /v1/campaigns/{campaign}/members'
+- tool: givebutter_getCampaignMember
+  category: Campaign Members
+  rest:
+  - campaigns.members.show
+  binding: GET /v1/campaigns/{campaign}/members/{member}
+  confidence: high
+  note: Get a campaign member
+- tool: givebutter_updateCampaignMember
+  category: Campaign Members
+  rest:
+  - campaigns.members.destroy
+  binding: DELETE /v1/campaigns/{campaign}/members/{member}
+  confidence: medium
+  note: 'VERB DRIFT: the first-party SDK/MCP server calls PUT /v1/campaigns/{campaign}/members/{member}; the published
+    OpenAPI declares this operation as DELETE /v1/campaigns/{campaign}/members/{member}'
+- tool: givebutter_deleteCampaignMember
+  category: Campaign Members
+  rest:
+  - campaigns.members.destroy
+  binding: DELETE /v1/campaigns/{campaign}/members/{member}
+  confidence: high
+  note: Delete a campaign member
+- tool: givebutter_listCampaignTeams
+  category: Campaign Teams
+  rest:
+  - campaigns.teams.index
+  binding: GET /v1/campaigns/{campaign}/teams
+  confidence: high
+  note: List all campaign teams
+- tool: givebutter_getCampaignTeam
+  category: Campaign Teams
+  rest:
+  - campaigns.teams.show
+  binding: GET /v1/campaigns/{campaign}/teams/{team}
+  confidence: high
+  note: Get a campaign team
+- tool: givebutter_listContacts
+  category: Contacts
+  rest:
+  - contacts.index
+  binding: GET /v1/contacts
+  confidence: high
+  note: List all contacts
+- tool: givebutter_createContact
+  category: Contacts
+  rest:
+  - contacts.store
+  binding: POST /v1/contacts
+  confidence: high
+  note: Create a contact
+- tool: givebutter_getContact
+  category: Contacts
+  rest:
+  - contacts.show
+  binding: GET /v1/contacts/{contact}
+  confidence: high
+  note: Get a contact
+- tool: givebutter_archiveContact
+  category: Contacts
+  rest:
+  - contacts.destroy
+  binding: DELETE /v1/contacts/{contact}
+  confidence: high
+  note: Delete a contact
+- tool: givebutter_restoreContact
+  category: Contacts
+  rest:
+  - contact.restore
+  binding: PATCH /v1/contacts/{contact}/restore
+  confidence: medium
+  note: 'VERB DRIFT: the first-party SDK/MCP server calls POST /v1/contacts/{contact_id}/restore; the published
+    OpenAPI declares this operation as PATCH /v1/contacts/{contact}/restore'
+- tool: givebutter_listFunds
+  category: Funds
+  rest:
+  - funds.index
+  binding: GET /v1/funds
+  confidence: high
+  note: List all funds
+- tool: givebutter_createFund
+  category: Funds
+  rest:
+  - funds.store
+  binding: POST /v1/funds
+  confidence: high
+  note: Create a fund
+- tool: givebutter_getFund
+  category: Funds
+  rest:
+  - funds.show
+  binding: GET /v1/funds/{fund}
+  confidence: high
+  note: Get a fund
+- tool: givebutter_archiveFund
+  category: Funds
+  rest:
+  - funds.destroy
+  binding: DELETE /v1/funds/{fund}
+  confidence: high
+  note: Delete a fund
+- tool: givebutter_listMessages
+  category: Messages
+  rest:
+  - messages.index
+  binding: GET /v1/messages
+  confidence: high
+  note: List all messages
+- tool: givebutter_getMessage
+  category: Messages
+  rest:
+  - messages.show
+  binding: GET /v1/messages/{message}
+  confidence: high
+  note: Get a message
+- tool: givebutter_listPayouts
+  category: Payouts
+  rest:
+  - payouts.index
+  binding: GET /v1/payouts
+  confidence: high
+  note: List all payouts
+- tool: givebutter_getPayout
+  category: Payouts
+  rest:
+  - payouts.show
+  binding: GET /v1/payouts/{payout}
+  confidence: high
+  note: Get a payout
+- tool: givebutter_listPlans
+  category: Recurring Plans
+  rest:
+  - plans.index
+  binding: GET /v1/plans
+  confidence: high
+  note: List all recurring plans
+- tool: givebutter_getPlan
+  category: Recurring Plans
+  rest:
+  - plans.show
+  binding: GET /v1/plans/{plan}
+  confidence: high
+  note: Get a recurring plan
+- tool: givebutter_listTickets
+  category: Tickets
+  rest:
+  - tickets.index
+  binding: GET /v1/tickets
+  confidence: high
+  note: List all tickets
+- tool: givebutter_getTicket
+  category: Tickets
+  rest:
+  - tickets.show
+  binding: GET /v1/tickets/{ticket}
+  confidence: high
+  note: Get a ticket
+- tool: givebutter_listTransactions
+  category: Transactions
+  rest:
+  - transactions.index
+  binding: GET /v1/transactions
+  confidence: high
+  note: List all transactions
+- tool: givebutter_createTransaction
+  category: Transactions
+  rest:
+  - transactions.store
+  binding: POST /v1/transactions
+  confidence: high
+  note: Create a transaction
+- tool: givebutter_getTransaction
+  category: Transactions
+  rest:
+  - transactions.show
+  binding: GET /v1/transactions/{transaction}
+  confidence: high
+  note: Get a transaction
+- tool: givebutter_listWebhooks
+  category: Webhooks
+  rest:
+  - webhooks.index
+  binding: GET /v1/webhooks
+  confidence: high
+  note: List all webhooks
+- tool: givebutter_createWebhook
+  category: Webhooks
+  rest:
+  - webhooks.store
+  binding: POST /v1/webhooks
+  confidence: high
+  note: Create a webhook
+- tool: givebutter_getWebhook
+  category: Webhooks
+  rest:
+  - webhooks.show
+  binding: GET /v1/webhooks/{webhook}
+  confidence: high
+  note: Get a webhook
+- tool: givebutter_deleteWebhook
+  category: Webhooks
+  rest:
+  - webhooks.destroy
+  binding: DELETE /v1/webhooks/{webhook}
+  confidence: high
+  note: Delete a webhook
+- tool: givebutter_getWebhookActivities
+  category: Webhook Activities
+  rest:
+  - webhooks.activities.index
+  binding: GET /v1/webhooks/{webhook}/activities
+  confidence: high
+  note: List all webhook activities
+mcp_only:
+- tool: givebutter_getAccount
+  reason: no operation in the published OpenAPI for GET /v1/account
+- tool: givebutter_updateCampaign
+  reason: PATCH /v1/campaigns/{campaign_id} matches several published operations on that path; not bound
+- tool: givebutter_uploadCampaignMemberPicture
+  reason: no operation in the published OpenAPI for POST /v1/campaigns/{campaign}/members/{member}/picture
+- tool: givebutter_updateContact
+  reason: PATCH /v1/contacts/{contact_id} matches several published operations on that path; not bound
+- tool: givebutter_updateFund
+  reason: PATCH /v1/funds/{fund_id} matches several published operations on that path; not bound
+- tool: givebutter_updateWebhook
+  reason: PATCH /v1/webhooks/{webhook_id} matches several published operations on that path; not bound
+rest_only:
+- operationId: sso.account
+  binding: GET /sso/v1/account
+  category: Sso Accounts
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: sso.campaigns.show
+  binding: GET /sso/v1/campaigns/{campaign}
+  category: Sso Campaigns
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: campaigns.update
+  binding: PUT /v1/campaigns/{campaign}
+  category: Campaigns
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: campaigns.items.tickets.index
+  binding: GET /v1/campaigns/{campaign}/items/tickets
+  category: Campaign Tickets
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: campaigns.items.tickets.store
+  binding: POST /v1/campaigns/{campaign}/items/tickets
+  category: Campaign Tickets
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: campaigns.items.tickets.show
+  binding: GET /v1/campaigns/{campaign}/items/tickets/{ticketId}
+  category: Campaign Tickets
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: campaigns.teams.destroy
+  binding: DELETE /v1/campaigns/{campaign}/teams/{team}
+  category: Campaign Teams
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: contacts.update
+  binding: PUT /v1/contacts/{contact}
+  category: Contacts
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: contacts.activities.index
+  binding: GET /v1/contacts/{contact}/activities
+  category: Contact Activities
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: contacts.activities.store
+  binding: POST /v1/contacts/{contact}/activities
+  category: Contact Activities
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: contacts.activities.destroy
+  binding: DELETE /v1/contacts/{contact}/activities/{activity}
+  category: Contact Activities
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: contacts.activities.show
+  binding: GET /v1/contacts/{contact}/activities/{activity}
+  category: Contact Activities
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: contacts.activities.update
+  binding: PUT /v1/contacts/{contact}/activities/{activity}
+  category: Contact Activities
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: contactTag.store
+  binding: POST /v1/contacts/{contact}/tags/add
+  category: Contact Tags
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: contactTag.destroy
+  binding: POST /v1/contacts/{contact}/tags/remove
+  category: Contact Tags
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: contactTag.sync
+  binding: POST /v1/contacts/{contact}/tags/sync
+  category: Contact Tags
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: funds.update
+  binding: PUT /v1/funds/{fund}
+  category: Funds
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: households.index
+  binding: GET /v1/households
+  category: Households
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: households.store
+  binding: POST /v1/households
+  category: Households
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: households.destroy
+  binding: DELETE /v1/households/{household}
+  category: Households
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: households.show
+  binding: GET /v1/households/{household}
+  category: Households
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: households.update
+  binding: PUT /v1/households/{household}
+  category: Households
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: households.contacts.index
+  binding: GET /v1/households/{household}/contacts
+  category: Household Contacts
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: households.contacts.store
+  binding: POST /v1/households/{household}/contacts
+  category: Household Contacts
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: households.contacts.destroy
+  binding: DELETE /v1/households/{household}/contacts/{contact}
+  category: Household Contacts
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: households.contacts.show
+  binding: GET /v1/households/{household}/contacts/{contact}
+  category: Household Contacts
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: pledges.index
+  binding: GET /v1/pledges
+  category: Pledges
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: pledges.show
+  binding: GET /v1/pledges/{pledge}
+  category: Pledges
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: transactions.update
+  binding: PUT /v1/transactions/{transaction}
+  category: Transactions
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: webhooks.update
+  binding: PUT /v1/webhooks/{webhook}
+  category: Webhooks
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+- operationId: webhooks.activities.show
+  binding: GET /v1/webhooks/{webhook}/activities/{activity}
+  category: Webhook Activities
+  reason: published in the OpenAPI but the first-party SDK/MCP server exposes no tool for it
+coverage:
+  tools: 47
+  tools_bound: 41
+  tools_unbound: 6
+  rest_operations: 70
+  rest_operations_with_a_tool: 39
+  rest_only: 31
+  note: 'The stdio server is generated from an SDK build dated 2025-05-20 and is roughly a year behind the published
+    OpenAPI: 31 of 70 published operations have no tool, including all of Contact Activities, Contact Tags, Households,
+    Household Contacts, Pledges and Webhook Activities, and four write tools call a verb the current spec no longer
+    declares.'
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

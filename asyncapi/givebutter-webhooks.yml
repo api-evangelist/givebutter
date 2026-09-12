@@ -1,0 +1,88 @@
+generated: '2026-09-12'
+method: searched
+source: openapi/_original/givebutter-docs-api.json (POST /v1/webhooks event enum) +
+  https://docs.givebutter.com/api-reference/webhooks/create-a-webhook
+description: >-
+  Givebutter's event surface. There is NO AsyncAPI document — Givebutter publishes no event spec at
+  /asyncapi.yaml, in its GitHub org or in its docs. What it does publish is a webhook management API
+  and, inside the create-webhook request body, an enum of the events a subscription may carry. That
+  enum is the event catalog and is reproduced here verbatim. Nothing was invented.
+asyncapi_document: null
+transport: HTTP webhook (provider POSTs to a subscriber URL)
+management_api:
+  base: https://api.givebutter.com/v1
+  operations:
+  - operationId: webhooks.index
+    binding: GET /v1/webhooks
+    summary: List all webhooks
+  - operationId: webhooks.store
+    binding: POST /v1/webhooks
+    summary: Create a webhook
+  - operationId: webhooks.show
+    binding: GET /v1/webhooks/{webhook}
+    summary: Get a webhook
+  - operationId: webhooks.update
+    binding: PUT /v1/webhooks/{webhook}
+    summary: Update a webhook
+  - operationId: webhooks.destroy
+    binding: DELETE /v1/webhooks/{webhook}
+    summary: Delete a webhook
+  - operationId: webhooks.activities.index
+    binding: GET /v1/webhooks/{webhook}/activities
+    summary: List all webhook activities — delivery history for a subscription
+  - operationId: webhooks.activities.show
+    binding: GET /v1/webhooks/{webhook}/activities/{activity}
+    summary: Get a webhook activity
+subscription:
+  required: [url]
+  optional: [event, events, name, enabled]
+  note: A subscription takes a single `event` or an `events` array drawn from the enum below, a
+    target url, an optional name (max 255) and an enabled flag.
+events:
+- name: campaign.created
+  resource: campaign
+- name: campaign.updated
+  resource: campaign
+- name: contact.created
+  resource: contact
+- name: ticket.created
+  resource: ticket
+- name: transaction.succeeded
+  resource: transaction
+- name: refund.created
+  resource: transaction
+  note: refunds are emitted as events even though no refund operation exists in the REST API
+- name: plan.created
+  resource: recurring plan
+- name: plan.updated
+  resource: recurring plan
+- name: plan.paused
+  resource: recurring plan
+- name: plan.resumed
+  resource: recurring plan
+- name: plan.canceled
+  resource: recurring plan
+- name: plan.failed
+  resource: recurring plan
+event_count: 12
+event_source: 'POST /v1/webhooks requestBody properties.event.enum (verbatim)'
+other_activity_types_in_spec:
+- note: >-
+    The contact-activity schemas carry a separate set of dot-named values (campaign.joined,
+    email.subscribed, email.unsubscribed, sms.subscribed, sms.unsubscribed, signup_form.submitted,
+    recurring_plan.created, recurring_plan.activated, recurring_plan.canceled,
+    transaction.acknowledged, transaction.recieved [sic], transaction.unacknowledged,
+    video_message.sent, video_message.deleted, custom_field.updated, ticket.issued). These are
+    CRM activity-feed types on the contact timeline, NOT subscribable webhook events, and are
+    recorded here so they are not mistaken for one another.
+gaps:
+- No AsyncAPI or CloudEvents description is published.
+- No webhook signing secret, signature header or replay-protection scheme is documented, so a
+  receiver cannot verify that a delivery came from Givebutter.
+- No retry or delivery-guarantee policy is documented; delivery history is inspectable only through
+  the webhook activities endpoints.
+- No payload schema is published for any event — the spec describes the subscription object, not
+  the event body.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

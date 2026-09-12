@@ -1,0 +1,71 @@
+generated: '2026-09-12'
+method: probed
+source: https://mcp.givebutter.com/mcp (probed 2026-09-12) + https://registry.npmjs.org/@givebutter/mcp
+status: gated
+description: >-
+  Givebutter ships TWO first-party MCP surfaces. A remote server at https://mcp.givebutter.com/mcp,
+  which an MCP client can POST to today and which is protected by OAuth 2.1 (RFC 9728 challenge,
+  authorization server https://auth.givebutter.com, scope "mcp", PKCE S256, dynamic client
+  registration). And a local stdio server published to npm as @givebutter/mcp, described by the
+  provider as the "Official Givebutter MCP Server", which wraps @givebutter/sdk and needs a
+  GIVEBUTTER_API_KEY. The two are not the same product and the remote one is the agent surface.
+server:
+  name: givebutter
+  transport: http
+  url: https://mcp.givebutter.com/mcp
+deployment:
+  mode: both
+  endpoint: https://mcp.givebutter.com/mcp
+  install: npx -y @givebutter/mcp
+  package: https://www.npmjs.com/package/@givebutter/mcp
+  auth: oauth
+  verified: probed
+  checked: '2026-09-12'
+  notes:
+  - remote endpoint probed 2026-09-12 — HTTP 401 with www-authenticate Bearer realm="mcp",
+    resource_metadata="https://mcp.givebutter.com/.well-known/oauth-protected-resource"; the endpoint
+    is live and reachable, the tool list is auth-gated
+  - the stdio package authenticates with a Givebutter API key (api-key), not OAuth — auth above
+    records the remote surface
+probes:
+- url: https://mcp.givebutter.com/mcp
+  method: POST tools/list
+  status: 401
+  body: '{"jsonrpc":"2.0","id":1,"error":{"code":-32001,"message":"Missing or invalid bearer token."}}'
+- url: https://mcp.givebutter.com/mcp
+  method: POST initialize
+  status: 401
+  body: '{"jsonrpc":"2.0","id":1,"error":{"code":-32001,"message":"Missing or invalid bearer token."}}'
+- url: https://mcp.givebutter.com/.well-known/oauth-protected-resource
+  status: 200
+  file: well-known/givebutter-oauth-protected-resource.json
+- url: https://auth.givebutter.com/.well-known/oauth-authorization-server
+  status: 200
+  file: well-known/givebutter-oauth-authorization-server.json
+authorization:
+  resource: https://mcp.givebutter.com/mcp
+  authorization_servers:
+  - https://auth.givebutter.com
+  scopes_supported:
+  - mcp
+  bearer_methods_supported:
+  - header
+  authorization_endpoint: https://auth.givebutter.com/oauth/authorize
+  token_endpoint: https://auth.givebutter.com/oauth/token
+  registration_endpoint: https://auth.givebutter.com/oauth/register
+  code_challenge_methods_supported:
+  - S256
+tools:
+  source: '@givebutter/mcp@1.0.9 (published 2025-05-21) + @givebutter/sdk@1.0.6'
+  count: 47
+  naming: givebutter_<sdk alias>
+  input_schemas: generated from the SDK operation parameters with zod-to-json-schema
+  verified_against_remote: false
+  note: >-
+    These are the tools the provider's own published stdio server exposes, read from the package it
+    ships. The REMOTE server's tool list could not be enumerated anonymously and may differ. Full
+    tool-to-operation binding is in mcp/givebutter-tool-crosswalk.yml. No tool list was invented
+    from the OpenAPI.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

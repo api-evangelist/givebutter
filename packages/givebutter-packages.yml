@@ -1,0 +1,70 @@
+generated: '2026-09-12'
+method: searched
+source: https://registry.npmjs.org (searched 2026-09-12) + https://docs.givebutter.com/widgets/getting-started
+description: >-
+  First-party Givebutter client distribution. Two packages are published to npm under the
+  @givebutter scope and describe themselves as official; the browser widgets library is
+  distributed from Givebutter's own CDN with no registry entry and no pinned version.
+  No first-party package exists on PyPI, RubyGems, Packagist, crates.io, NuGet, Maven Central
+  or pkg.go.dev — the PHP packages in Givebutter's GitHub org (laravel-keyable,
+  laravel-custom-fields) are general-purpose Laravel libraries, not API clients, and
+  joeymckenzie/givebutter-php is community-maintained.
+packages:
+- name: '@givebutter/sdk'
+  registry: npm
+  official: true
+  url: https://www.npmjs.com/package/@givebutter/sdk
+  language: TypeScript
+  version: 1.0.6
+  published: '2025-05-20'
+  releases: 4
+  description: Official Givebutter SDK — a zodios client generated from the Givebutter OpenAPI.
+  note: >-
+    Last published 2025-05-20. The client covers 47 operations; Givebutter's current published
+    OpenAPI carries 70, so the SDK is roughly a year and 31 operations behind the API it wraps,
+    and four of its write methods use a verb the current spec no longer declares (see
+    mcp/givebutter-tool-crosswalk.yml). No repository or homepage field is set on the package.
+- name: '@givebutter/mcp'
+  registry: npm
+  official: true
+  url: https://www.npmjs.com/package/@givebutter/mcp
+  language: TypeScript
+  version: 1.0.9
+  published: '2025-05-21'
+  releases: 4
+  bin: mcp-server-givebutter
+  description: Official Givebutter MCP Server (local stdio) — generates one MCP tool per @givebutter/sdk operation.
+  note: >-
+    Local stdio only; it is not the hosted server at https://mcp.givebutter.com/mcp. Requires
+    GIVEBUTTER_API_KEY and GIVEBUTTER_API_BASE_URL environment variables. Last published 2025-05-21.
+- name: givebutter-widgets
+  registry: cdn
+  official: true
+  url: https://widgets.givebutter.com/latest.umd.cjs
+  language: JavaScript
+  version: null
+  published: null
+  note: >-
+    UNPINNED. The documented install is
+    <script async src="https://widgets.givebutter.com/latest.umd.cjs?acct=YOUR_ACCOUNT_ID"></script> —
+    a floating "latest" build with no version in the URL, no registry entry, and no published
+    changelog, so a consumer cannot tell which build they are running. Probed 2026-09-12: HTTP 200,
+    269,247 bytes. Version and publish date are recorded null because neither is discoverable, not
+    because they were not checked.
+absent:
+- registry: pypi
+  checked: '2026-09-12'
+  result: no first-party package (givebutter, givebutter-api both 404)
+- registry: packagist
+  checked: '2026-09-12'
+  result: no first-party API client; community packages only (joeymckenzie/givebutter-php)
+- registry: rubygems
+  checked: '2026-09-12'
+  result: no first-party package
+third_party_note: >-
+  Community and platform packages exist (@pipedream/givebutter, @keystrokehq/givebutter,
+  johnnylinsf/givebutter-mcp, Zapier/Composio/viaSocket MCP wrappers) and are deliberately
+  not listed here — official: true is reserved for packages Givebutter publishes itself.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

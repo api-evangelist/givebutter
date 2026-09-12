@@ -3,147 +3,76 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
 provider: Givebutter
 providerId: givebutter
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+generated: '2026-09-12'
+method: searched
+source: https://givebutter.com/pricing
+created: '2025-05-04'
+modified: '2026-09-12'
 tags:
-  - Donations
-  - Fundraising
-  - Nonprofits
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+- Donations
+- Fundraising
+- Nonprofits
+description: >-
+  Givebutter's published plans and fees, read from https://givebutter.com/pricing on 2026-09-12.
+  This file previously carried a scaffold Free/Professional/Enterprise ladder with invented request
+  quotas that Givebutter has never published; that scaffold has been removed. Givebutter's product
+  is priced per organization, not per API call — API access is included in the free platform and no
+  API-specific quota, overage or paid API tier is published anywhere.
+api_pricing:
+  metered: false
+  api_specific_plan: false
+  note: >-
+    No API plan, API quota or API overage price exists. The only published API constraint is the flat
+    500 requests/minute rate limit (see rate-limits/). Platform revenue comes from donor tips,
+    platform fees and the Givebutter Plus subscription below.
 plans:
-  - id: givebutter-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the Givebutter API surface. Intended for evaluation, prototyping,
-      and low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.givebutter.com/v1
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.givebutter.com/v1
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Givebutter
-  - id: givebutter-pro
-    name: Professional
-    type: paid
-    description: Production tier for Givebutter. Provides higher quotas, priority support, and access
-      to the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.givebutter.com/v1
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.givebutter.com/v1
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.givebutter.com/v1
-        unit: 1000
-        price: TBD
-        userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Givebutter
-  - id: givebutter-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Givebutter. Includes dedicated capacity, contractual SLAs,
-      security review, data residency options, and named technical account management.
-    entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://api.givebutter.com/v1
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://api.givebutter.com/v1
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Givebutter
+- id: givebutter-free
+  name: Free
+  type: freemium
+  price: '0.00'
+  currency: USD
+  billing_period: month
+  description: >-
+    The full Givebutter platform at no subscription cost — donation forms, fundraising pages, events,
+    auctions, donor CRM with unlimited contacts, marketing tools, payment processing, wallet, mobile
+    app, integrations and 24/7 support. API access is included.
+  fees:
+  - condition: tips enabled
+    platform_fee: 0%
+    processing_fee: 0%
+    note: '"0% platform fees across all campaign types when tips are enabled"; processing covered by
+      the Givebutter Guarantee'
+  - condition: tips disabled
+    platform_fee: 3%
+    processing_fee_card: 2.9% + 30c
+    processing_fee_ach: 1.9% + 30c
+  api_access: included
+- id: givebutter-plus
+  name: Givebutter Plus
+  type: paid
+  price: '29.00'
+  price_from: true
+  currency: USD
+  billing_period: month
+  description: >-
+    Paid add-on tier priced by contact count. Adds automated workflows, task management, advanced
+    email editor, texting, custom reports, data visualizations, file uploads, data hygiene and the
+    QuickBooks integration. Fees on donations are the same as the free plan.
+  tiers:
+  - contacts_up_to: 250
+    monthly: '29.00'
+    annual: '348.00'
+  - contacts_up_to: 1000
+    monthly: '79.00'
+    annual: '948.00'
+  - contacts_up_to: 2500
+    monthly: '129.00'
+    annual: '1548.00'
+  extras:
+  - name: Direct mail
+    price: 95c per letter (discounted)
+  api_access: included — no additional or elevated API entitlement is published
+plan_count: 2
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com

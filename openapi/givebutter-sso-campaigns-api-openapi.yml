@@ -1,0 +1,196 @@
+openapi: 3.1.0
+info:
+  title: Givebutter Sso Campaigns API
+  version: 1.0.0
+  description: The Sso Campaigns surface of the Givebutter Public API — 1 operation(s). Split by tag from Givebutter's
+    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12). Operations, schemas and
+    responses are verbatim from the provider's spec.
+  contact:
+    name: Givebutter API Documentation
+    url: https://docs.givebutter.com/api-reference/authentication
+servers:
+- url: https://api.givebutter.com/
+security:
+- http: []
+tags:
+- name: Sso Campaigns
+paths:
+  /sso/v1/campaigns/{campaign}:
+    get:
+      operationId: sso.campaigns.show
+      tags:
+      - Sso Campaigns
+      parameters:
+      - name: campaign
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: '`CampaignResource`'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CampaignResource'
+        '401':
+          $ref: '#/components/responses/AuthenticationException'
+components:
+  responses:
+    AuthenticationException:
+      description: Unauthenticated
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+  schemas:
+    EventResource:
+      type: object
+      properties:
+        title:
+          type: string
+        type:
+          type: string
+        location_name:
+          type: string
+        address_formatted:
+          type: string
+        google_place_id:
+          type: string
+        start_at:
+          type: string
+        end_at:
+          type: string
+        timezone:
+          type: string
+        details:
+          type: string
+        private:
+          type: string
+        tickets_required:
+          type: string
+        livestream:
+          type: string
+        livestream_start_at:
+          type: string
+        livestream_end_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - title
+      - type
+      - location_name
+      - address_formatted
+      - google_place_id
+      - start_at
+      - end_at
+      - timezone
+      - details
+      - private
+      - tickets_required
+      - livestream
+      - livestream_start_at
+      - livestream_end_at
+      - created_at
+      - updated_at
+      title: EventResource
+    CampaignSettingResource:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      required:
+      - name
+      - value
+      title: CampaignSettingResource
+    CampaignResource:
+      type: object
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        account_id:
+          type: string
+        event_id:
+          type: string
+        type:
+          type: string
+        title:
+          type: string
+        subtitle:
+          type: string
+        description:
+          type: string
+        slug:
+          type: string
+        url:
+          type: string
+        goal:
+          type:
+          - integer
+          - 'null'
+        raised:
+          type: number
+        donors:
+          type: integer
+        currency:
+          type: string
+        cover:
+          type: string
+        status:
+          type: string
+        timezone:
+          type: string
+        end_at:
+          type: string
+        event:
+          $ref: '#/components/schemas/EventResource'
+        settings:
+          type: array
+          items:
+            $ref: '#/components/schemas/CampaignSettingResource'
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - code
+      - account_id
+      - event_id
+      - type
+      - title
+      - subtitle
+      - description
+      - slug
+      - url
+      - goal
+      - raised
+      - donors
+      - currency
+      - cover
+      - status
+      - timezone
+      - end_at
+      - settings
+      - created_at
+      - updated_at
+      title: CampaignResource
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+x-source: https://givebutter.com/docs/api.json
+x-harvested: '2026-09-12'

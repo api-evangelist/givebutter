@@ -1,0 +1,208 @@
+openapi: 3.1.0
+info:
+  title: Givebutter Messages API
+  version: 1.0.0
+  description: The Messages surface of the Givebutter Public API — 2 operation(s). Split by tag from Givebutter's
+    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12). Operations, schemas and
+    responses are verbatim from the provider's spec.
+  contact:
+    name: Givebutter API Documentation
+    url: https://docs.givebutter.com/api-reference/authentication
+servers:
+- url: https://api.givebutter.com/
+security:
+- http: []
+tags:
+- name: Messages
+paths:
+  /v1/messages:
+    get:
+      operationId: messages.index
+      summary: List all messages
+      tags:
+      - Messages
+      responses:
+        '200':
+          description: Paginated set of `MessageResource`
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MessageResource'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type:
+                        - string
+                        - 'null'
+                      last:
+                        type:
+                        - string
+                        - 'null'
+                      prev:
+                        type:
+                        - string
+                        - 'null'
+                      next:
+                        type:
+                        - string
+                        - 'null'
+                    required:
+                    - first
+                    - last
+                    - prev
+                    - next
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        minimum: 1
+                      from:
+                        type:
+                        - integer
+                        - 'null'
+                        minimum: 1
+                      last_page:
+                        type: integer
+                        minimum: 1
+                      links:
+                        type: array
+                        description: Generated paginator links.
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type:
+                              - string
+                              - 'null'
+                            label:
+                              type: string
+                            active:
+                              type: boolean
+                          required:
+                          - url
+                          - label
+                          - active
+                      path:
+                        type:
+                        - string
+                        - 'null'
+                        description: Base path for paginator generated URLs.
+                      per_page:
+                        type: integer
+                        description: Number of items shown per page.
+                        minimum: 0
+                      to:
+                        type:
+                        - integer
+                        - 'null'
+                        description: Number of the last item in the slice.
+                        minimum: 1
+                      total:
+                        type: integer
+                        description: Total number of items being paginated.
+                        minimum: 0
+                    required:
+                    - current_page
+                    - from
+                    - last_page
+                    - links
+                    - path
+                    - per_page
+                    - to
+                    - total
+                required:
+                - data
+                - links
+                - meta
+  /v1/messages/{message}:
+    get:
+      operationId: messages.show
+      summary: Get a message
+      tags:
+      - Messages
+      parameters:
+      - name: message
+        in: path
+        required: true
+        description: The message ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: '`MessageResource`'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResource'
+        '404':
+          $ref: '#/components/responses/ModelNotFoundException'
+components:
+  schemas:
+    MessageResource:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        channel:
+          type: string
+        internal_name:
+          type: string
+        subject:
+          type: string
+        preheader:
+          type: string
+        body:
+          type: string
+        recipient_filters:
+          type: string
+        recipient_count:
+          type: string
+        sent_at:
+          type: string
+        sending_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - status
+      - channel
+      - internal_name
+      - body
+      - recipient_filters
+      - recipient_count
+      - sent_at
+      - sending_at
+      - created_at
+      - updated_at
+      title: MessageResource
+  responses:
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+x-source: https://givebutter.com/docs/api.json
+x-harvested: '2026-09-12'

@@ -1,0 +1,66 @@
+generated: '2026-09-12'
+method: probed
+source: https://docs.givebutter.com/.well-known/agent-card.json
+card: a2a/givebutter-agent-card.json
+discovery:
+  path: /.well-known/agent-card.json
+  canonical: true
+  host: docs.givebutter.com
+x-evidence:
+  fetched: '2026-09-12'
+  url: https://docs.givebutter.com/.well-known/agent-card.json
+  http_status: 200
+  content_type: application/json
+  body_shape: JSON object carrying name, url, version, protocolVersion, capabilities, skills
+agent:
+  name: Givebutter
+  description: Documentation for the Givebutter API, widgets, and webhooks.
+  url: https://docs.givebutter.com/
+  version: '1.0.0'
+  protocolVersion: '0.3'
+  preferredTransport: HTTP+JSON
+  provider:
+    organization: Givebutter
+    url: https://docs.givebutter.com/
+  documentationUrl: https://docs.givebutter.com/
+  capabilities:
+    streaming: false
+    pushNotifications: false
+  defaultInputModes:
+  - text/plain
+  defaultOutputModes:
+  - text/plain
+  skills:
+  - id: givebutter
+    name: Givebutter
+    url: https://docs.givebutter.com/.well-known/agent-skills/givebutter/skill.md
+    local_copy: skills/givebutter-givebutter.md
+grade:
+  against: A2A 1.0.0
+  verdict: conformant
+  checks:
+    capabilities_is_object: true
+    protocol_version_present: true
+    skills_is_array: true
+    preferred_transport_present: true
+    default_input_modes_present: true
+    default_output_modes_present: true
+deviations:
+- field: protocolVersion
+  observed: '0.3'
+  note: The card declares A2A protocol 0.3 rather than 1.0.0. It passes every hard structural check
+    of the 1.0.0 shape, so it is graded conformant, but a client expecting 1.0.0 semantics should
+    read the declared version first.
+- field: supportedInterfaces[0].url
+  observed: https://docs.givebutter.com/
+  note: The only advertised interface is the documentation site itself — this card describes a
+    documentation agent surface, not a callable A2A task endpoint. The callable agent surface
+    Givebutter actually ships is the MCP server at https://mcp.givebutter.com/mcp (see mcp/).
+authorship:
+  note: The card is served from a host Givebutter controls (docs.givebutter.com) and names Givebutter
+    as the provider organization. It is emitted by Givebutter's documentation platform (Mintlify) rather
+    than hand-authored; the linked skill carries metadata.mintlify-proj. Presence is the provider's
+    choice and the document is served from the provider's host, so it is recorded as published.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

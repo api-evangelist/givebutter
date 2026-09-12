@@ -2,8 +2,6 @@
 
 > Documentation for the Givebutter API, widgets, and webhooks.
 
-## Docs
-
 - [Getting Started](https://docs.givebutter.com/widgets/getting-started.md): Learn how to embed donation forms and buttons directly on your own website.
 - [Interactive Examples](https://docs.givebutter.com/widgets/examples.md): See Givebutter Widgets in action with interactive, customizable examples.
 - [Button Widget](https://docs.givebutter.com/widgets/widget-types/button.md): Embed a customizable donation button that opens a popup form on your site.
@@ -76,6 +74,8 @@
 - [Get a pledge](https://docs.givebutter.com/api-reference/pledges/get-a-pledge.md)
 - [List all recurring plans](https://docs.givebutter.com/api-reference/recurring-plans/list-all-recurring-plans.md)
 - [Get a recurring plan](https://docs.givebutter.com/api-reference/recurring-plans/get-a-recurring-plan.md)
+- [Get ssov1account](https://docs.givebutter.com/api-reference/sso-accounts/get-ssov1account.md)
+- [Get ssov1campaigns](https://docs.givebutter.com/api-reference/sso-campaigns/get-ssov1campaigns.md)
 - [List all tickets](https://docs.givebutter.com/api-reference/tickets/list-all-tickets.md)
 - [Get a ticket](https://docs.givebutter.com/api-reference/tickets/get-a-ticket.md)
 - [List all transactions](https://docs.givebutter.com/api-reference/transactions/list-all-transactions.md)
@@ -92,6 +92,4 @@
 
 ## OpenAPI Specs
 
-- [api](https://docs.givebutter.com/api-reference/api.json)
-- [givebutter-api](https://docs.givebutter.com/api-reference/givebutter-api.json)
-- [openapi](https://docs.givebutter.com/openapi.json)
+- [api](https://givebutter.com/docs/api.json)

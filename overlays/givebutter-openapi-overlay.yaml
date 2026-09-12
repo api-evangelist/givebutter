@@ -1,0 +1,105 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Givebutter API
+  version: 1.0.0
+x-generated: '2026-09-12'
+x-method: generated
+x-source: openapi/_original/givebutter-docs-api.json (https://givebutter.com/docs/api.json, harvested 2026-09-12)
+x-description: >-
+  Non-destructive enhancements to Givebutter's published OpenAPI, expressed as an OpenAPI Overlay so
+  the provider's document is never mutated. Every value added here is sourced from a Givebutter
+  documentation page or a Givebutter discovery document, not invented. Apply with any Overlay 1.0.0
+  processor against the harvested spec.
+extends: ../openapi/_original/givebutter-docs-api.json
+actions:
+- target: $.info
+  description: Add the contact, licence and documentation links Givebutter publishes but the spec omits.
+  update:
+    contact:
+      name: Givebutter API Documentation
+      url: https://docs.givebutter.com/api-reference/authentication
+    x-documentation: https://docs.givebutter.com/
+    x-llms-txt: https://docs.givebutter.com/llms.txt
+    x-status-page: https://status.givebutter.com/
+    x-agent-card: https://docs.givebutter.com/.well-known/agent-card.json
+    x-mcp-server: https://mcp.givebutter.com/mcp
+- target: $.servers
+  description: Annotate the single production server with the base path the documentation actually tells
+    developers to call.
+  update:
+  - url: https://api.givebutter.com/
+    description: Production. The documented base URL including the version prefix is
+      https://api.givebutter.com/v1/.
+- target: $.components.securitySchemes.http
+  description: Name and describe the bearer scheme, which the spec declares with no description.
+  update:
+    description: >-
+      Account-level API key issued in the Givebutter dashboard under Settings / Integrations / API
+      Keys and sent as 'Authorization: Bearer <API key>'. The key is unscoped — it carries every
+      permission the account has — has no published expiry, and is displayed only once at creation.
+    bearerFormat: API key
+    x-docs: https://docs.givebutter.com/api-reference/authentication
+- target: $
+  description: Record the platform-wide runtime semantics that are documented but absent from the contract.
+  update:
+    x-rate-limits:
+      limit: 500
+      window: minute
+      scope: account
+      status: 429
+      headers:
+      - Retry-After
+      docs: https://docs.givebutter.com/api-reference/rate-limits
+    x-pagination:
+      style: page-number
+      params:
+        page:
+          default: 1
+        per_page:
+          default: 20
+          max: 100
+      response:
+        data: array
+        links:
+        - first
+        - last
+        - prev
+        - next
+        meta:
+        - current_page
+        - from
+        - to
+        - last_page
+        - per_page
+        - total
+        - path
+      docs: https://docs.givebutter.com/api-reference/pagination
+    x-error-envelope:
+      message: string
+      errors: object of field -> array of validation strings (422)
+      rfc9457: false
+      docs: https://docs.givebutter.com/api-reference/errors
+    x-idempotency:
+      supported: false
+      note: No idempotency or replay-protection mechanism is published for any mutating operation,
+        including POST /v1/transactions.
+- target: $.paths['/sso/v1/account'].get
+  description: The two SSO operations ship with an empty summary in the published spec; give them one
+    drawn from their own path and response schema.
+  update:
+    summary: Get the SSO account
+- target: $.paths['/sso/v1/campaigns/{campaign}'].get
+  update:
+    summary: Get an SSO campaign
+- target: $.paths['/v1/transactions'].post
+  description: Flag the one operation that moves money and has no published reversal.
+  update:
+    x-consequence: irreversible-through-api
+    x-reversal: none — no refund, void or reverse operation is published; refunds occur outside the
+      API and surface only as a refund.created webhook event
+- target: $.paths['/v1/contacts/{contact}'].delete
+  update:
+    x-reversal:
+      operationId: contact.restore
+      binding: PATCH /v1/contacts/{contact}/restore
+      window: not published

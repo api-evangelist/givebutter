@@ -1,47 +1,129 @@
 openapi: 3.1.0
 info:
-  title: Givebutter Campaigns Webhooks API
+  title: Givebutter Webhooks API
   version: 1.0.0
-  description: 'Best-effort OpenAPI 3.1 description of the Givebutter REST API covering
-
-    campaigns, contacts, transactions, funds, households, tickets, plans,
-
-    payouts, pledges, webhooks, and discount codes. Authentication uses
-
-    Bearer-token authentication with an API key. Sourced from
-
-    https://docs.givebutter.com/.
-
-    '
+  description: The Webhooks surface of the Givebutter Public API — 5 operation(s). Split by tag from Givebutter's
+    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12). Operations, schemas and
+    responses are verbatim from the provider's spec.
   contact:
-    name: Givebutter API Docs
-    url: https://docs.givebutter.com/reference/reference-getting-started
+    name: Givebutter API Documentation
+    url: https://docs.givebutter.com/api-reference/authentication
 servers:
-- url: https://api.givebutter.com/v1
-  description: Production
+- url: https://api.givebutter.com/
 security:
-- bearerAuth: []
+- http: []
 tags:
 - name: Webhooks
 paths:
-  /webhooks:
+  /v1/webhooks:
     get:
-      summary: List webhooks
-      operationId: listWebhooks
+      operationId: webhooks.index
+      summary: List all webhooks
       tags:
       - Webhooks
       responses:
         '200':
-          description: Webhooks
+          description: Paginated set of `WebhookResource`
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Webhook'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WebhookResource'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type:
+                        - string
+                        - 'null'
+                      last:
+                        type:
+                        - string
+                        - 'null'
+                      prev:
+                        type:
+                        - string
+                        - 'null'
+                      next:
+                        type:
+                        - string
+                        - 'null'
+                    required:
+                    - first
+                    - last
+                    - prev
+                    - next
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        minimum: 1
+                      from:
+                        type:
+                        - integer
+                        - 'null'
+                        minimum: 1
+                      last_page:
+                        type: integer
+                        minimum: 1
+                      links:
+                        type: array
+                        description: Generated paginator links.
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type:
+                              - string
+                              - 'null'
+                            label:
+                              type: string
+                            active:
+                              type: boolean
+                          required:
+                          - url
+                          - label
+                          - active
+                      path:
+                        type:
+                        - string
+                        - 'null'
+                        description: Base path for paginator generated URLs.
+                      per_page:
+                        type: integer
+                        description: Number of items shown per page.
+                        minimum: 0
+                      to:
+                        type:
+                        - integer
+                        - 'null'
+                        description: Number of the last item in the slice.
+                        minimum: 1
+                      total:
+                        type: integer
+                        description: Total number of items being paginated.
+                        minimum: 0
+                    required:
+                    - current_page
+                    - from
+                    - last_page
+                    - links
+                    - path
+                    - per_page
+                    - to
+                    - total
+                required:
+                - data
+                - links
+                - meta
     post:
+      operationId: webhooks.store
       summary: Create a webhook
-      operationId: createWebhook
       tags:
       - Webhooks
       requestBody:
@@ -49,47 +131,257 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Webhook'
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
+                event:
+                  type: string
+                  enum:
+                  - campaign.created
+                  - campaign.updated
+                  - ticket.created
+                  - transaction.succeeded
+                  - contact.created
+                  - plan.canceled
+                  - plan.created
+                  - plan.failed
+                  - plan.paused
+                  - plan.resumed
+                  - plan.updated
+                  - refund.created
+                events:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - campaign.created
+                    - campaign.updated
+                    - ticket.created
+                    - transaction.succeeded
+                    - contact.created
+                    - plan.canceled
+                    - plan.created
+                    - plan.failed
+                    - plan.paused
+                    - plan.resumed
+                    - plan.updated
+                    - refund.created
+                name:
+                  type:
+                  - string
+                  - 'null'
+                  maxLength: 255
+                enabled:
+                  type: boolean
+              required:
+              - url
       responses:
-        '201':
-          description: Created
-  /webhooks/{id}:
-    parameters:
-    - $ref: '#/components/parameters/IdInt'
-    delete:
-      summary: Delete a webhook
-      operationId: deleteWebhook
+        '200':
+          description: '`WebhookResource`'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResource'
+        '422':
+          $ref: '#/components/responses/ValidationException'
+  /v1/webhooks/{webhook}:
+    get:
+      operationId: webhooks.show
+      summary: Get a webhook
       tags:
       - Webhooks
+      parameters:
+      - name: webhook
+        in: path
+        required: true
+        description: The webhook ID
+        schema:
+          type: string
       responses:
-        '204':
-          description: Deleted
+        '200':
+          description: '`WebhookResource`'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResource'
+        '403':
+          $ref: '#/components/responses/AuthorizationException'
+        '404':
+          $ref: '#/components/responses/ModelNotFoundException'
+    put:
+      operationId: webhooks.update
+      summary: Update a webhook
+      tags:
+      - Webhooks
+      parameters:
+      - name: webhook
+        in: path
+        required: true
+        description: The webhook ID
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
+                events:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - campaign.created
+                    - campaign.updated
+                    - ticket.created
+                    - transaction.succeeded
+                    - contact.created
+                    - plan.canceled
+                    - plan.created
+                    - plan.failed
+                    - plan.paused
+                    - plan.resumed
+                    - plan.updated
+                    - refund.created
+                  minItems: 1
+                name:
+                  type:
+                  - string
+                  - 'null'
+                  maxLength: 255
+                enabled:
+                  type: boolean
+              required:
+              - url
+              - events
+      responses:
+        '200':
+          description: '`WebhookResource`'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResource'
+        '422':
+          $ref: '#/components/responses/ValidationException'
+        '404':
+          $ref: '#/components/responses/ModelNotFoundException'
+    delete:
+      operationId: webhooks.destroy
+      summary: Delete a webhook
+      tags:
+      - Webhooks
+      parameters:
+      - name: webhook
+        in: path
+        required: true
+        description: The webhook ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+        '403':
+          $ref: '#/components/responses/AuthorizationException'
+        '404':
+          $ref: '#/components/responses/ModelNotFoundException'
 components:
-  parameters:
-    IdInt:
-      in: path
-      name: id
-      required: true
-      schema:
-        type: integer
+  responses:
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    ValidationException:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Errors overview.
+              errors:
+                type: object
+                description: A detailed description of each field that failed validation.
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+            required:
+            - message
+            - errors
+    AuthorizationException:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
   schemas:
-    Webhook:
+    WebhookResource:
       type: object
       properties:
         id:
-          type: integer
-        url:
           type: string
-          format: uri
+        name:
+          type:
+          - string
+          - 'null'
+        signature:
+          type:
+          - string
+          - 'null'
         events:
           type: array
-          items:
-            type: string
-        active:
+          items: {}
+        enabled:
           type: boolean
+        url:
+          type: string
+        last_status:
+          type: string
+        last_status_description:
+          type: string
+        last_used_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - name
+      - events
+      - enabled
+      - url
+      - last_status
+      - last_status_description
+      - last_used_at
+      - created_at
+      - updated_at
+      title: WebhookResource
   securitySchemes:
-    bearerAuth:
+    http:
       type: http
       scheme: bearer
-      bearerFormat: API Key
-      description: Bearer token authentication using a personal API key.
+x-source: https://givebutter.com/docs/api.json
+x-harvested: '2026-09-12'

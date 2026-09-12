@@ -1,0 +1,708 @@
+openapi: 3.1.0
+info:
+  title: Givebutter Contact Tags API
+  version: 1.0.0
+  description: The Contact Tags surface of the Givebutter Public API — 3 operation(s). Split by tag from Givebutter's
+    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12). Operations, schemas and
+    responses are verbatim from the provider's spec.
+  contact:
+    name: Givebutter API Documentation
+    url: https://docs.givebutter.com/api-reference/authentication
+servers:
+- url: https://api.givebutter.com/
+security:
+- http: []
+tags:
+- name: Contact Tags
+paths:
+  /v1/contacts/{contact}/tags/add:
+    post:
+      operationId: contactTag.store
+      summary: Add tags to a contact
+      tags:
+      - Contact Tags
+      parameters:
+      - name: contact
+        in: path
+        required: true
+        description: The contact ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tags:
+                  type: array
+                  items:
+                    type: string
+                    maxLength: 64
+                  minItems: 1
+              required:
+              - tags
+      responses:
+        '200':
+          description: '`ContactResource`'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResource'
+        '422':
+          $ref: '#/components/responses/ValidationException'
+        '404':
+          $ref: '#/components/responses/ModelNotFoundException'
+        '403':
+          $ref: '#/components/responses/AuthorizationException'
+  /v1/contacts/{contact}/tags/remove:
+    post:
+      operationId: contactTag.destroy
+      summary: Remove tags from a contact
+      tags:
+      - Contact Tags
+      parameters:
+      - name: contact
+        in: path
+        required: true
+        description: The contact ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tags:
+                  type: array
+                  items:
+                    type: string
+                    maxLength: 64
+                  minItems: 1
+              required:
+              - tags
+      responses:
+        '200':
+          description: '`ContactResource`'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResource'
+        '422':
+          $ref: '#/components/responses/ValidationException'
+        '404':
+          $ref: '#/components/responses/ModelNotFoundException'
+        '403':
+          $ref: '#/components/responses/AuthorizationException'
+  /v1/contacts/{contact}/tags/sync:
+    post:
+      operationId: contactTag.sync
+      summary: Sync tags for a contact
+      tags:
+      - Contact Tags
+      parameters:
+      - name: contact
+        in: path
+        required: true
+        description: The contact ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tags:
+                  type: array
+                  items:
+                    type: string
+                    maxLength: 64
+                  minItems: 1
+              required:
+              - tags
+      responses:
+        '200':
+          description: '`ContactResource`'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResource'
+        '422':
+          $ref: '#/components/responses/ValidationException'
+        '404':
+          $ref: '#/components/responses/ModelNotFoundException'
+        '403':
+          $ref: '#/components/responses/AuthorizationException'
+components:
+  responses:
+    AuthorizationException:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    ValidationException:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Errors overview.
+              errors:
+                type: object
+                description: A detailed description of each field that failed validation.
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+            required:
+            - message
+            - errors
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+  schemas:
+    AssociatedCompanyResource:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        company_name:
+          type: string
+        name_display:
+          type: string
+        title:
+          type: string
+        twitter_url:
+          type: string
+        linkedin_url:
+          type: string
+        facebook_url:
+          type: string
+        tiktok_url:
+          type: string
+        instagram_url:
+          type: string
+        website_url:
+          type: string
+        image_url:
+          type:
+          - string
+          - 'null'
+        emails:
+          type: object
+          additionalProperties: {}
+        phones:
+          type: object
+          additionalProperties: {}
+        primary_email:
+          type: string
+        primary_phone:
+          type: string
+        is_email_subscribed:
+          type: string
+        is_phone_subscribed:
+          type: string
+        is_address_subscribed:
+          type: string
+        address_unsubscribed_at:
+          type: string
+        note:
+          type: string
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressResource'
+        primary_address:
+          $ref: '#/components/schemas/AddressResource'
+        archived_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        first_time_supporter_at:
+          type: string
+      required:
+      - id
+      - type
+      - company_name
+      - name_display
+      - title
+      - twitter_url
+      - linkedin_url
+      - facebook_url
+      - tiktok_url
+      - instagram_url
+      - website_url
+      - image_url
+      - emails
+      - phones
+      - primary_email
+      - primary_phone
+      - is_email_subscribed
+      - is_phone_subscribed
+      - is_address_subscribed
+      - address_unsubscribed_at
+      - note
+      - addresses
+      - primary_address
+      - archived_at
+      - created_at
+      - updated_at
+      - first_time_supporter_at
+      title: AssociatedCompanyResource
+    PointOfContactResource:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        prefix:
+          type: string
+        first_name:
+          type: string
+        middle_name:
+          type: string
+        last_name:
+          type: string
+        suffix:
+          type: string
+        gender:
+          type: string
+        pronouns:
+          type: string
+        dob:
+          type: string
+        employer:
+          type: string
+        title:
+          type: string
+        twitter_url:
+          type: string
+        linkedin_url:
+          type: string
+        facebook_url:
+          type: string
+        tiktok_url:
+          type: string
+        instagram_url:
+          type: string
+        website_url:
+          type: string
+        emails:
+          type: object
+          additionalProperties: {}
+        phones:
+          type: object
+          additionalProperties: {}
+        primary_email:
+          type: string
+        primary_phone:
+          type: string
+        is_email_subscribed:
+          type: string
+        is_phone_subscribed:
+          type: string
+        is_address_subscribed:
+          type: string
+        address_unsubscribed_at:
+          type: string
+        archived_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        first_time_supporter_at:
+          type: string
+      required:
+      - id
+      - type
+      - prefix
+      - first_name
+      - middle_name
+      - last_name
+      - suffix
+      - gender
+      - pronouns
+      - dob
+      - employer
+      - title
+      - twitter_url
+      - linkedin_url
+      - facebook_url
+      - tiktok_url
+      - instagram_url
+      - website_url
+      - emails
+      - phones
+      - primary_email
+      - primary_phone
+      - is_email_subscribed
+      - is_phone_subscribed
+      - is_address_subscribed
+      - address_unsubscribed_at
+      - archived_at
+      - created_at
+      - updated_at
+      - first_time_supporter_at
+      title: PointOfContactResource
+    App.Http.Resources.API.AddressResource:
+      type: object
+      properties:
+        address_1:
+          type: string
+        address_2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        state:
+          type:
+          - string
+          - 'null'
+        zipcode:
+          type:
+          - string
+          - 'null'
+        country:
+          type: string
+        type:
+          type: string
+        is_primary:
+          type: boolean
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - address_1
+      - address_2
+      - city
+      - state
+      - zipcode
+      - country
+      - type
+      - is_primary
+      - created_at
+      - updated_at
+      title: App.Http.Resources.API.AddressResource
+    ExternalIdResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        external_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - label
+      - external_id
+      - created_at
+      - updated_at
+      title: ExternalIdResource
+    AddressResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        account_id:
+          type:
+          - integer
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        address_1:
+          type: string
+        address_2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        state:
+          type:
+          - string
+          - 'null'
+        zipcode:
+          type:
+          - string
+          - 'null'
+        country:
+          type: string
+        type:
+          type: string
+        is_primary:
+          type: boolean
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - id
+      - account_id
+      - name
+      - address_1
+      - address_2
+      - city
+      - state
+      - zipcode
+      - country
+      - type
+      - is_primary
+      - created_at
+      - updated_at
+      title: AddressResource
+    PhoneResource:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      required:
+      - type
+      - value
+      title: PhoneResource
+    EmailResource:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      required:
+      - type
+      - value
+      title: EmailResource
+    ContactResource:
+      type: object
+      properties:
+        id:
+          type: string
+        external_id:
+          type: string
+        contact_since:
+          type: string
+        type:
+          type: string
+        prefix:
+          type: string
+        first_name:
+          type: string
+        preferred_name:
+          type: string
+        middle_name:
+          type: string
+        last_name:
+          type: string
+        suffix:
+          type: string
+        gender:
+          type: string
+        pronouns:
+          type: string
+        dob:
+          type: string
+        company:
+          type: string
+        employer:
+          type: string
+        company_name:
+          type: string
+        point_of_contact:
+          anyOf:
+          - $ref: '#/components/schemas/PointOfContactResource'
+          - type: 'null'
+        associated_companies:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AssociatedCompanyResource'
+        title:
+          type: string
+        website_url:
+          type: string
+        twitter_url:
+          type: string
+        linkedin_url:
+          type: string
+        facebook_url:
+          type: string
+        tiktok_url:
+          type: string
+        instagram_url:
+          type: string
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailResource'
+        phones:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneResource'
+        primary_email:
+          type: string
+        primary_phone:
+          type: string
+        note:
+          type: string
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/App.Http.Resources.API.AddressResource'
+        primary_address:
+          anyOf:
+          - $ref: '#/components/schemas/App.Http.Resources.API.AddressResource'
+          - type: 'null'
+        last_donation_amount:
+          type: string
+        stats:
+          type: object
+          properties:
+            total_contributions:
+              type: string
+            recurring_contributions:
+              type: string
+          required:
+          - total_contributions
+          - recurring_contributions
+        tags:
+          type: string
+        custom_fields:
+          type: array
+          items: {}
+        external_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalIdResource'
+        is_email_subscribed:
+          type: string
+        is_phone_subscribed:
+          type: string
+        is_address_subscribed:
+          type: string
+        email_opt_in:
+          type: string
+        sms_opt_in:
+          type: string
+        address_unsubscribed_at:
+          type: string
+        archived_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        salutation_name:
+          type: string
+      required:
+      - id
+      - external_id
+      - contact_since
+      - type
+      - prefix
+      - first_name
+      - preferred_name
+      - middle_name
+      - last_name
+      - suffix
+      - gender
+      - pronouns
+      - dob
+      - company
+      - employer
+      - company_name
+      - title
+      - website_url
+      - twitter_url
+      - linkedin_url
+      - facebook_url
+      - tiktok_url
+      - instagram_url
+      - emails
+      - phones
+      - primary_email
+      - primary_phone
+      - note
+      - addresses
+      - primary_address
+      - last_donation_amount
+      - stats
+      - tags
+      - custom_fields
+      - external_ids
+      - is_email_subscribed
+      - is_phone_subscribed
+      - is_address_subscribed
+      - email_opt_in
+      - sms_opt_in
+      - address_unsubscribed_at
+      - archived_at
+      - created_at
+      - updated_at
+      - salutation_name
+      title: ContactResource
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+x-source: https://givebutter.com/docs/api.json
+x-harvested: '2026-09-12'

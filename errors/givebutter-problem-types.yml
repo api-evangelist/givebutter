@@ -1,0 +1,120 @@
+generated: '2026-09-12'
+method: searched
+source: https://docs.givebutter.com/api-reference/errors + openapi/_original/givebutter-docs-api.json
+description: >-
+  Error catalog for the Givebutter API. Titles, causes and remediation come from Givebutter's own
+  Errors reference page; the per-status counts come from the response objects in Givebutter's
+  published OpenAPI. Givebutter does not use RFC 9457 problem+json — the envelope is a vendor shape.
+format: vendor
+media_type: application/json
+rfc9457: false
+envelope:
+  message: human-readable error string, always present
+  errors: 'object keyed by field name, each value an array of validation strings (422 only)'
+spec_coverage:
+  operations: 70
+  responses_declared:
+    '200': 67
+    '204': 3
+    '401': 2
+    '403': 42
+    '404': 52
+    '409': 1
+    '422': 28
+  note: >-
+    Only 2 of 70 operations declare a 401 and none declares a 429, even though the documentation
+    states both exist platform-wide. A client generated from the spec alone will not model
+    authentication failure or throttling.
+problem_types:
+- status: 400
+  title: Bad Request
+  description: Malformed request syntax or invalid request parameters.
+  causes: Invalid JSON, missing required parameters, malformed data
+  remediation: Fix the request body or query string and retry.
+- status: 401
+  title: Unauthorized
+  description: Authentication required. API key missing, invalid, or revoked.
+  body: '{"message":"Unauthenticated."}'
+  causes: Missing Authorization header; incorrect or revoked API key; sending the key without the
+    Bearer prefix
+  remediation: >-
+    Send the header 'Authorization' with the value 'Bearer <API key>'. Reissue the key in
+    Settings / Integrations / API Keys if it was revoked. Do not retry unchanged.
+  spec_ref: '#/components/responses/AuthenticationException'
+- status: 403
+  title: Forbidden
+  description: Authentication succeeded, but insufficient permissions for this resource.
+  body: '{"message":"This action is unauthorized."}'
+  causes: API key lacks permission; accessing another organization's data; resource archived or deleted
+  remediation: Not retryable. Verify the key belongs to the account that owns the resource.
+  spec_ref: '#/components/responses/AuthorizationException'
+- status: 404
+  title: Not Found
+  description: Requested resource does not exist or was not found.
+  causes: Invalid resource ID, resource deleted, typo in URL
+  remediation: Not retryable. Re-resolve the identifier.
+  spec_ref: '#/components/responses/ModelNotFoundException'
+- status: 405
+  title: Method Not Allowed
+  description: HTTP method not supported for this endpoint.
+  causes: Using the wrong HTTP method
+  remediation: >-
+    Check the verb against the current published spec — Givebutter's own SDK still uses PATCH on
+    several update operations the spec now declares as PUT.
+- status: 409
+  title: Conflict
+  description: Request conflicts with current resource state.
+  causes: Duplicate resource, race condition, resource locked
+  remediation: Re-read the resource and reconcile before retrying. Only one operation in the spec
+    declares a 409.
+- status: 422
+  title: Unprocessable Entity
+  description: Request syntax valid, but semantic errors in data (validation failures).
+  body: '{"message":"The given data was invalid.","errors":{"email":["The email field is required."]}}'
+  causes: Missing required fields, invalid data types, values out of range
+  remediation: Read errors[field][] and correct each field. Not retryable unchanged.
+  spec_ref: '#/components/responses/ValidationException'
+- status: 429
+  title: Too Many Requests
+  description: Rate limit exceeded — the API allows 500 requests per minute.
+  causes: Too many requests in a short period
+  remediation: Wait the number of seconds in the Retry-After header, then retry with exponential
+    backoff and jitter.
+  note: Documented on the Rate Limits page; not declared on any operation in the spec.
+- status: 500
+  title: Internal Server Error
+  description: Unexpected error on the server.
+  remediation: Retry with exponential backoff; contact support if it persists.
+- status: 502
+  title: Bad Gateway
+  description: Invalid response from upstream server. Usually temporary.
+  remediation: Retry after a brief delay.
+- status: 503
+  title: Service Unavailable
+  description: Server temporarily unavailable (maintenance or overload).
+  remediation: Retry after a delay and check https://status.givebutter.com/.
+- status: 504
+  title: Gateway Timeout
+  description: Request timed out waiting for upstream server.
+  remediation: Retry with exponential backoff.
+retry_guidance:
+  retryable:
+  - 429
+  - 500
+  - 502
+  - 503
+  - 504
+  not_retryable:
+  - 400
+  - 401
+  - 403
+  - 404
+  - 405
+  - 422
+  caution: >-
+    There is no idempotency mechanism (see conventions/), so retrying a failed POST /v1/transactions
+    after a timeout can create a duplicate record. Reconcile with GET /v1/transactions before retrying
+    any write.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

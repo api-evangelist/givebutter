@@ -1,0 +1,60 @@
+generated: '2026-09-12'
+method: searched
+source: https://docs.givebutter.com/widgets/getting-started
+description: >-
+  Givebutter ships a first-party browser widget library of custom elements — the embeddable
+  fundraising surface that sits alongside the REST API. It is distributed from Givebutter's own CDN
+  as a single unpinned UMD build, not from a package registry.
+loader:
+  url: https://widgets.givebutter.com/latest.umd.cjs
+  install: '<script async src="https://widgets.givebutter.com/latest.umd.cjs?acct=YOUR_ACCOUNT_ID"></script>'
+  placement: inside <head>, on every page (recommended by the docs for attribution)
+  account_binding: acct query parameter carries the Account ID from Dashboard / Settings / Integrations
+  versioned: false
+  probed: '2026-09-12'
+  status: 200
+  bytes: 269247
+  note: The URL floats to "latest" with no version pin and no published changelog, so an embedder
+    cannot pin a build or tell which one is live. See packages/givebutter-packages.yml.
+families:
+- family: Widgets
+  type: web components (custom elements)
+  elements:
+  - tag: givebutter-widget
+    description: Generic widget element bound to a widget ID generated in the dashboard
+      (Campaign / Sharing / Widgets).
+  - tag: givebutter-button
+    description: Donation button that opens the donation form in a popup.
+    docs: https://docs.givebutter.com/widgets/widget-types/button
+  - tag: givebutter-giving-form
+    description: Full donation form embedded inline in the page.
+    docs: https://docs.givebutter.com/widgets/widget-types/form
+  - tag: givebutter-goal-bar
+    description: Fundraising progress bar showing campaign momentum.
+    docs: https://docs.givebutter.com/widgets/widget-types/goal-bar
+  - tag: givebutter-signup-form
+    description: Email signup form that grows a mailing list.
+    docs: https://docs.givebutter.com/widgets/widget-types/signup-form
+host_integrations:
+- platform: WordPress
+  method: free plugin
+  docs: https://docs.givebutter.com/widgets/website-builders/wordpress
+- platform: Wix
+  docs: https://docs.givebutter.com/widgets/website-builders/wix
+- platform: Squarespace
+  method: code injection
+  docs: https://docs.givebutter.com/widgets/website-builders/squarespace
+- platform: Weebly
+  docs: https://docs.givebutter.com/widgets/website-builders/weebly
+- platform: GoDaddy Website Builder
+  docs: https://docs.givebutter.com/widgets/website-builders/godaddy
+advanced:
+- name: URL prefill parameters
+  description: Pre-fill donation amount and frequency from query parameters.
+  docs: https://docs.givebutter.com/widgets/advanced/url-prefill
+- name: Analytics and attribution
+  description: Automatic capture of donation source attribution.
+  docs: https://docs.givebutter.com/widgets/advanced/analytics
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

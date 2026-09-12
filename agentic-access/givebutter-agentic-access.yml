@@ -1,22 +1,33 @@
-generated: '2026-07-15'
+generated: '2026-09-12'
 method: generated
-source: openapi/givebutter-openapi.yml
-description: Recommended x-agentic-access execution contracts, classified heuristically from
-  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
-  audience per deployment. See research/curity/agentic-governance/.
+source: openapi/_original/givebutter-docs-api.json (https://givebutter.com/docs/api.json)
+description: Recommended x-agentic-access execution contracts, classified from Givebutter's own published OpenAPI
+  (70 operations). A governance starting point for exposing this API to agents — review and bind audience per
+  deployment. Regenerated 2026-09-12 against the real provider spec; the previous version was classified from
+  a 27-operation best-effort scaffold that was not the provider's contract.
+context:
+  idempotency: none published — a retried write can duplicate
+  reversibility: only contacts publish a restore path; POST /v1/transactions has no reversal in the API
+  auth: single unscoped account-level API key — an agent key holds every permission the account has
+  see:
+  - conventions/givebutter-conventions.yml
+  - mcp/givebutter-mcp.yml
 summary:
-  operations: 27
+  operations: 70
   by_action_class:
-    connected: 16
-    acting: 11
+    connected: 38
+    acting: 32
   by_consequence:
-    read: 16
-    write: 11
-  human_in_the_loop_required: 0
+    read: 38
+    write: 22
+    destructive: 10
+  human_in_the_loop_required: 1
 operations:
-- path: /campaigns
+- path: /sso/v1/account
   method: get
-  operationId: listCampaigns
+  operationId: sso.account
+  tags:
+  - Sso Accounts
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -24,25 +35,51 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /campaigns
+- path: /sso/v1/campaigns/{campaign}
+  method: get
+  operationId: sso.campaigns.show
+  tags:
+  - Sso Campaigns
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/campaigns
+  method: get
+  operationId: campaigns.index
+  tags:
+  - Campaigns
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/campaigns
   method: post
-  operationId: createCampaign
+  operationId: campaigns.store
+  tags:
+  - Campaigns
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
-    audience: null
     token:
       max-ttl: 900
+    audit: required
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
-      - high-value
-    audit: required
-- path: /campaigns/{id}
+- path: /v1/campaigns/{campaign}
   method: get
-  operationId: getCampaign
+  operationId: campaigns.show
+  tags:
+  - Campaigns
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -50,41 +87,522 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /campaigns/{id}
+- path: /v1/campaigns/{campaign}
+  method: put
+  operationId: campaigns.update
+  tags:
+  - Campaigns
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+- path: /v1/campaigns/{campaign}
+  method: delete
+  operationId: campaigns.destroy
+  tags:
+  - Campaigns
+  x-agentic-access:
+    action-class: acting
+    consequence: destructive
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - always
+      why: deletion; only contacts publish a restore path and no retention window is stated
+- path: /v1/campaigns/{campaign}/discount-codes
+  method: get
+  operationId: campaigns.discount-codes.index
+  tags:
+  - Campaign Discount Codes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/campaigns/{campaign}/discount-codes
+  method: post
+  operationId: campaigns.discount-codes.store
+  tags:
+  - Campaign Discount Codes
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+- path: /v1/campaigns/{campaign}/discount-codes/{discountCode}
+  method: get
+  operationId: campaigns.discount-codes.show
+  tags:
+  - Campaign Discount Codes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/campaigns/{campaign}/discount-codes/{discountCode}
+  method: put
+  operationId: campaigns.discount-codes.update
+  tags:
+  - Campaign Discount Codes
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+- path: /v1/campaigns/{campaign}/discount-codes/{discountCode}
+  method: delete
+  operationId: campaigns.discount-codes.destroy
+  tags:
+  - Campaign Discount Codes
+  x-agentic-access:
+    action-class: acting
+    consequence: destructive
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - always
+      why: deletion; only contacts publish a restore path and no retention window is stated
+- path: /v1/campaigns/{campaign}/items/tickets
+  method: get
+  operationId: campaigns.items.tickets.index
+  tags:
+  - Campaign Tickets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/campaigns/{campaign}/items/tickets
+  method: post
+  operationId: campaigns.items.tickets.store
+  tags:
+  - Campaign Tickets
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+- path: /v1/campaigns/{campaign}/items/tickets/{ticketId}
+  method: get
+  operationId: campaigns.items.tickets.show
+  tags:
+  - Campaign Tickets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/campaigns/{campaign}/members
+  method: get
+  operationId: campaigns.members.index
+  tags:
+  - Campaign Members
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/campaigns/{campaign}/members/{member}
+  method: get
+  operationId: campaigns.members.show
+  tags:
+  - Campaign Members
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/campaigns/{campaign}/members/{member}
+  method: delete
+  operationId: campaigns.members.destroy
+  tags:
+  - Campaign Members
+  x-agentic-access:
+    action-class: acting
+    consequence: destructive
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - always
+      why: deletion; only contacts publish a restore path and no retention window is stated
+- path: /v1/campaigns/{campaign}/teams
+  method: get
+  operationId: campaigns.teams.index
+  tags:
+  - Campaign Teams
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/campaigns/{campaign}/teams/{team}
+  method: get
+  operationId: campaigns.teams.show
+  tags:
+  - Campaign Teams
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/campaigns/{campaign}/teams/{team}
+  method: delete
+  operationId: campaigns.teams.destroy
+  tags:
+  - Campaign Teams
+  x-agentic-access:
+    action-class: acting
+    consequence: destructive
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - always
+      why: deletion; only contacts publish a restore path and no retention window is stated
+- path: /v1/contacts
+  method: get
+  operationId: contacts.index
+  tags:
+  - Contacts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/contacts
+  method: post
+  operationId: contacts.store
+  tags:
+  - Contacts
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+- path: /v1/contacts/{contact}
+  method: get
+  operationId: contacts.show
+  tags:
+  - Contacts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/contacts/{contact}
+  method: put
+  operationId: contacts.update
+  tags:
+  - Contacts
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+- path: /v1/contacts/{contact}
+  method: delete
+  operationId: contacts.destroy
+  tags:
+  - Contacts
+  x-agentic-access:
+    action-class: acting
+    consequence: destructive
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - always
+      why: deletion; only contacts publish a restore path and no retention window is stated
+- path: /v1/contacts/{contact}/activities
+  method: get
+  operationId: contacts.activities.index
+  tags:
+  - Contact Activities
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/contacts/{contact}/activities
+  method: post
+  operationId: contacts.activities.store
+  tags:
+  - Contact Activities
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+- path: /v1/contacts/{contact}/activities/{activity}
+  method: get
+  operationId: contacts.activities.show
+  tags:
+  - Contact Activities
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/contacts/{contact}/activities/{activity}
+  method: put
+  operationId: contacts.activities.update
+  tags:
+  - Contact Activities
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+- path: /v1/contacts/{contact}/activities/{activity}
+  method: delete
+  operationId: contacts.activities.destroy
+  tags:
+  - Contact Activities
+  x-agentic-access:
+    action-class: acting
+    consequence: destructive
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - always
+      why: deletion; only contacts publish a restore path and no retention window is stated
+- path: /v1/contacts/{contact}/restore
   method: patch
-  operationId: updateCampaign
+  operationId: contact.restore
+  tags:
+  - Contacts
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
-    audience: null
     token:
       max-ttl: 900
+    audit: required
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
-      - high-value
+- path: /v1/contacts/{contact}/tags/add
+  method: post
+  operationId: contactTag.store
+  tags:
+  - Contact Tags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    token:
+      max-ttl: 900
     audit: required
-- path: /campaigns/{id}
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+- path: /v1/contacts/{contact}/tags/remove
+  method: post
+  operationId: contactTag.destroy
+  tags:
+  - Contact Tags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+- path: /v1/contacts/{contact}/tags/sync
+  method: post
+  operationId: contactTag.sync
+  tags:
+  - Contact Tags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+- path: /v1/funds
+  method: get
+  operationId: funds.index
+  tags:
+  - Funds
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/funds
+  method: post
+  operationId: funds.store
+  tags:
+  - Funds
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+- path: /v1/funds/{fund}
+  method: get
+  operationId: funds.show
+  tags:
+  - Funds
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/funds/{fund}
+  method: put
+  operationId: funds.update
+  tags:
+  - Funds
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+- path: /v1/funds/{fund}
   method: delete
-  operationId: deleteCampaign
+  operationId: funds.destroy
+  tags:
+  - Funds
   x-agentic-access:
     action-class: acting
-    consequence: write
+    consequence: destructive
     subject: required
-    audience: null
     token:
       max-ttl: 900
+    audit: required
     escalation:
       human-in-the-loop: conditional
       triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /campaigns/{id}/members
+      - always
+      why: deletion; only contacts publish a restore path and no retention window is stated
+- path: /v1/households
   method: get
-  operationId: listCampaignMembers
+  operationId: households.index
+  tags:
+  - Households
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -92,45 +610,27 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /campaigns/{id}/teams
-  method: get
-  operationId: listCampaignTeams
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /contacts
-  method: get
-  operationId: listContacts
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /contacts
+- path: /v1/households
   method: post
-  operationId: createContact
+  operationId: households.store
+  tags:
+  - Households
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
-    audience: null
     token:
       max-ttl: 900
+    audit: required
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
-      - high-value
-    audit: required
-- path: /contacts/{id}
+- path: /v1/households/{household}
   method: get
-  operationId: getContact
+  operationId: households.show
+  tags:
+  - Households
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -138,41 +638,44 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /contacts/{id}
-  method: patch
-  operationId: updateContact
+- path: /v1/households/{household}
+  method: put
+  operationId: households.update
+  tags:
+  - Households
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
-    audience: null
     token:
       max-ttl: 900
+    audit: required
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
-      - high-value
-    audit: required
-- path: /contacts/{id}
+- path: /v1/households/{household}
   method: delete
-  operationId: deleteContact
+  operationId: households.destroy
+  tags:
+  - Households
   x-agentic-access:
     action-class: acting
-    consequence: write
+    consequence: destructive
     subject: required
-    audience: null
     token:
       max-ttl: 900
+    audit: required
     escalation:
       human-in-the-loop: conditional
       triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /transactions
+      - always
+      why: deletion; only contacts publish a restore path and no retention window is stated
+- path: /v1/households/{household}/contacts
   method: get
-  operationId: listTransactions
+  operationId: households.contacts.index
+  tags:
+  - Household Contacts
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -180,25 +683,27 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /transactions
+- path: /v1/households/{household}/contacts
   method: post
-  operationId: createTransaction
+  operationId: households.contacts.store
+  tags:
+  - Household Contacts
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
-    audience: null
     token:
       max-ttl: 900
+    audit: required
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
-      - high-value
-    audit: required
-- path: /transactions/{id}
+- path: /v1/households/{household}/contacts/{contact}
   method: get
-  operationId: getTransaction
+  operationId: households.contacts.show
+  tags:
+  - Household Contacts
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -206,127 +711,28 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /funds
-  method: get
-  operationId: listFunds
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /funds
-  method: post
-  operationId: createFund
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /funds/{id}
-  method: get
-  operationId: getFund
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /tickets
-  method: get
-  operationId: listTickets
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /tickets/{id}
-  method: get
-  operationId: getTicket
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /payouts
-  method: get
-  operationId: listPayouts
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /plans
-  method: get
-  operationId: listPlans
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /webhooks
-  method: get
-  operationId: listWebhooks
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /webhooks
-  method: post
-  operationId: createWebhook
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /webhooks/{id}
+- path: /v1/households/{household}/contacts/{contact}
   method: delete
-  operationId: deleteWebhook
+  operationId: households.contacts.destroy
+  tags:
+  - Household Contacts
   x-agentic-access:
     action-class: acting
-    consequence: write
+    consequence: destructive
     subject: required
-    audience: null
     token:
       max-ttl: 900
+    audit: required
     escalation:
       human-in-the-loop: conditional
       triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /discount-codes
+      - always
+      why: deletion; only contacts publish a restore path and no retention window is stated
+- path: /v1/messages
   method: get
-  operationId: listDiscountCodes
+  operationId: messages.index
+  tags:
+  - Messages
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -334,19 +740,268 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /discount-codes
+- path: /v1/messages/{message}
+  method: get
+  operationId: messages.show
+  tags:
+  - Messages
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/payouts
+  method: get
+  operationId: payouts.index
+  tags:
+  - Payouts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/payouts/{payout}
+  method: get
+  operationId: payouts.show
+  tags:
+  - Payouts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/plans
+  method: get
+  operationId: plans.index
+  tags:
+  - Recurring Plans
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/plans/{plan}
+  method: get
+  operationId: plans.show
+  tags:
+  - Recurring Plans
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/pledges
+  method: get
+  operationId: pledges.index
+  tags:
+  - Pledges
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/pledges/{pledge}
+  method: get
+  operationId: pledges.show
+  tags:
+  - Pledges
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/tickets
+  method: get
+  operationId: tickets.index
+  tags:
+  - Tickets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/tickets/{ticket}
+  method: get
+  operationId: tickets.show
+  tags:
+  - Tickets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/transactions
+  method: get
+  operationId: transactions.index
+  tags:
+  - Transactions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/transactions
   method: post
-  operationId: createDiscountCode
+  operationId: transactions.store
+  tags:
+  - Transactions
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
-    audience: null
     token:
       max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: required
+      triggers:
+      - always
+      why: creates a money-movement record with no published reversal and no idempotency key
+- path: /v1/transactions/{transaction}
+  method: get
+  operationId: transactions.show
+  tags:
+  - Transactions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/transactions/{transaction}
+  method: put
+  operationId: transactions.update
+  tags:
+  - Transactions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
-      - high-value
+- path: /v1/webhooks
+  method: get
+  operationId: webhooks.index
+  tags:
+  - Webhooks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/webhooks
+  method: post
+  operationId: webhooks.store
+  tags:
+  - Webhooks
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    token:
+      max-ttl: 900
     audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+- path: /v1/webhooks/{webhook}
+  method: get
+  operationId: webhooks.show
+  tags:
+  - Webhooks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/webhooks/{webhook}
+  method: put
+  operationId: webhooks.update
+  tags:
+  - Webhooks
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+- path: /v1/webhooks/{webhook}
+  method: delete
+  operationId: webhooks.destroy
+  tags:
+  - Webhooks
+  x-agentic-access:
+    action-class: acting
+    consequence: destructive
+    subject: required
+    token:
+      max-ttl: 900
+    audit: required
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - always
+      why: deletion; only contacts publish a restore path and no retention window is stated
+- path: /v1/webhooks/{webhook}/activities
+  method: get
+  operationId: webhooks.activities.index
+  tags:
+  - Webhook Activities
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/webhooks/{webhook}/activities/{activity}
+  method: get
+  operationId: webhooks.activities.show
+  tags:
+  - Webhook Activities
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

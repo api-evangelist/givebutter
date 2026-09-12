@@ -1,68 +1,282 @@
 openapi: 3.1.0
 info:
-  title: Givebutter Campaigns Plans API
+  title: Givebutter Recurring Plans API
   version: 1.0.0
-  description: 'Best-effort OpenAPI 3.1 description of the Givebutter REST API covering
-
-    campaigns, contacts, transactions, funds, households, tickets, plans,
-
-    payouts, pledges, webhooks, and discount codes. Authentication uses
-
-    Bearer-token authentication with an API key. Sourced from
-
-    https://docs.givebutter.com/.
-
-    '
+  description: The Recurring Plans surface of the Givebutter Public API — 2 operation(s). Split by tag from Givebutter's
+    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12). Operations, schemas and
+    responses are verbatim from the provider's spec.
   contact:
-    name: Givebutter API Docs
-    url: https://docs.givebutter.com/reference/reference-getting-started
+    name: Givebutter API Documentation
+    url: https://docs.givebutter.com/api-reference/authentication
 servers:
-- url: https://api.givebutter.com/v1
-  description: Production
+- url: https://api.givebutter.com/
 security:
-- bearerAuth: []
+- http: []
 tags:
-- name: Plans
+- name: Recurring Plans
 paths:
-  /plans:
+  /v1/plans:
     get:
-      summary: List recurring plans
-      operationId: listPlans
+      operationId: plans.index
+      summary: List all recurring plans
       tags:
-      - Plans
+      - Recurring Plans
+      parameters:
+      - name: contacts
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
       responses:
         '200':
-          description: Plans
+          description: Paginated set of `RecurringPlanResource`
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Plan'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RecurringPlanResource'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type:
+                        - string
+                        - 'null'
+                      last:
+                        type:
+                        - string
+                        - 'null'
+                      prev:
+                        type:
+                        - string
+                        - 'null'
+                      next:
+                        type:
+                        - string
+                        - 'null'
+                    required:
+                    - first
+                    - last
+                    - prev
+                    - next
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        minimum: 1
+                      from:
+                        type:
+                        - integer
+                        - 'null'
+                        minimum: 1
+                      last_page:
+                        type: integer
+                        minimum: 1
+                      links:
+                        type: array
+                        description: Generated paginator links.
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type:
+                              - string
+                              - 'null'
+                            label:
+                              type: string
+                            active:
+                              type: boolean
+                          required:
+                          - url
+                          - label
+                          - active
+                      path:
+                        type:
+                        - string
+                        - 'null'
+                        description: Base path for paginator generated URLs.
+                      per_page:
+                        type: integer
+                        description: Number of items shown per page.
+                        minimum: 0
+                      to:
+                        type:
+                        - integer
+                        - 'null'
+                        description: Number of the last item in the slice.
+                        minimum: 1
+                      total:
+                        type: integer
+                        description: Total number of items being paginated.
+                        minimum: 0
+                    required:
+                    - current_page
+                    - from
+                    - last_page
+                    - links
+                    - path
+                    - per_page
+                    - to
+                    - total
+                required:
+                - data
+                - links
+                - meta
+        '422':
+          $ref: '#/components/responses/ValidationException'
+  /v1/plans/{plan}:
+    get:
+      operationId: plans.show
+      summary: Get a recurring plan
+      tags:
+      - Recurring Plans
+      parameters:
+      - name: plan
+        in: path
+        required: true
+        description: The plan uid
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: first_name
+        in: query
+        schema:
+          type: string
+          maxLength: 255
+      - name: last_name
+        in: query
+        schema:
+          type: string
+          maxLength: 255
+      - name: email
+        in: query
+        schema:
+          type: string
+      - name: amount
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '`RecurringPlanResource`'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecurringPlanResource'
+        '403':
+          $ref: '#/components/responses/AuthorizationException'
+        '404':
+          $ref: '#/components/responses/ModelNotFoundException'
 components:
+  responses:
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    AuthorizationException:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    ValidationException:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Errors overview.
+              errors:
+                type: object
+                description: A detailed description of each field that failed validation.
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+            required:
+            - message
+            - errors
   schemas:
-    Plan:
+    RecurringPlanResource:
       type: object
       properties:
         id:
-          type: integer
-        amount:
-          type: number
-        currency:
+          type: string
+        contact_id:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        phone:
           type: string
         frequency:
           type: string
-          enum:
-          - monthly
-          - quarterly
-          - yearly
         status:
           type: string
-        contact_id:
-          type: integer
+        method:
+          type: string
+        amount:
+          type: string
+        fee_covered:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        start_at:
+          type: string
+        canceled_at:
+          type: string
+        next_bill_date:
+          type: string
+      required:
+      - id
+      - contact_id
+      - first_name
+      - last_name
+      - email
+      - phone
+      - frequency
+      - status
+      - method
+      - amount
+      - fee_covered
+      - created_at
+      - updated_at
+      - start_at
+      - canceled_at
+      - next_bill_date
+      title: RecurringPlanResource
   securitySchemes:
-    bearerAuth:
+    http:
       type: http
       scheme: bearer
-      bearerFormat: API Key
-      description: Bearer token authentication using a personal API key.
+x-source: https://givebutter.com/docs/api.json
+x-harvested: '2026-09-12'

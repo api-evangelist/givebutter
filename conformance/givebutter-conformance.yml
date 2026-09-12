@@ -1,0 +1,99 @@
+generated: '2026-09-12'
+method: probed
+source: live discovery documents on auth.givebutter.com and mcp.givebutter.com, plus
+  openapi/_original/givebutter-docs-api.json and https://docs.givebutter.com/api-reference/
+description: >-
+  Cross-cutting standards conformance for Givebutter, asserted only where there is evidence in a
+  contract or a live discovery document. Each entry records what was checked and where the evidence
+  is; a false entry is a measurement, not an accusation.
+conformance:
+- id: openapi-3.1
+  conforms: true
+  evidence: https://givebutter.com/docs/api.json — openapi 3.1.0, 42 paths, 70 operations, 51
+    component schemas, document-level security
+- id: oauth2
+  conforms: true
+  evidence: https://auth.givebutter.com/.well-known/oauth-authorization-server — authorization_code
+    and refresh_token grants, code response type
+- id: rfc8414-authorization-server-metadata
+  conforms: true
+  evidence: https://auth.givebutter.com/.well-known/oauth-authorization-server (HTTP 200, issuer,
+    authorization_endpoint, token_endpoint, scopes_supported)
+- id: rfc9728-protected-resource-metadata
+  conforms: true
+  evidence: https://mcp.givebutter.com/.well-known/oauth-protected-resource (HTTP 200) and the
+    www-authenticate challenge returned by https://mcp.givebutter.com/mcp
+- id: rfc7636-pkce
+  conforms: true
+  evidence: code_challenge_methods_supported ["S256"] in the authorization-server metadata
+- id: rfc7591-dynamic-client-registration
+  conforms: true
+  evidence: registration_endpoint https://auth.givebutter.com/oauth/register in the
+    authorization-server metadata
+- id: oidc-discovery
+  conforms: true
+  evidence: https://auth.givebutter.com/.well-known/openid-configuration (HTTP 200) and the openid
+    scope in scopes_supported
+- id: mcp
+  conforms: true
+  evidence: https://mcp.givebutter.com/mcp answers JSON-RPC with a -32001 auth error and an RFC 9728
+    challenge; the provider also publishes @givebutter/mcp on npm
+- id: a2a
+  conforms: true
+  version: '0.3'
+  evidence: https://docs.givebutter.com/.well-known/agent-card.json (HTTP 200, AgentCard shape) —
+    graded conformant in a2a/givebutter-a2a.yml
+- id: agent-skills
+  conforms: true
+  evidence: https://docs.givebutter.com/.well-known/agent-skills/givebutter/skill.md (HTTP 200,
+    text/markdown, skill frontmatter)
+- id: llmstxt
+  conforms: true
+  evidence: https://docs.givebutter.com/llms.txt (HTTP 200) and https://docs.givebutter.com/llms-full.txt
+- id: pagination
+  conforms: true
+  evidence: https://docs.givebutter.com/api-reference/pagination — page/per_page with links{} and
+    meta{} envelopes on every list endpoint
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors are a vendor envelope ({"message":...,"errors":{field:[...]}}), no
+    application/problem+json media type appears anywhere in the spec or docs
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key, header or replay-protection mechanism in the published docs or spec
+    (see conventions/givebutter-conventions.yml)
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: no deprecation or sunset policy published; no operation is marked deprecated
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on givebutter.com, www, docs and mcp hosts
+- id: asyncapi
+  conforms: false
+  evidence: webhooks are documented and a 12-event catalog is published in the OpenAPI request body,
+    but no AsyncAPI document is served (see asyncapi/givebutter-webhooks.yml)
+- id: json-schema
+  conforms: true
+  evidence: OpenAPI 3.1 schemas are JSON Schema 2020-12 by definition of the 3.1 dialect
+- id: odata
+  conforms: false
+- id: scim
+  conforms: false
+- id: fhir
+  conforms: false
+domain_standard:
+  declared: false
+  checked: '2026-09-12'
+  note: >-
+    Givebutter's market — nonprofit fundraising and donor management — has no widely adopted
+    machine-readable domain standard of the kind this check rewards (no SCIM URN, OData $metadata,
+    OpenRTB, LTI/OneRoster, OAI-PMH, HL7/X12/ISO 20022 message type appears in the contract). The
+    regulated surface Givebutter touches is card payments, and there PCI compliance is held by its
+    processor (Stripe) rather than declared in Givebutter's own contract. Nothing is asserted here.
+compliance:
+  program_published: true
+  trust_center: https://trust.givebutter.com/
+  evidence: see security/givebutter-trust-center.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

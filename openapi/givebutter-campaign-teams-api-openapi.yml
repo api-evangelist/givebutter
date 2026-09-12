@@ -1,0 +1,260 @@
+openapi: 3.1.0
+info:
+  title: Givebutter Campaign Teams API
+  version: 1.0.0
+  description: The Campaign Teams surface of the Givebutter Public API — 3 operation(s). Split by tag from Givebutter's
+    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12). Operations, schemas and
+    responses are verbatim from the provider's spec.
+  contact:
+    name: Givebutter API Documentation
+    url: https://docs.givebutter.com/api-reference/authentication
+servers:
+- url: https://api.givebutter.com/
+security:
+- http: []
+tags:
+- name: Campaign Teams
+paths:
+  /v1/campaigns/{campaign}/teams:
+    get:
+      operationId: campaigns.teams.index
+      summary: List all campaign teams
+      tags:
+      - Campaign Teams
+      parameters:
+      - name: campaign
+        in: path
+        required: true
+        description: The campaign ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Paginated set of `CampaignTeamResource`
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CampaignTeamResource'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type:
+                        - string
+                        - 'null'
+                      last:
+                        type:
+                        - string
+                        - 'null'
+                      prev:
+                        type:
+                        - string
+                        - 'null'
+                      next:
+                        type:
+                        - string
+                        - 'null'
+                    required:
+                    - first
+                    - last
+                    - prev
+                    - next
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        minimum: 1
+                      from:
+                        type:
+                        - integer
+                        - 'null'
+                        minimum: 1
+                      last_page:
+                        type: integer
+                        minimum: 1
+                      links:
+                        type: array
+                        description: Generated paginator links.
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type:
+                              - string
+                              - 'null'
+                            label:
+                              type: string
+                            active:
+                              type: boolean
+                          required:
+                          - url
+                          - label
+                          - active
+                      path:
+                        type:
+                        - string
+                        - 'null'
+                        description: Base path for paginator generated URLs.
+                      per_page:
+                        type: integer
+                        description: Number of items shown per page.
+                        minimum: 0
+                      to:
+                        type:
+                        - integer
+                        - 'null'
+                        description: Number of the last item in the slice.
+                        minimum: 1
+                      total:
+                        type: integer
+                        description: Total number of items being paginated.
+                        minimum: 0
+                    required:
+                    - current_page
+                    - from
+                    - last_page
+                    - links
+                    - path
+                    - per_page
+                    - to
+                    - total
+                required:
+                - data
+                - links
+                - meta
+        '403':
+          $ref: '#/components/responses/AuthorizationException'
+        '404':
+          $ref: '#/components/responses/ModelNotFoundException'
+  /v1/campaigns/{campaign}/teams/{team}:
+    get:
+      operationId: campaigns.teams.show
+      summary: Get a campaign team
+      tags:
+      - Campaign Teams
+      parameters:
+      - name: campaign
+        in: path
+        required: true
+        description: The campaign ID
+        schema:
+          type: integer
+      - name: team
+        in: path
+        required: true
+        description: The team ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: '`CampaignTeamResource`'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CampaignTeamResource'
+        '403':
+          $ref: '#/components/responses/AuthorizationException'
+        '404':
+          $ref: '#/components/responses/ModelNotFoundException'
+    delete:
+      operationId: campaigns.teams.destroy
+      summary: Delete a campaign team
+      tags:
+      - Campaign Teams
+      parameters:
+      - name: campaign
+        in: path
+        required: true
+        description: The campaign ID
+        schema:
+          type: integer
+      - name: team
+        in: path
+        required: true
+        description: The team ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+        '403':
+          $ref: '#/components/responses/AuthorizationException'
+        '404':
+          $ref: '#/components/responses/ModelNotFoundException'
+components:
+  responses:
+    AuthorizationException:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+  schemas:
+    CampaignTeamResource:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        logo:
+          type: string
+        slug:
+          type: string
+        url:
+          type: string
+        raised:
+          type: number
+        goal:
+          type: number
+        supporters:
+          type: integer
+        members:
+          type: integer
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - name
+      - logo
+      - slug
+      - url
+      - raised
+      - goal
+      - supporters
+      - members
+      - created_at
+      - updated_at
+      title: CampaignTeamResource
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+x-source: https://givebutter.com/docs/api.json
+x-harvested: '2026-09-12'

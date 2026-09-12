@@ -3,88 +3,55 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: Givebutter
 providerId: givebutter
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+generated: '2026-09-12'
+method: searched
+source: https://docs.givebutter.com/api-reference/rate-limits
+created: '2025-05-04'
+modified: '2026-09-12'
 tags:
-  - Donations
-  - Fundraising
-  - Nonprofits
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Givebutter API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
+- Donations
+- Fundraising
+- Nonprofits
+- Rate Limiting
+description: >-
+  Published rate limits for the Givebutter API, read from Givebutter's own Rate Limits page on
+  2026-09-12. This file previously carried scaffold tier limits that Givebutter never published;
+  those have been removed. Givebutter publishes ONE flat limit and one response signal.
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
   retryAfter: Retry-After
-  policy: RateLimit-Policy
+  limit: null
+  remaining: null
+  reset: null
+  policy: null
+headers_note: >-
+  Only Retry-After is documented. No X-RateLimit-* or RFC 9239 RateLimit-* budget headers are
+  documented, so a client cannot observe its remaining budget before it is throttled. (An
+  x-ratelimit-limit header IS returned by the separate MCP endpoint at mcp.givebutter.com, observed
+  as 5 on an unauthenticated probe, but that is the MCP surface, not the REST API.)
 responseCodes:
   throttled: 429
   quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Givebutter
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Givebutter
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Givebutter
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Givebutter
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Givebutter
+- name: Global API rate limit
+  scope: account
+  metric: requests_per_minute
+  limit: 500
+  timeFrame: minute
+  burst: null
+  applies:
+  - Givebutter
+  evidence: 'The Givebutter API is rate limited to 500 requests per minute.'
+  source: https://docs.givebutter.com/api-reference/rate-limits
+limit_count: 1
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+- name: Retry-After
+  description: >-
+    When you exceed the limit you receive 429 Too Many Requests with a Retry-After header indicating
+    how many seconds to wait before retrying. Quoted from the provider's Rate Limits page.
+- name: No tiered limits published
+  description: >-
+    Givebutter publishes no per-plan, per-endpoint or per-key rate differentiation. The Free plan and
+    Givebutter Plus are not described as having different API limits.
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
