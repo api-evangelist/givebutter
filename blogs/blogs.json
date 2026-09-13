@@ -1,0 +1,14 @@
+{
+  "repo": "givebutter",
+  "feeds": [
+    {
+      "source": "https://help.givebutter.com/en/",
+      "feed_url": "https://help.givebutter.com/en/feed.xml",
+      "title": "",
+      "saved": 7,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 7,
+  "fetched": "2026-09-13T13:00:00Z"
+}
