@@ -56,62 +56,11 @@ modified: '2026-09-12'
 url: https://raw.githubusercontent.com/api-evangelist/givebutter/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 apis:
-- aid: givebutter:givebutter
-  name: Givebutter
-  description: The Givebutter API is a REST API for the Givebutter fundraising and donor-management platform.
-    It is organized around resources, speaks JSON, and authenticates with an account-level Bearer API
-    key. Givebutter's own published OpenAPI 3.1 describes 70 operations across 42 paths covering campaigns,
-    campaign members, teams, tickets and discount codes, contacts with activities and tags, households,
-    transactions, funds, payouts, recurring plans, pledges, messages and webhooks, plus an SSO surface.
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
-  humanURL: https://docs.givebutter.com/
-  baseURL: https://api.givebutter.com/v1
-  tags:
-  - Donations
-  - Fundraising
-  - Non-Profit
-  tags_raw:
-  - Donations
-  - Fundraising
-  - Nonprofits
-  properties:
-  - type: OpenAPI
-    url: openapi/_original/givebutter-docs-api.json
-  - type: Documentation
-    url: https://docs.givebutter.com/
-  - type: APIReference
-    url: https://docs.givebutter.com/api-reference/authentication
-  - type: Authentication
-    url: https://docs.givebutter.com/api-reference/authentication
-  - type: Webhooks
-    url: https://docs.givebutter.com/api-reference/webhooks/list-all-webhooks
-  - type: RateLimits
-    url: https://docs.givebutter.com/api-reference/rate-limits
-  - type: Overlay
-    url: overlays/givebutter-openapi-overlay.yaml
-  - type: ToolCrosswalk
-    url: mcp/givebutter-tool-crosswalk.yml
-  - type: MCPServer
-    url: https://mcp.givebutter.com/mcp
-- aid: givebutter:givebutter-discount-codes-api
-  name: Givebutter Campaign Discount Codes API
-  description: The Campaign Discount Codes API from Givebutter — 5 operation(s) for campaign discount
-    codes. Split by tag from Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json
-    (harvested 2026-09-12).
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
-  humanURL: https://docs.givebutter.com/api-reference/campaign-discount-codes/list-all-discount-codes
-  baseURL: https://api.givebutter.com/v1
-  tags:
-  - Discount Codes
-  properties:
-  - type: OpenAPI
-    url: openapi/givebutter-discount-codes-api-openapi.yml
-  - type: Documentation
-    url: https://docs.givebutter.com/api-reference/campaign-discount-codes/list-all-discount-codes
 - aid: givebutter:givebutter-campaign-members-api
   name: Givebutter Campaign Members API
-  description: The Campaign Members API from Givebutter — 3 operation(s) for campaign members. Split by
-    tag from Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
+  description: >-
+    The Campaign Members API from Givebutter — 3 operation(s) for campaign members. Split by tag from
+    Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/api-reference/campaign-members/list-all-campaign-members
   baseURL: https://api.givebutter.com/v1
@@ -124,8 +73,9 @@ apis:
     url: https://docs.givebutter.com/api-reference/campaign-members/list-all-campaign-members
 - aid: givebutter:givebutter-campaign-teams-api
   name: Givebutter Campaign Teams API
-  description: The Campaign Teams API from Givebutter — 3 operation(s) for campaign teams. Split by tag
-    from Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
+  description: >-
+    The Campaign Teams API from Givebutter — 3 operation(s) for campaign teams. Split by tag from Givebutter's
+    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/api-reference/campaign-teams/list-all-campaign-teams
   baseURL: https://api.givebutter.com/v1
@@ -138,8 +88,9 @@ apis:
     url: https://docs.givebutter.com/api-reference/campaign-teams/list-all-campaign-teams
 - aid: givebutter:givebutter-campaign-tickets-api
   name: Givebutter Campaign Tickets API
-  description: The Campaign Tickets API from Givebutter — 3 operation(s) for campaign tickets. Split by
-    tag from Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
+  description: >-
+    The Campaign Tickets API from Givebutter — 3 operation(s) for campaign tickets. Split by tag from
+    Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/api-reference/campaign-tickets/list-all-campaign-tickets
   baseURL: https://api.givebutter.com/v1
@@ -152,8 +103,9 @@ apis:
     url: https://docs.givebutter.com/api-reference/campaign-tickets/list-all-campaign-tickets
 - aid: givebutter:givebutter-campaigns-api
   name: Givebutter Campaigns API
-  description: The Campaigns API from Givebutter — 5 operation(s) for campaigns. Split by tag from Givebutter's
-    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
+  description: >-
+    The Campaigns API from Givebutter — 5 operation(s) for campaigns. Split by tag from Givebutter's own
+    published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/api-reference/campaigns/list-all-campaigns
   baseURL: https://api.givebutter.com/v1
@@ -166,9 +118,9 @@ apis:
     url: https://docs.givebutter.com/api-reference/campaigns/list-all-campaigns
 - aid: givebutter:givebutter-contact-activities-api
   name: Givebutter Contact Activities API
-  description: The Contact Activities API from Givebutter — 5 operation(s) for contact activities. Split
-    by tag from Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json (harvested
-    2026-09-12).
+  description: >-
+    The Contact Activities API from Givebutter — 5 operation(s) for contact activities. Split by tag from
+    Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/api-reference/contact-activities/list-all-contact-activities
   baseURL: https://api.givebutter.com/v1
@@ -181,8 +133,9 @@ apis:
     url: https://docs.givebutter.com/api-reference/contact-activities/list-all-contact-activities
 - aid: givebutter:givebutter-contact-tags-api
   name: Givebutter Contact Tags API
-  description: The Contact Tags API from Givebutter — 3 operation(s) for contact tags. Split by tag from
-    Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
+  description: >-
+    The Contact Tags API from Givebutter — 3 operation(s) for contact tags. Split by tag from Givebutter's
+    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/api-reference/contact-tags/add-tags-to-a-contact
   baseURL: https://api.givebutter.com/v1
@@ -195,8 +148,9 @@ apis:
     url: https://docs.givebutter.com/api-reference/contact-tags/add-tags-to-a-contact
 - aid: givebutter:givebutter-contacts-api
   name: Givebutter Contacts API
-  description: The Contacts API from Givebutter — 6 operation(s) for contacts. Split by tag from Givebutter's
-    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
+  description: >-
+    The Contacts API from Givebutter — 6 operation(s) for contacts. Split by tag from Givebutter's own
+    published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/api-reference/contacts/list-all-contacts
   baseURL: https://api.givebutter.com/v1
@@ -209,8 +163,9 @@ apis:
     url: https://docs.givebutter.com/api-reference/contacts/list-all-contacts
 - aid: givebutter:givebutter-funds-api
   name: Givebutter Funds API
-  description: The Funds API from Givebutter — 5 operation(s) for funds. Split by tag from Givebutter's
-    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
+  description: >-
+    The Funds API from Givebutter — 5 operation(s) for funds. Split by tag from Givebutter's own published
+    OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/api-reference/funds/list-all-funds
   baseURL: https://api.givebutter.com/v1
@@ -223,11 +178,12 @@ apis:
     url: https://docs.givebutter.com/api-reference/funds/list-all-funds
 - aid: givebutter:givebutter-household-contacts-api
   name: Givebutter Household Contacts API
-  description: The Household Contacts API from Givebutter — 4 operation(s) for household contacts. Split
-    by tag from Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json (harvested
-    2026-09-12).
+  description: >-
+    The Household Contacts API from Givebutter — 4 operation(s) for household contacts. Split by tag from
+    Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
-  humanURL: https://docs.givebutter.com/api-reference/household-contacts/list-all-contacts-associated-with-a-household
+  humanURL: >-
+    https://docs.givebutter.com/api-reference/household-contacts/list-all-contacts-associated-with-a-household
   baseURL: https://api.givebutter.com/v1
   tags:
   - Household Contacts
@@ -235,10 +191,12 @@ apis:
   - type: OpenAPI
     url: openapi/givebutter-household-contacts-api-openapi.yml
   - type: Documentation
-    url: https://docs.givebutter.com/api-reference/household-contacts/list-all-contacts-associated-with-a-household
+    url: >-
+      https://docs.givebutter.com/api-reference/household-contacts/list-all-contacts-associated-with-a-household
 - aid: givebutter:givebutter-households-api
   name: Givebutter Households API
-  description: The Households API from Givebutter — 5 operation(s) for households. Split by tag from Givebutter's
+  description: >-
+    The Households API from Givebutter — 5 operation(s) for households. Split by tag from Givebutter's
     own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/api-reference/households/list-all-households
@@ -252,8 +210,9 @@ apis:
     url: https://docs.givebutter.com/api-reference/households/list-all-households
 - aid: givebutter:givebutter-messages-api
   name: Givebutter Messages API
-  description: The Messages API from Givebutter — 2 operation(s) for messages. Split by tag from Givebutter's
-    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
+  description: >-
+    The Messages API from Givebutter — 2 operation(s) for messages. Split by tag from Givebutter's own
+    published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/api-reference/messages/list-all-messages
   baseURL: https://api.givebutter.com/v1
@@ -268,8 +227,9 @@ apis:
     url: https://docs.givebutter.com/api-reference/messages/list-all-messages
 - aid: givebutter:givebutter-payouts-api
   name: Givebutter Payouts API
-  description: The Payouts API from Givebutter — 2 operation(s) for payouts. Split by tag from Givebutter's
-    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
+  description: >-
+    The Payouts API from Givebutter — 2 operation(s) for payouts. Split by tag from Givebutter's own published
+    OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/api-reference/payouts/list-all-payouts
   baseURL: https://api.givebutter.com/v1
@@ -282,8 +242,9 @@ apis:
     url: https://docs.givebutter.com/api-reference/payouts/list-all-payouts
 - aid: givebutter:givebutter-pledges-api
   name: Givebutter Pledges API
-  description: The Pledges API from Givebutter — 2 operation(s) for pledges. Split by tag from Givebutter's
-    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
+  description: >-
+    The Pledges API from Givebutter — 2 operation(s) for pledges. Split by tag from Givebutter's own published
+    OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/api-reference/pledges/list-all-pledges
   baseURL: https://api.givebutter.com/v1
@@ -294,24 +255,11 @@ apis:
     url: openapi/givebutter-pledges-api-openapi.yml
   - type: Documentation
     url: https://docs.givebutter.com/api-reference/pledges/list-all-pledges
-- aid: givebutter:givebutter-plans-api
-  name: Givebutter Recurring Plans API
-  description: The Recurring Plans API from Givebutter — 2 operation(s) for recurring plans. Split by
-    tag from Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
-  humanURL: https://docs.givebutter.com/api-reference/recurring-plans/list-all-recurring-plans
-  baseURL: https://api.givebutter.com/v1
-  tags:
-  - Plans
-  properties:
-  - type: OpenAPI
-    url: openapi/givebutter-plans-api-openapi.yml
-  - type: Documentation
-    url: https://docs.givebutter.com/api-reference/recurring-plans/list-all-recurring-plans
 - aid: givebutter:givebutter-sso-accounts-api
   name: Givebutter Sso Accounts API
-  description: The Sso Accounts API from Givebutter — 1 operation(s) for sso accounts. Split by tag from
-    Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
+  description: >-
+    The Sso Accounts API from Givebutter — 1 operation(s) for sso accounts. Split by tag from Givebutter's
+    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/
   baseURL: https://api.givebutter.com/v1
@@ -324,8 +272,9 @@ apis:
     url: https://docs.givebutter.com/
 - aid: givebutter:givebutter-sso-campaigns-api
   name: Givebutter Sso Campaigns API
-  description: The Sso Campaigns API from Givebutter — 1 operation(s) for sso campaigns. Split by tag
-    from Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
+  description: >-
+    The Sso Campaigns API from Givebutter — 1 operation(s) for sso campaigns. Split by tag from Givebutter's
+    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/
   baseURL: https://api.givebutter.com/v1
@@ -338,8 +287,9 @@ apis:
     url: https://docs.givebutter.com/
 - aid: givebutter:givebutter-tickets-api
   name: Givebutter Tickets API
-  description: The Tickets API from Givebutter — 2 operation(s) for tickets. Split by tag from Givebutter's
-    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
+  description: >-
+    The Tickets API from Givebutter — 2 operation(s) for tickets. Split by tag from Givebutter's own published
+    OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/api-reference/tickets/list-all-tickets
   baseURL: https://api.givebutter.com/v1
@@ -352,8 +302,9 @@ apis:
     url: https://docs.givebutter.com/api-reference/tickets/list-all-tickets
 - aid: givebutter:givebutter-transactions-api
   name: Givebutter Transactions API
-  description: The Transactions API from Givebutter — 4 operation(s) for transactions. Split by tag from
-    Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
+  description: >-
+    The Transactions API from Givebutter — 4 operation(s) for transactions. Split by tag from Givebutter's
+    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/api-reference/transactions/list-all-transactions
   baseURL: https://api.givebutter.com/v1
@@ -368,9 +319,9 @@ apis:
   - Transactions
 - aid: givebutter:givebutter-webhook-activities-api
   name: Givebutter Webhook Activities API
-  description: The Webhook Activities API from Givebutter — 2 operation(s) for webhook activities. Split
-    by tag from Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json (harvested
-    2026-09-12).
+  description: >-
+    The Webhook Activities API from Givebutter — 2 operation(s) for webhook activities. Split by tag from
+    Givebutter's own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/api-reference/webhook-activities/list-all-webhook-activities
   baseURL: https://api.givebutter.com/v1
@@ -383,8 +334,9 @@ apis:
     url: https://docs.givebutter.com/api-reference/webhook-activities/list-all-webhook-activities
 - aid: givebutter:givebutter-webhooks-api
   name: Givebutter Webhooks API
-  description: The Webhooks API from Givebutter — 5 operation(s) for webhooks. Split by tag from Givebutter's
-    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
+  description: >-
+    The Webhooks API from Givebutter — 5 operation(s) for webhooks. Split by tag from Givebutter's own
+    published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12).
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/givebutter.png
   humanURL: https://docs.givebutter.com/api-reference/webhooks/list-all-webhooks
   baseURL: https://api.givebutter.com/v1
@@ -397,7 +349,64 @@ apis:
     url: https://docs.givebutter.com/api-reference/webhooks/list-all-webhooks
   tags_raw:
   - Webhooks
+- aid: givebutter:givebutter-campaign-discount-codes-api
+  name: Givebutter Campaign Discount Codes API
+  description: >-
+    The Campaign Discount Codes API from Givebutter — 2 operation(s) for campaign discount codes.
+  humanURL: https://docs.givebutter.com/
+  baseURL: https://api.givebutter.com/v1
+  tags:
+  - Campaign Discount Codes
+  properties:
+  - type: OpenAPI
+    url: openapi/givebutter-campaign-discount-codes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.givebutter.com/
+  - type: APIReference
+    url: https://docs.givebutter.com/api-reference/authentication
+  - type: Authentication
+    url: https://docs.givebutter.com/api-reference/authentication
+  - type: Webhooks
+    url: https://docs.givebutter.com/api-reference/webhooks/list-all-webhooks
+  - type: RateLimits
+    url: https://docs.givebutter.com/api-reference/rate-limits
+  - type: ToolCrosswalk
+    url: mcp/givebutter-tool-crosswalk.yml
+  - type: Documentation
+    url: >-
+      https://docs.givebutter.com/api-reference/campaign-discount-codes/list-all-discount-codes
+  - type: Documentation
+    url: https://docs.givebutter.com/api-reference/recurring-plans/list-all-recurring-plans
+- aid: givebutter:givebutter-recurring-plans-api
+  name: Givebutter Recurring Plans API
+  description: The Recurring Plans API from Givebutter — 2 operation(s) for recurring plans.
+  humanURL: https://docs.givebutter.com/
+  baseURL: https://api.givebutter.com/v1
+  tags:
+  - Recurring Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/givebutter-recurring-plans-api-openapi.yml
+  - type: Documentation
+    url: https://docs.givebutter.com/
+  - type: APIReference
+    url: https://docs.givebutter.com/api-reference/authentication
+  - type: Authentication
+    url: https://docs.givebutter.com/api-reference/authentication
+  - type: Webhooks
+    url: https://docs.givebutter.com/api-reference/webhooks/list-all-webhooks
+  - type: RateLimits
+    url: https://docs.givebutter.com/api-reference/rate-limits
+  - type: ToolCrosswalk
+    url: mcp/givebutter-tool-crosswalk.yml
+  - type: Documentation
+    url: >-
+      https://docs.givebutter.com/api-reference/campaign-discount-codes/list-all-discount-codes
+  - type: Documentation
+    url: https://docs.givebutter.com/api-reference/recurring-plans/list-all-recurring-plans
 common:
+- type: MCPServer
+  url: https://mcp.givebutter.com/mcp
 - type: Website
   url: https://givebutter.com/
 - type: DeveloperPortal
