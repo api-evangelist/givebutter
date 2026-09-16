@@ -41,8 +41,8 @@ tags:
 - Non-Profit
 - CRM
 - Payments
-- Webhooks
-- Events
+- Webhook
+- Event
 tags_raw:
 - Donations
 - Fundraising
@@ -258,6 +258,8 @@ apis:
   humanURL: https://docs.givebutter.com/api-reference/messages/list-all-messages
   baseURL: https://api.givebutter.com/v1
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
@@ -478,6 +480,8 @@ common:
   url: https://www.linkedin.com/company/givebutter
 - type: Integrations
   url: https://givebutter.com/integrations
+- type: Contact
+  url: mailto:support@givebutter.com
 integrations:
 - name: Meta integration
 - name: icon integration
