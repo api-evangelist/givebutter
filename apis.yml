@@ -170,6 +170,8 @@ apis:
   humanURL: https://docs.givebutter.com/api-reference/funds/list-all-funds
   baseURL: https://api.givebutter.com/v1
   tags:
+  - Fund
+  tags_raw:
   - Funds
   properties:
   - type: OpenAPI
