@@ -1,13 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Givebutter Household Contacts API
+  title: Givebutter API Documentation Household Contacts API
   version: 1.0.0
-  description: The Household Contacts surface of the Givebutter Public API — 4 operation(s). Split by tag from Givebutter's
-    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12). Operations, schemas and
-    responses are verbatim from the provider's spec.
-  contact:
-    name: Givebutter API Documentation
-    url: https://docs.givebutter.com/api-reference/authentication
+  description: Givebutter Public API - Access and manage your campaigns, contacts, transactions, and more.
 servers:
 - url: https://api.givebutter.com/
 security:
@@ -229,45 +224,6 @@ paths:
           $ref: '#/components/responses/ModelNotFoundException'
 components:
   schemas:
-    App.Http.Resources.API.HouseholdResource:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        head_contact_id:
-          type:
-          - integer
-          - 'null'
-        account_id:
-          type: integer
-        envelope_name:
-          type:
-          - string
-          - 'null'
-        note:
-          type:
-          - string
-          - 'null'
-        created_at:
-          type: string
-        updated_at:
-          type: string
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContactResource'
-      required:
-      - id
-      - name
-      - head_contact_id
-      - account_id
-      - envelope_name
-      - note
-      - created_at
-      - updated_at
-      title: App.Http.Resources.API.HouseholdResource
     AssociatedCompanyResource:
       type: object
       properties:
@@ -360,245 +316,45 @@ components:
       - updated_at
       - first_time_supporter_at
       title: AssociatedCompanyResource
-    PointOfContactResource:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        prefix:
-          type: string
-        first_name:
-          type: string
-        middle_name:
-          type: string
-        last_name:
-          type: string
-        suffix:
-          type: string
-        gender:
-          type: string
-        pronouns:
-          type: string
-        dob:
-          type: string
-        employer:
-          type: string
-        title:
-          type: string
-        twitter_url:
-          type: string
-        linkedin_url:
-          type: string
-        facebook_url:
-          type: string
-        tiktok_url:
-          type: string
-        instagram_url:
-          type: string
-        website_url:
-          type: string
-        emails:
-          type: object
-          additionalProperties: {}
-        phones:
-          type: object
-          additionalProperties: {}
-        primary_email:
-          type: string
-        primary_phone:
-          type: string
-        is_email_subscribed:
-          type: string
-        is_phone_subscribed:
-          type: string
-        is_address_subscribed:
-          type: string
-        address_unsubscribed_at:
-          type: string
-        archived_at:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-        first_time_supporter_at:
-          type: string
-      required:
-      - id
-      - type
-      - prefix
-      - first_name
-      - middle_name
-      - last_name
-      - suffix
-      - gender
-      - pronouns
-      - dob
-      - employer
-      - title
-      - twitter_url
-      - linkedin_url
-      - facebook_url
-      - tiktok_url
-      - instagram_url
-      - website_url
-      - emails
-      - phones
-      - primary_email
-      - primary_phone
-      - is_email_subscribed
-      - is_phone_subscribed
-      - is_address_subscribed
-      - address_unsubscribed_at
-      - archived_at
-      - created_at
-      - updated_at
-      - first_time_supporter_at
-      title: PointOfContactResource
-    App.Http.Resources.API.AddressResource:
-      type: object
-      properties:
-        address_1:
-          type: string
-        address_2:
-          type:
-          - string
-          - 'null'
-        city:
-          type: string
-        state:
-          type:
-          - string
-          - 'null'
-        zipcode:
-          type:
-          - string
-          - 'null'
-        country:
-          type: string
-        type:
-          type: string
-        is_primary:
-          type: boolean
-        created_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        updated_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      required:
-      - address_1
-      - address_2
-      - city
-      - state
-      - zipcode
-      - country
-      - type
-      - is_primary
-      - created_at
-      - updated_at
-      title: App.Http.Resources.API.AddressResource
-    ExternalIdResource:
+    App.Http.Resources.API.HouseholdResource:
       type: object
       properties:
         id:
           type: integer
-        label:
+        name:
           type: string
-        external_id:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - label
-      - external_id
-      - created_at
-      - updated_at
-      title: ExternalIdResource
-    AddressResource:
-      type: object
-      properties:
-        id:
-          type: integer
-        account_id:
+        head_contact_id:
           type:
           - integer
           - 'null'
-        name:
+        account_id:
+          type: integer
+        envelope_name:
           type:
           - string
           - 'null'
-        address_1:
-          type: string
-        address_2:
+        note:
           type:
           - string
           - 'null'
-        city:
-          type: string
-        state:
-          type:
-          - string
-          - 'null'
-        zipcode:
-          type:
-          - string
-          - 'null'
-        country:
-          type: string
-        type:
-          type: string
-        is_primary:
-          type: boolean
         created_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
+          type: string
         updated_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
+          type: string
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactResource'
       required:
       - id
-      - account_id
       - name
-      - address_1
-      - address_2
-      - city
-      - state
-      - zipcode
-      - country
-      - type
-      - is_primary
+      - head_contact_id
+      - account_id
+      - envelope_name
+      - note
       - created_at
       - updated_at
-      title: AddressResource
-    PhoneResource:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        value:
-          type:
-          - string
-          - 'null'
-      required:
-      - type
-      - value
-      title: PhoneResource
+      title: App.Http.Resources.API.HouseholdResource
     EmailResource:
       type: object
       properties:
@@ -783,19 +539,246 @@ components:
       - updated_at
       - salutation_name
       title: ContactResource
+    ExternalIdResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        external_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - label
+      - external_id
+      - created_at
+      - updated_at
+      title: ExternalIdResource
+    AddressResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        account_id:
+          type:
+          - integer
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        address_1:
+          type: string
+        address_2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        state:
+          type:
+          - string
+          - 'null'
+        zipcode:
+          type:
+          - string
+          - 'null'
+        country:
+          type: string
+        type:
+          type: string
+        is_primary:
+          type: boolean
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - id
+      - account_id
+      - name
+      - address_1
+      - address_2
+      - city
+      - state
+      - zipcode
+      - country
+      - type
+      - is_primary
+      - created_at
+      - updated_at
+      title: AddressResource
+    App.Http.Resources.API.AddressResource:
+      type: object
+      properties:
+        address_1:
+          type: string
+        address_2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        state:
+          type:
+          - string
+          - 'null'
+        zipcode:
+          type:
+          - string
+          - 'null'
+        country:
+          type: string
+        type:
+          type: string
+        is_primary:
+          type: boolean
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - address_1
+      - address_2
+      - city
+      - state
+      - zipcode
+      - country
+      - type
+      - is_primary
+      - created_at
+      - updated_at
+      title: App.Http.Resources.API.AddressResource
+    PhoneResource:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      required:
+      - type
+      - value
+      title: PhoneResource
+    PointOfContactResource:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        prefix:
+          type: string
+        first_name:
+          type: string
+        middle_name:
+          type: string
+        last_name:
+          type: string
+        suffix:
+          type: string
+        gender:
+          type: string
+        pronouns:
+          type: string
+        dob:
+          type: string
+        employer:
+          type: string
+        title:
+          type: string
+        twitter_url:
+          type: string
+        linkedin_url:
+          type: string
+        facebook_url:
+          type: string
+        tiktok_url:
+          type: string
+        instagram_url:
+          type: string
+        website_url:
+          type: string
+        emails:
+          type: object
+          additionalProperties: {}
+        phones:
+          type: object
+          additionalProperties: {}
+        primary_email:
+          type: string
+        primary_phone:
+          type: string
+        is_email_subscribed:
+          type: string
+        is_phone_subscribed:
+          type: string
+        is_address_subscribed:
+          type: string
+        address_unsubscribed_at:
+          type: string
+        archived_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        first_time_supporter_at:
+          type: string
+      required:
+      - id
+      - type
+      - prefix
+      - first_name
+      - middle_name
+      - last_name
+      - suffix
+      - gender
+      - pronouns
+      - dob
+      - employer
+      - title
+      - twitter_url
+      - linkedin_url
+      - facebook_url
+      - tiktok_url
+      - instagram_url
+      - website_url
+      - emails
+      - phones
+      - primary_email
+      - primary_phone
+      - is_email_subscribed
+      - is_phone_subscribed
+      - is_address_subscribed
+      - address_unsubscribed_at
+      - archived_at
+      - created_at
+      - updated_at
+      - first_time_supporter_at
+      title: PointOfContactResource
   responses:
-    AuthorizationException:
-      description: Authorization error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
     ValidationException:
       description: Validation error
       content:
@@ -816,6 +799,18 @@ components:
             required:
             - message
             - errors
+    AuthorizationException:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
     ModelNotFoundException:
       description: Not found
       content:
@@ -832,5 +827,3 @@ components:
     http:
       type: http
       scheme: bearer
-x-source: https://givebutter.com/docs/api.json
-x-harvested: '2026-09-12'

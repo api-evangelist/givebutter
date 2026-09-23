@@ -1,13 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Givebutter Funds API
+  title: Givebutter API Documentation Funds API
   version: 1.0.0
-  description: The Funds surface of the Givebutter Public API — 5 operation(s). Split by tag from Givebutter's own
-    published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12). Operations, schemas and responses
-    are verbatim from the provider's spec.
-  contact:
-    name: Givebutter API Documentation
-    url: https://docs.givebutter.com/api-reference/authentication
+  description: Givebutter Public API - Access and manage your campaigns, contacts, transactions, and more.
 servers:
 - url: https://api.givebutter.com/
 security:
@@ -257,6 +252,18 @@ components:
                 description: Error overview.
             required:
             - message
+    AuthorizationException:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
     ValidationException:
       description: Validation error
       content:
@@ -277,18 +284,6 @@ components:
             required:
             - message
             - errors
-    AuthorizationException:
-      description: Authorization error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
   schemas:
     FundResource:
       type: object
@@ -324,5 +319,3 @@ components:
     http:
       type: http
       scheme: bearer
-x-source: https://givebutter.com/docs/api.json
-x-harvested: '2026-09-12'

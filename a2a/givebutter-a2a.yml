@@ -1,7 +1,8 @@
 generated: '2026-09-12'
 method: probed
 source: https://docs.givebutter.com/.well-known/agent-card.json
-card: a2a/givebutter-agent-card.json
+card:
+  file: a2a/givebutter-agent-card.json
 discovery:
   path: /.well-known/agent-card.json
   canonical: true
@@ -16,7 +17,7 @@ agent:
   name: Givebutter
   description: Documentation for the Givebutter API, widgets, and webhooks.
   url: https://docs.givebutter.com/
-  version: '1.0.0'
+  version: 1.0.0
   protocolVersion: '0.3'
   preferredTransport: HTTP+JSON
   provider:
@@ -48,19 +49,12 @@ grade:
 deviations:
 - field: protocolVersion
   observed: '0.3'
-  note: The card declares A2A protocol 0.3 rather than 1.0.0. It passes every hard structural check
-    of the 1.0.0 shape, so it is graded conformant, but a client expecting 1.0.0 semantics should
-    read the declared version first.
+  note: The card declares A2A protocol 0.3 rather than 1.0.0. It passes every hard structural check of the 1.0.0 shape, so it is graded conformant, but a client expecting 1.0.0 semantics should read the declared version first.
 - field: supportedInterfaces[0].url
   observed: https://docs.givebutter.com/
-  note: The only advertised interface is the documentation site itself — this card describes a
-    documentation agent surface, not a callable A2A task endpoint. The callable agent surface
-    Givebutter actually ships is the MCP server at https://mcp.givebutter.com/mcp (see mcp/).
+  note: The only advertised interface is the documentation site itself — this card describes a documentation agent surface, not a callable A2A task endpoint. The callable agent surface Givebutter actually ships is the MCP server at https://mcp.givebutter.com/mcp (see mcp/).
 authorship:
-  note: The card is served from a host Givebutter controls (docs.givebutter.com) and names Givebutter
-    as the provider organization. It is emitted by Givebutter's documentation platform (Mintlify) rather
-    than hand-authored; the linked skill carries metadata.mintlify-proj. Presence is the provider's
-    choice and the document is served from the provider's host, so it is recorded as published.
+  note: The card is served from a host Givebutter controls (docs.givebutter.com) and names Givebutter as the provider organization. It is emitted by Givebutter's documentation platform (Mintlify) rather than hand-authored; the linked skill carries metadata.mintlify-proj. Presence is the provider's choice and the document is served from the provider's host, so it is recorded as published.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

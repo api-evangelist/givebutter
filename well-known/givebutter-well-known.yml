@@ -1,14 +1,12 @@
-generated: '2026-09-12'
+generated: '2026-09-19'
 method: probed
 source: live GET of the named /.well-known/ paths on every host this record knows
-description: >-
-  Named-path /.well-known probe across the Givebutter registrable domain, www, the API host,
-  the docs host, the MCP host and the authorization server named in the MCP protected-resource
-  document. Four documents were served: an A2A agent card on the docs host, an RFC 9728
-  protected-resource document on the MCP host, and RFC 8414 + OpenID Connect discovery on
-  auth.givebutter.com. Everything else 404s. givebutter.com answers every /.well-known/ path
-  with its Webflow 404 page, and api.givebutter.com answers every path with a 401 JSON body
-  (auth is enforced before routing), so neither is a served document.
+description: 'Named-path /.well-known probe across the Givebutter registrable domain, www, the API host,
+  the docs host, the MCP host and the authorization server named in the MCP protected-resource document.
+  Four documents were served: an A2A agent card on the docs host, an RFC 9728 protected-resource document
+  on the MCP host, and RFC 8414 + OpenID Connect discovery on auth.givebutter.com. Everything else 404s.
+  givebutter.com answers every /.well-known/ path with its Webflow 404 page, and api.givebutter.com answers
+  every path with a 401 JSON body (auth is enforced before routing), so neither is a served document.'
 hosts:
 - host: givebutter.com
   documents:
@@ -66,7 +64,7 @@ hosts:
   documents:
   - path: /.well-known/agent-card.json
     status: 200
-    file: well-known/givebutter-agent-card.json
+    file: givebutter-agent-card.json
     content_type: application/json
     note: A2A AgentCard, protocolVersion 0.3 — also saved to a2a/givebutter-agent-card.json and graded
       there. Points at a provider-served Agent Skill at /.well-known/agent-skills/givebutter/skill.md
@@ -91,7 +89,7 @@ hosts:
   documents:
   - path: /.well-known/oauth-protected-resource
     status: 200
-    file: well-known/givebutter-oauth-protected-resource.json
+    file: givebutter-oauth-protected-resource.json
     content_type: application/json
     note: RFC 9728. resource https://mcp.givebutter.com/mcp, authorization_servers [https://auth.givebutter.com],
       scopes_supported [mcp]
@@ -109,22 +107,32 @@ hosts:
     status: 404
   - path: /.well-known/agent.json
     status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: givebutter-mcp-oauth-protected-resource.json
+    bytes: 171
+  path_echo_control: passed
 - host: auth.givebutter.com
   note: third host, discovered from the MCP protected-resource document's authorization_servers[]
   documents:
   - path: /.well-known/oauth-authorization-server
     status: 200
-    file: well-known/givebutter-oauth-authorization-server.json
+    file: givebutter-oauth-authorization-server.json
     content_type: application/json
     note: RFC 8414. PKCE S256, dynamic client registration (RFC 7591) at /oauth/register
   - path: /.well-known/openid-configuration
     status: 200
-    file: well-known/givebutter-openid-configuration.json
+    file: givebutter-openid-configuration.json
     content_type: application/json
   - path: /.well-known/security.txt
     status: 404
   - path: /.well-known/agent-card.json
     status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: givebutter-auth-oauth-authorization-server.json
+    bytes: 582
+  path_echo_control: passed
 summary:
   hosts_probed: 6
   documents_served: 4
@@ -135,3 +143,19 @@ summary:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-mcp-probe:
+  probed: '2026-09-19'
+  issue: roadmap#321, roadmap#337
+  documents:
+  - host: https://mcp.givebutter.com
+    path: /.well-known/oauth-protected-resource
+    file: givebutter-mcp-oauth-protected-resource.json
+  - host: https://auth.givebutter.com
+    path: /.well-known/oauth-authorization-server
+    file: givebutter-auth-oauth-authorization-server.json
+  validated_on: resource (RFC 9728) / issuer (RFC 8414, OIDC)
+  negative_control: one per host; a 2xx JSON object at an impossible path discards the host
+note: 'MCP-host OAuth discovery added 2026-09-19 (roadmap#321/#337): the harvest visits a provider''s
+  primary hosts, and RFC 9728 protected-resource metadata lives on the MCP host, so these documents existed
+  and were invisible to the scorer. Fetched live and validated on `resource`/`issuer`; one negative control
+  per host.'

@@ -1,13 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Givebutter Webhook Activities API
+  title: Givebutter API Documentation Webhook Activities API
   version: 1.0.0
-  description: The Webhook Activities surface of the Givebutter Public API — 2 operation(s). Split by tag from Givebutter's
-    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12). Operations, schemas and
-    responses are verbatim from the provider's spec.
-  contact:
-    name: Givebutter API Documentation
-    url: https://docs.givebutter.com/api-reference/authentication
+  description: Givebutter Public API - Access and manage your campaigns, contacts, transactions, and more.
 servers:
 - url: https://api.givebutter.com/
 security:
@@ -159,6 +154,19 @@ paths:
         '404':
           $ref: '#/components/responses/ModelNotFoundException'
 components:
+  responses:
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
   schemas:
     WebhookActivityResource:
       type: object
@@ -199,22 +207,7 @@ components:
       - created_at
       - updated_at
       title: WebhookActivityResource
-  responses:
-    ModelNotFoundException:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
   securitySchemes:
     http:
       type: http
       scheme: bearer
-x-source: https://givebutter.com/docs/api.json
-x-harvested: '2026-09-12'

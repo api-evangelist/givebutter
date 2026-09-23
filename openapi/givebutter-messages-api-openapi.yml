@@ -1,13 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Givebutter Messages API
+  title: Givebutter API Documentation Messages API
   version: 1.0.0
-  description: The Messages surface of the Givebutter Public API — 2 operation(s). Split by tag from Givebutter's
-    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12). Operations, schemas and
-    responses are verbatim from the provider's spec.
-  contact:
-    name: Givebutter API Documentation
-    url: https://docs.givebutter.com/api-reference/authentication
+  description: Givebutter Public API - Access and manage your campaigns, contacts, transactions, and more.
 servers:
 - url: https://api.givebutter.com/
 security:
@@ -204,5 +199,3 @@ components:
     http:
       type: http
       scheme: bearer
-x-source: https://givebutter.com/docs/api.json
-x-harvested: '2026-09-12'

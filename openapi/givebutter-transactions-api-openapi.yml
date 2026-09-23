@@ -1,13 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Givebutter Transactions API
+  title: Givebutter API Documentation Transactions API
   version: 1.0.0
-  description: The Transactions surface of the Givebutter Public API — 4 operation(s). Split by tag from Givebutter's
-    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12). Operations, schemas and
-    responses are verbatim from the provider's spec.
-  contact:
-    name: Givebutter API Documentation
-    url: https://docs.givebutter.com/api-reference/authentication
+  description: Givebutter Public API - Access and manage your campaigns, contacts, transactions, and more.
 servers:
 - url: https://api.givebutter.com/
 security:
@@ -310,177 +305,13 @@ paths:
         '422':
           $ref: '#/components/responses/ValidationException'
 components:
-  responses:
-    AuthorizationException:
-      description: Authorization error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
-    ValidationException:
-      description: Validation error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Errors overview.
-              errors:
-                type: object
-                description: A detailed description of each field that failed validation.
-                additionalProperties:
-                  type: array
-                  items:
-                    type: string
-            required:
-            - message
-            - errors
-    NotFoundHttpException:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
-    ModelNotFoundException:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
   schemas:
-    GivingSpaceResource:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        amount:
-          type: number
-        message:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - name
-      - amount
-      - message
-      - created_at
-      - updated_at
-      title: GivingSpaceResource
-    ExternalIdResource:
-      type: object
-      properties:
-        id:
-          type: integer
-        label:
-          type: string
-        external_id:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - label
-      - external_id
-      - created_at
-      - updated_at
-      title: ExternalIdResource
     DedicationType:
       type: string
       enum:
       - in_memory_of
       - in_honor_of
       title: DedicationType
-    UpdateTransactionRequest:
-      type: object
-      properties:
-        transaction_id:
-          type: string
-        internal_note:
-          type:
-          - string
-          - 'null'
-          maxLength: 131070
-        check_number:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        check_deposited_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        custom_fields:
-          type: array
-          items:
-            type: string
-        team_id:
-          type: string
-        campaign_member_id:
-          type: string
-        fund_id:
-          type: string
-        campaign_id:
-          type: string
-        method:
-          type: string
-        transacted_at:
-          type: string
-        appeal_id:
-          type: string
-        offline_payment_received:
-          type: string
-        dedication:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/DedicationType'
-            name:
-              type: string
-              maxLength: 255
-            recipient_name:
-              type:
-              - string
-              - 'null'
-              maxLength: 255
-            recipient_email:
-              type:
-              - string
-              - 'null'
-              format: email
-          required:
-          - type
-          - name
-          - recipient_name
-          - recipient_email
-      title: UpdateTransactionRequest
     StoreTransactionRequest:
       type: object
       properties:
@@ -668,6 +499,195 @@ components:
       - transacted_at
       - amount
       title: StoreTransactionRequest
+    DedicationResource:
+      type: object
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        recipient:
+          type: object
+          properties:
+            name:
+              type:
+              - string
+              - 'null'
+            email:
+              type:
+              - string
+              - 'null'
+          required:
+          - name
+          - email
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - type
+      - name
+      - recipient
+      - created_at
+      - updated_at
+      title: DedicationResource
+    GivingSpaceResource:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          type: number
+        message:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - name
+      - amount
+      - message
+      - created_at
+      - updated_at
+      title: GivingSpaceResource
+    CustomFieldResponseResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        field_id:
+          type: integer
+        title:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        type:
+          type: string
+        value:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - field_id
+      - title
+      - description
+      - type
+      - value
+      - created_at
+      - updated_at
+      title: CustomFieldResponseResource
+    ExternalIdResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        external_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - label
+      - external_id
+      - created_at
+      - updated_at
+      title: ExternalIdResource
+    PaymentMethodEnum:
+      type: string
+      enum:
+      - ach
+      - card
+      - cash
+      - check
+      - digital_wallet
+      - donor_advised_fund
+      - paypal
+      - venmo
+      - cashapp
+      - terminal
+      - stock
+      - in-kind
+      - property
+      - other
+      - none
+      title: PaymentMethodEnum
+    UpdateTransactionRequest:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+        internal_note:
+          type:
+          - string
+          - 'null'
+          maxLength: 131070
+        check_number:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        check_deposited_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        custom_fields:
+          type: array
+          items:
+            type: string
+        team_id:
+          type: string
+        campaign_member_id:
+          type: string
+        fund_id:
+          type: string
+        campaign_id:
+          type: string
+        method:
+          type: string
+        transacted_at:
+          type: string
+        appeal_id:
+          type: string
+        offline_payment_received:
+          type: string
+        dedication:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/DedicationType'
+            name:
+              type: string
+              maxLength: 255
+            recipient_name:
+              type:
+              - string
+              - 'null'
+              maxLength: 255
+            recipient_email:
+              type:
+              - string
+              - 'null'
+              format: email
+          required:
+          - type
+          - name
+          - recipient_name
+          - recipient_email
+      title: UpdateTransactionRequest
     TransactionResource:
       anyOf:
       - type: object
@@ -910,69 +930,6 @@ components:
         - is_recurring
         - payout_id
       title: TransactionResource
-    CustomFieldResponseResource:
-      type: object
-      properties:
-        id:
-          type: integer
-        field_id:
-          type: integer
-        title:
-          type: string
-        description:
-          type:
-          - string
-          - 'null'
-        type:
-          type: string
-        value:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - field_id
-      - title
-      - description
-      - type
-      - value
-      - created_at
-      - updated_at
-      title: CustomFieldResponseResource
-    DedicationResource:
-      type: object
-      properties:
-        type:
-          type: string
-        name:
-          type: string
-        recipient:
-          type: object
-          properties:
-            name:
-              type:
-              - string
-              - 'null'
-            email:
-              type:
-              - string
-              - 'null'
-          required:
-          - name
-          - email
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - type
-      - name
-      - recipient
-      - created_at
-      - updated_at
-      title: DedicationResource
     TransactionLineItemResource:
       type: object
       properties:
@@ -1005,28 +962,64 @@ components:
       - created_at
       - updated_at
       title: TransactionLineItemResource
-    PaymentMethodEnum:
-      type: string
-      enum:
-      - ach
-      - card
-      - cash
-      - check
-      - digital_wallet
-      - donor_advised_fund
-      - paypal
-      - venmo
-      - cashapp
-      - terminal
-      - stock
-      - in-kind
-      - property
-      - other
-      - none
-      title: PaymentMethodEnum
+  responses:
+    AuthorizationException:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    ValidationException:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Errors overview.
+              errors:
+                type: object
+                description: A detailed description of each field that failed validation.
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+            required:
+            - message
+            - errors
+    NotFoundHttpException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
   securitySchemes:
     http:
       type: http
       scheme: bearer
-x-source: https://givebutter.com/docs/api.json
-x-harvested: '2026-09-12'

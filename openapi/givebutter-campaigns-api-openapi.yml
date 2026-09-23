@@ -1,13 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Givebutter Campaigns API
+  title: Givebutter API Documentation Campaigns API
   version: 1.0.0
-  description: The Campaigns surface of the Givebutter Public API — 5 operation(s). Split by tag from Givebutter's
-    own published OpenAPI at https://givebutter.com/docs/api.json (harvested 2026-09-12). Operations, schemas and
-    responses are verbatim from the provider's spec.
-  contact:
-    name: Givebutter API Documentation
-    url: https://docs.givebutter.com/api-reference/authentication
+  description: Givebutter Public API - Access and manage your campaigns, contacts, transactions, and more.
 servers:
 - url: https://api.givebutter.com/
 security:
@@ -239,918 +234,59 @@ paths:
           $ref: '#/components/responses/ModelNotFoundException'
 components:
   schemas:
-    CampaignSettingResource:
+    EventResource:
       type: object
       properties:
-        name:
-          type: string
-        value:
-          type: string
-      required:
-      - name
-      - value
-      title: CampaignSettingResource
-    StoreCampaignRequest:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - general
-          - collect
-          - fundraise
-          - event
-          maxLength: 255
         title:
-          type: string
-          maxLength: 150
-        subtitle:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        description:
-          type:
-          - string
-          - 'null'
-        goal:
-          type:
-          - integer
-          - 'null'
-          minimum: 0
-        end_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        slug:
-          type: string
-          maxLength: 255
-        beneficiary_id:
-          type:
-          - integer
-          - 'null'
-        timezone:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        currency:
-          type: string
-          enum:
-          - USD
-        settings:
-          type:
-          - array
-          - 'null'
-          items:
-            description: A campaign setting. The `name` field determines the expected shape of `value`.
-            oneOf:
-            - title: hide_time_remaining
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - hide_time_remaining
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: show_countdown_clock
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - show_countdown_clock
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: hide_money_raised
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - hide_money_raised
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: theme_color
-              type: object
-              description: Hex color in the form `#rrggbb`.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - theme_color
-                value:
-                  type:
-                  - string
-                  - 'null'
-                  pattern: ^#[0-9a-fA-F]{6}$
-              required:
-              - name
-            - title: use_actual_cover_size
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - use_actual_cover_size
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: disable_embed_branding
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - disable_embed_branding
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: custom_donate_text
-              type: object
-              description: Donate button text. Max 100 characters.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - custom_donate_text
-                value:
-                  type:
-                  - string
-                  - 'null'
-                  maxLength: 100
-              required:
-              - name
-            - title: hide_supporter_feed
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - hide_supporter_feed
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: auction_tab_text
-              type: object
-              description: Accepts a `string` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - auction_tab_text
-                value:
-                  type:
-                  - string
-                  - 'null'
-              required:
-              - name
-            - title: hide_auction_components
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - hide_auction_components
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: hide_contact_information
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - hide_contact_information
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: meta_image_alt_text
-              type: object
-              description: Accepts a `string` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - meta_image_alt_text
-                value:
-                  type:
-                  - string
-                  - 'null'
-              required:
-              - name
-            - title: disable_donations
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - disable_donations
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: minimum_donation
-              type: object
-              description: Accepts a `decimal` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - minimum_donation
-                value:
-                  type:
-                  - number
-                  - 'null'
-                  format: decimal
-              required:
-              - name
-            - title: require_donor_phone
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - require_donor_phone
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: enforce_end_at
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - enforce_end_at
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: disable_recurring
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - disable_recurring
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: thank_you_message
-              type: object
-              description: Accepts a `string` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - thank_you_message
-                value:
-                  type:
-                  - string
-                  - 'null'
-              required:
-              - name
-            - title: default_fund
-              type: object
-              description: Accepts a `string` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - default_fund
-                value:
-                  type:
-                  - string
-                  - 'null'
-              required:
-              - name
-            - title: hide_fund
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - hide_fund
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: require_address
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - require_address
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: default_frequency
-              type: object
-              description: Default donation frequency. Typically `once`, `monthly`, `quarterly`, or `yearly`.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - default_frequency
-                value:
-                  type:
-                  - string
-                  - 'null'
-              required:
-              - name
-            - title: display_frequencies
-              type: object
-              description: 'Donation frequencies to display. Typical values: `once`, `monthly`, `quarterly`, `yearly`.'
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - display_frequencies
-                value:
-                  type:
-                  - array
-                  - 'null'
-                  items:
-                    type: string
-              required:
-              - name
-            - title: public_check_payments
-              type: object
-              description: Mailing instructions for check donations. Max 1000 characters.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - public_check_payments
-                value:
-                  type:
-                  - string
-                  - 'null'
-                  maxLength: 1000
-              required:
-              - name
-            - title: recurring_upsell
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - recurring_upsell
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: disable_company_field
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - disable_company_field
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: hide_fee_collection
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - hide_fee_collection
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: force_fee_collection
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - force_fee_collection
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: custom_donation_amounts
-              type: object
-              description: Custom donation amounts. JSON object; the dashboard groups amounts by frequency (`once`,
-                `monthly`, `quarterly`, `yearly`).
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - custom_donation_amounts
-                value: {}
-              required:
-              - name
-            - title: disable_dedications
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - disable_dedications
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: hide_other_option
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - hide_other_option
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: remove_tips_increase_fee
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - remove_tips_increase_fee
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: custom_fee_text
-              type: object
-              description: Custom fee text. Accepts a JSON object.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - custom_fee_text
-                value:
-                  type:
-                  - object
-                  - 'null'
-              required:
-              - name
-            - title: custom_flow_heading
-              type: object
-              description: Accepts a `string` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - custom_flow_heading
-                value:
-                  type:
-                  - string
-                  - 'null'
-              required:
-              - name
-            - title: fund_sort_by
-              type: object
-              description: Fund sort order. One of `order_asc`, `name_asc`, `created_at_desc`.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - fund_sort_by
-                value:
-                  type:
-                  - string
-                  - 'null'
-                  enum:
-                  - order_asc
-                  - name_asc
-                  - created_at_desc
-              required:
-              - name
-            - title: require_fund
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - require_fund
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: suggested_amounts_mode
-              type: object
-              description: Accepts a `string` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - suggested_amounts_mode
-                value:
-                  type:
-                  - string
-                  - 'null'
-              required:
-              - name
-            - title: disable_team_fundraising
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - disable_team_fundraising
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: disable_public_join
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - disable_public_join
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: disable_public_join_button
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - disable_public_join_button
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: custom_team_members_heading
-              type: object
-              description: Accepts a `string` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - custom_team_members_heading
-                value:
-                  type:
-                  - string
-                  - 'null'
-              required:
-              - name
-            - title: custom_join_text
-              type: object
-              description: Join button text. Max 18 characters.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - custom_join_text
-                value:
-                  type:
-                  - string
-                  - 'null'
-                  maxLength: 18
-              required:
-              - name
-            - title: disallow_new_teams
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - disallow_new_teams
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: hide_member_raised
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - hide_member_raised
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: custom_team_leaderboard_heading
-              type: object
-              description: Accepts a `string` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - custom_team_leaderboard_heading
-                value:
-                  type:
-                  - string
-                  - 'null'
-              required:
-              - name
-            - title: enable_registration_fundraising
-              type: object
-              description: Registration fundraising configuration. JSON object (e.g. `goal`, `minimum`, `description`).
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - enable_registration_fundraising
-                value:
-                  type:
-                  - object
-                  - 'null'
-              required:
-              - name
-            - title: registration_thank_you_message
-              type: object
-              description: Accepts a `string` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - registration_thank_you_message
-                value:
-                  type:
-                  - string
-                  - 'null'
-              required:
-              - name
-            - title: multi_team_fundraising
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - multi_team_fundraising
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: multi_team_fundraising_limit
-              type: object
-              description: Accepts a `integer` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - multi_team_fundraising_limit
-                value:
-                  type:
-                  - integer
-                  - 'null'
-              required:
-              - name
-            - title: hide_team_raised
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - hide_team_raised
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: require_team_for_members
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - require_team_for_members
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: team_order
-              type: object
-              description: 'Team list ordering. Typical values: `name`, `donors`, `created_at`.'
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - team_order
-                value:
-                  type:
-                  - string
-                  - 'null'
-              required:
-              - name
-            - title: require_ticket_phone
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - require_ticket_phone
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            - title: enable_event_reminders
-              type: object
-              description: Accepts a `boolean` value.
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - enable_event_reminders
-                value:
-                  type:
-                  - boolean
-                  - 'null'
-              required:
-              - name
-            discriminator:
-              propertyName: name
-      required:
-      - type
-      - title
-      title: StoreCampaignRequest
-    CampaignResource:
-      type: object
-      properties:
-        id:
-          type: string
-        code:
-          type: string
-        account_id:
-          type: string
-        event_id:
           type: string
         type:
           type: string
-        title:
+        location_name:
           type: string
-        subtitle:
+        address_formatted:
           type: string
-        description:
+        google_place_id:
           type: string
-        slug:
-          type: string
-        url:
-          type: string
-        goal:
-          type:
-          - integer
-          - 'null'
-        raised:
-          type: number
-        donors:
-          type: integer
-        currency:
-          type: string
-        cover:
-          type: string
-        status:
-          type: string
-        timezone:
+        start_at:
           type: string
         end_at:
           type: string
-        event:
-          $ref: '#/components/schemas/EventResource'
-        settings:
-          type: array
-          items:
-            $ref: '#/components/schemas/CampaignSettingResource'
+        timezone:
+          type: string
+        details:
+          type: string
+        private:
+          type: string
+        tickets_required:
+          type: string
+        livestream:
+          type: string
+        livestream_start_at:
+          type: string
+        livestream_end_at:
+          type: string
         created_at:
           type: string
         updated_at:
           type: string
       required:
-      - id
-      - code
-      - account_id
-      - event_id
-      - type
       - title
-      - subtitle
-      - description
-      - slug
-      - url
-      - goal
-      - raised
-      - donors
-      - currency
-      - cover
-      - status
-      - timezone
+      - type
+      - location_name
+      - address_formatted
+      - google_place_id
+      - start_at
       - end_at
-      - settings
+      - timezone
+      - details
+      - private
+      - tickets_required
+      - livestream
+      - livestream_start_at
+      - livestream_end_at
       - created_at
       - updated_at
-      title: CampaignResource
+      title: EventResource
     UpdateCampaignRequest:
       type: object
       properties:
@@ -1644,8 +780,7 @@ components:
               - name
             - title: custom_donation_amounts
               type: object
-              description: Custom donation amounts. JSON object; the dashboard groups amounts by frequency (`once`,
-                `monthly`, `quarterly`, `yearly`).
+              description: Custom donation amounts. JSON object; the dashboard groups amounts by frequency (`once`, `monthly`, `quarterly`, `yearly`).
               properties:
                 name:
                   type: string
@@ -2012,59 +1147,917 @@ components:
             discriminator:
               propertyName: name
       title: UpdateCampaignRequest
-    EventResource:
+    CampaignResource:
       type: object
       properties:
-        title:
+        id:
+          type: string
+        code:
+          type: string
+        account_id:
+          type: string
+        event_id:
           type: string
         type:
           type: string
-        location_name:
+        title:
           type: string
-        address_formatted:
+        subtitle:
           type: string
-        google_place_id:
+        description:
           type: string
-        start_at:
+        slug:
           type: string
-        end_at:
+        url:
+          type: string
+        goal:
+          type:
+          - integer
+          - 'null'
+        raised:
+          type: number
+        donors:
+          type: integer
+        currency:
+          type: string
+        cover:
+          type: string
+        status:
           type: string
         timezone:
           type: string
-        details:
+        end_at:
           type: string
-        private:
-          type: string
-        tickets_required:
-          type: string
-        livestream:
-          type: string
-        livestream_start_at:
-          type: string
-        livestream_end_at:
-          type: string
+        event:
+          $ref: '#/components/schemas/EventResource'
+        settings:
+          type: array
+          items:
+            $ref: '#/components/schemas/CampaignSettingResource'
         created_at:
           type: string
         updated_at:
           type: string
       required:
-      - title
+      - id
+      - code
+      - account_id
+      - event_id
       - type
-      - location_name
-      - address_formatted
-      - google_place_id
-      - start_at
-      - end_at
+      - title
+      - subtitle
+      - description
+      - slug
+      - url
+      - goal
+      - raised
+      - donors
+      - currency
+      - cover
+      - status
       - timezone
-      - details
-      - private
-      - tickets_required
-      - livestream
-      - livestream_start_at
-      - livestream_end_at
+      - end_at
+      - settings
       - created_at
       - updated_at
-      title: EventResource
+      title: CampaignResource
+    CampaignSettingResource:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      required:
+      - name
+      - value
+      title: CampaignSettingResource
+    StoreCampaignRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - general
+          - collect
+          - fundraise
+          - event
+          maxLength: 255
+        title:
+          type: string
+          maxLength: 150
+        subtitle:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        description:
+          type:
+          - string
+          - 'null'
+        goal:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+        end_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        slug:
+          type: string
+          maxLength: 255
+        beneficiary_id:
+          type:
+          - integer
+          - 'null'
+        timezone:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        currency:
+          type: string
+          enum:
+          - USD
+        settings:
+          type:
+          - array
+          - 'null'
+          items:
+            description: A campaign setting. The `name` field determines the expected shape of `value`.
+            oneOf:
+            - title: hide_time_remaining
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - hide_time_remaining
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: show_countdown_clock
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - show_countdown_clock
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: hide_money_raised
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - hide_money_raised
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: theme_color
+              type: object
+              description: Hex color in the form `#rrggbb`.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - theme_color
+                value:
+                  type:
+                  - string
+                  - 'null'
+                  pattern: ^#[0-9a-fA-F]{6}$
+              required:
+              - name
+            - title: use_actual_cover_size
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - use_actual_cover_size
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: disable_embed_branding
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - disable_embed_branding
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: custom_donate_text
+              type: object
+              description: Donate button text. Max 100 characters.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - custom_donate_text
+                value:
+                  type:
+                  - string
+                  - 'null'
+                  maxLength: 100
+              required:
+              - name
+            - title: hide_supporter_feed
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - hide_supporter_feed
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: auction_tab_text
+              type: object
+              description: Accepts a `string` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - auction_tab_text
+                value:
+                  type:
+                  - string
+                  - 'null'
+              required:
+              - name
+            - title: hide_auction_components
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - hide_auction_components
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: hide_contact_information
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - hide_contact_information
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: meta_image_alt_text
+              type: object
+              description: Accepts a `string` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - meta_image_alt_text
+                value:
+                  type:
+                  - string
+                  - 'null'
+              required:
+              - name
+            - title: disable_donations
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - disable_donations
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: minimum_donation
+              type: object
+              description: Accepts a `decimal` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - minimum_donation
+                value:
+                  type:
+                  - number
+                  - 'null'
+                  format: decimal
+              required:
+              - name
+            - title: require_donor_phone
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - require_donor_phone
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: enforce_end_at
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - enforce_end_at
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: disable_recurring
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - disable_recurring
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: thank_you_message
+              type: object
+              description: Accepts a `string` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - thank_you_message
+                value:
+                  type:
+                  - string
+                  - 'null'
+              required:
+              - name
+            - title: default_fund
+              type: object
+              description: Accepts a `string` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - default_fund
+                value:
+                  type:
+                  - string
+                  - 'null'
+              required:
+              - name
+            - title: hide_fund
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - hide_fund
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: require_address
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - require_address
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: default_frequency
+              type: object
+              description: Default donation frequency. Typically `once`, `monthly`, `quarterly`, or `yearly`.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - default_frequency
+                value:
+                  type:
+                  - string
+                  - 'null'
+              required:
+              - name
+            - title: display_frequencies
+              type: object
+              description: 'Donation frequencies to display. Typical values: `once`, `monthly`, `quarterly`, `yearly`.'
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - display_frequencies
+                value:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    type: string
+              required:
+              - name
+            - title: public_check_payments
+              type: object
+              description: Mailing instructions for check donations. Max 1000 characters.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - public_check_payments
+                value:
+                  type:
+                  - string
+                  - 'null'
+                  maxLength: 1000
+              required:
+              - name
+            - title: recurring_upsell
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - recurring_upsell
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: disable_company_field
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - disable_company_field
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: hide_fee_collection
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - hide_fee_collection
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: force_fee_collection
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - force_fee_collection
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: custom_donation_amounts
+              type: object
+              description: Custom donation amounts. JSON object; the dashboard groups amounts by frequency (`once`, `monthly`, `quarterly`, `yearly`).
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - custom_donation_amounts
+                value: {}
+              required:
+              - name
+            - title: disable_dedications
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - disable_dedications
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: hide_other_option
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - hide_other_option
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: remove_tips_increase_fee
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - remove_tips_increase_fee
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: custom_fee_text
+              type: object
+              description: Custom fee text. Accepts a JSON object.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - custom_fee_text
+                value:
+                  type:
+                  - object
+                  - 'null'
+              required:
+              - name
+            - title: custom_flow_heading
+              type: object
+              description: Accepts a `string` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - custom_flow_heading
+                value:
+                  type:
+                  - string
+                  - 'null'
+              required:
+              - name
+            - title: fund_sort_by
+              type: object
+              description: Fund sort order. One of `order_asc`, `name_asc`, `created_at_desc`.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - fund_sort_by
+                value:
+                  type:
+                  - string
+                  - 'null'
+                  enum:
+                  - order_asc
+                  - name_asc
+                  - created_at_desc
+              required:
+              - name
+            - title: require_fund
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - require_fund
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: suggested_amounts_mode
+              type: object
+              description: Accepts a `string` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - suggested_amounts_mode
+                value:
+                  type:
+                  - string
+                  - 'null'
+              required:
+              - name
+            - title: disable_team_fundraising
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - disable_team_fundraising
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: disable_public_join
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - disable_public_join
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: disable_public_join_button
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - disable_public_join_button
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: custom_team_members_heading
+              type: object
+              description: Accepts a `string` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - custom_team_members_heading
+                value:
+                  type:
+                  - string
+                  - 'null'
+              required:
+              - name
+            - title: custom_join_text
+              type: object
+              description: Join button text. Max 18 characters.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - custom_join_text
+                value:
+                  type:
+                  - string
+                  - 'null'
+                  maxLength: 18
+              required:
+              - name
+            - title: disallow_new_teams
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - disallow_new_teams
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: hide_member_raised
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - hide_member_raised
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: custom_team_leaderboard_heading
+              type: object
+              description: Accepts a `string` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - custom_team_leaderboard_heading
+                value:
+                  type:
+                  - string
+                  - 'null'
+              required:
+              - name
+            - title: enable_registration_fundraising
+              type: object
+              description: Registration fundraising configuration. JSON object (e.g. `goal`, `minimum`, `description`).
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - enable_registration_fundraising
+                value:
+                  type:
+                  - object
+                  - 'null'
+              required:
+              - name
+            - title: registration_thank_you_message
+              type: object
+              description: Accepts a `string` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - registration_thank_you_message
+                value:
+                  type:
+                  - string
+                  - 'null'
+              required:
+              - name
+            - title: multi_team_fundraising
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - multi_team_fundraising
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: multi_team_fundraising_limit
+              type: object
+              description: Accepts a `integer` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - multi_team_fundraising_limit
+                value:
+                  type:
+                  - integer
+                  - 'null'
+              required:
+              - name
+            - title: hide_team_raised
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - hide_team_raised
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: require_team_for_members
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - require_team_for_members
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: team_order
+              type: object
+              description: 'Team list ordering. Typical values: `name`, `donors`, `created_at`.'
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - team_order
+                value:
+                  type:
+                  - string
+                  - 'null'
+              required:
+              - name
+            - title: require_ticket_phone
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - require_ticket_phone
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            - title: enable_event_reminders
+              type: object
+              description: Accepts a `boolean` value.
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - enable_event_reminders
+                value:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - name
+            discriminator:
+              propertyName: name
+      required:
+      - type
+      - title
+      title: StoreCampaignRequest
   responses:
     AuthorizationException:
       description: Authorization error
@@ -2114,5 +2107,3 @@ components:
     http:
       type: http
       scheme: bearer
-x-source: https://givebutter.com/docs/api.json
-x-harvested: '2026-09-12'
