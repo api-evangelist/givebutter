@@ -303,6 +303,47 @@ components:
       required:
       - amount
       title: UpdateCampaignDiscountCodeRequest
+    StoreCampaignDiscountCodeRequest:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        type:
+          $ref: '#/components/schemas/DiscountCodeType'
+        active:
+          type: boolean
+        amount:
+          type: number
+          minimum: 1
+          maximum: 100
+        code:
+          type: string
+          maxLength: 255
+        uses:
+          type:
+          - number
+          - 'null'
+          minimum: 1
+        starts_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        expires_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - type
+      - active
+      - amount
+      - code
+      title: StoreCampaignDiscountCodeRequest
     CampaignDiscountCodeResource:
       type: object
       properties:
@@ -357,47 +398,6 @@ components:
       - percentage
       - fixed
       title: DiscountCodeType
-    StoreCampaignDiscountCodeRequest:
-      type: object
-      properties:
-        items:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        type:
-          $ref: '#/components/schemas/DiscountCodeType'
-        active:
-          type: boolean
-        amount:
-          type: number
-          minimum: 1
-          maximum: 100
-        code:
-          type: string
-          maxLength: 255
-        uses:
-          type:
-          - number
-          - 'null'
-          minimum: 1
-        starts_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        expires_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      required:
-      - type
-      - active
-      - amount
-      - code
-      title: StoreCampaignDiscountCodeRequest
   responses:
     AuthorizationException:
       description: Authorization error

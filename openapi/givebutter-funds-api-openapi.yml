@@ -240,8 +240,8 @@ paths:
           $ref: '#/components/responses/ModelNotFoundException'
 components:
   responses:
-    ModelNotFoundException:
-      description: Not found
+    AuthorizationException:
+      description: Authorization error
       content:
         application/json:
           schema:
@@ -252,8 +252,8 @@ components:
                 description: Error overview.
             required:
             - message
-    AuthorizationException:
-      description: Authorization error
+    ModelNotFoundException:
+      description: Not found
       content:
         application/json:
           schema:

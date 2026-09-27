@@ -286,6 +286,49 @@ paths:
         '404':
           $ref: '#/components/responses/ModelNotFoundException'
 components:
+  schemas:
+    WebhookResource:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type:
+          - string
+          - 'null'
+        signature:
+          type:
+          - string
+          - 'null'
+        events:
+          type: array
+          items: {}
+        enabled:
+          type: boolean
+        url:
+          type: string
+        last_status:
+          type: string
+        last_status_description:
+          type: string
+        last_used_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - name
+      - events
+      - enabled
+      - url
+      - last_status
+      - last_status_description
+      - last_used_at
+      - created_at
+      - updated_at
+      title: WebhookResource
   responses:
     ModelNotFoundException:
       description: Not found
@@ -331,49 +374,6 @@ components:
             required:
             - message
             - errors
-  schemas:
-    WebhookResource:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type:
-          - string
-          - 'null'
-        signature:
-          type:
-          - string
-          - 'null'
-        events:
-          type: array
-          items: {}
-        enabled:
-          type: boolean
-        url:
-          type: string
-        last_status:
-          type: string
-        last_status_description:
-          type: string
-        last_used_at:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - name
-      - events
-      - enabled
-      - url
-      - last_status
-      - last_status_description
-      - last_used_at
-      - created_at
-      - updated_at
-      title: WebhookResource
   securitySchemes:
     http:
       type: http

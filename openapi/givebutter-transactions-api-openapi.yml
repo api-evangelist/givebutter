@@ -306,305 +306,6 @@ paths:
           $ref: '#/components/responses/ValidationException'
 components:
   schemas:
-    DedicationType:
-      type: string
-      enum:
-      - in_memory_of
-      - in_honor_of
-      title: DedicationType
-    StoreTransactionRequest:
-      type: object
-      properties:
-        campaign_code:
-          type:
-          - string
-          - 'null'
-        campaign_title:
-          type: string
-          maxLength: 255
-        campaign_team_id:
-          type:
-          - integer
-          - 'null'
-        team_member_id:
-          type:
-          - integer
-          - 'null'
-        contact_id:
-          type:
-          - integer
-          - 'null'
-        contact_external_id:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        fund_code:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        method:
-          $ref: '#/components/schemas/PaymentMethodEnum'
-        transacted_at:
-          type: string
-          format: date-time
-        mark_deposited:
-          type:
-          - boolean
-          - 'null'
-        timezone:
-          type:
-          - string
-          - 'null'
-        acknowledged_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        external_label:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        external_id:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        contact_contact_since:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        amount:
-          type: string
-        fee_covered:
-          type:
-          - string
-          - 'null'
-        platform_fee:
-          type:
-          - string
-          - 'null'
-        processing_fee:
-          type:
-          - string
-          - 'null'
-        check_number:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        check_deposited_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        company:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        internal_note:
-          type:
-          - string
-          - 'null'
-          maxLength: 131070
-        first_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        last_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        email:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        phone:
-          type:
-          - string
-          - 'null'
-        address_1:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        address_2:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        city:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        state:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        zipcode:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        country:
-          type:
-          - string
-          - 'null'
-        dedication_type:
-          $ref: '#/components/schemas/DedicationType'
-        dedication_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        dedication_recipient_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        dedication_recipient_email:
-          type:
-          - string
-          - 'null'
-        giving_space_message:
-          type:
-          - string
-          - 'null'
-          maxLength: 65535
-        appeal_code:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        appeal_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        appeal_status:
-          type:
-          - string
-          - 'null'
-      required:
-      - method
-      - transacted_at
-      - amount
-      title: StoreTransactionRequest
-    DedicationResource:
-      type: object
-      properties:
-        type:
-          type: string
-        name:
-          type: string
-        recipient:
-          type: object
-          properties:
-            name:
-              type:
-              - string
-              - 'null'
-            email:
-              type:
-              - string
-              - 'null'
-          required:
-          - name
-          - email
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - type
-      - name
-      - recipient
-      - created_at
-      - updated_at
-      title: DedicationResource
-    GivingSpaceResource:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        amount:
-          type: number
-        message:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - name
-      - amount
-      - message
-      - created_at
-      - updated_at
-      title: GivingSpaceResource
-    CustomFieldResponseResource:
-      type: object
-      properties:
-        id:
-          type: integer
-        field_id:
-          type: integer
-        title:
-          type: string
-        description:
-          type:
-          - string
-          - 'null'
-        type:
-          type: string
-        value:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - field_id
-      - title
-      - description
-      - type
-      - value
-      - created_at
-      - updated_at
-      title: CustomFieldResponseResource
-    ExternalIdResource:
-      type: object
-      properties:
-        id:
-          type: integer
-        label:
-          type: string
-        external_id:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - label
-      - external_id
-      - created_at
-      - updated_at
-      title: ExternalIdResource
     PaymentMethodEnum:
       type: string
       enum:
@@ -624,6 +325,38 @@ components:
       - other
       - none
       title: PaymentMethodEnum
+    TransactionLineItemResource:
+      type: object
+      properties:
+        type:
+          type: string
+        subtype:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: number
+        discount:
+          type: number
+        total:
+          type: number
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - type
+      - subtype
+      - description
+      - quantity
+      - price
+      - discount
+      - total
+      - created_at
+      - updated_at
+      title: TransactionLineItemResource
     UpdateTransactionRequest:
       type: object
       properties:
@@ -688,6 +421,118 @@ components:
           - recipient_name
           - recipient_email
       title: UpdateTransactionRequest
+    DedicationType:
+      type: string
+      enum:
+      - in_memory_of
+      - in_honor_of
+      title: DedicationType
+    ExternalIdResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        external_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - label
+      - external_id
+      - created_at
+      - updated_at
+      title: ExternalIdResource
+    GivingSpaceResource:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          type: number
+        message:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - name
+      - amount
+      - message
+      - created_at
+      - updated_at
+      title: GivingSpaceResource
+    DedicationResource:
+      type: object
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        recipient:
+          type: object
+          properties:
+            name:
+              type:
+              - string
+              - 'null'
+            email:
+              type:
+              - string
+              - 'null'
+          required:
+          - name
+          - email
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - type
+      - name
+      - recipient
+      - created_at
+      - updated_at
+      title: DedicationResource
+    CustomFieldResponseResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        field_id:
+          type: integer
+        title:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        type:
+          type: string
+        value:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - field_id
+      - title
+      - description
+      - type
+      - value
+      - created_at
+      - updated_at
+      title: CustomFieldResponseResource
     TransactionResource:
       anyOf:
       - type: object
@@ -930,39 +775,206 @@ components:
         - is_recurring
         - payout_id
       title: TransactionResource
-    TransactionLineItemResource:
+    StoreTransactionRequest:
       type: object
       properties:
-        type:
+        campaign_code:
+          type:
+          - string
+          - 'null'
+        campaign_title:
           type: string
-        subtype:
+          maxLength: 255
+        campaign_team_id:
+          type:
+          - integer
+          - 'null'
+        team_member_id:
+          type:
+          - integer
+          - 'null'
+        contact_id:
+          type:
+          - integer
+          - 'null'
+        contact_external_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        fund_code:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        method:
+          $ref: '#/components/schemas/PaymentMethodEnum'
+        transacted_at:
           type: string
-        description:
+          format: date-time
+        mark_deposited:
+          type:
+          - boolean
+          - 'null'
+        timezone:
+          type:
+          - string
+          - 'null'
+        acknowledged_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        external_label:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        external_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        contact_contact_since:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        amount:
           type: string
-        quantity:
-          type: integer
-        price:
-          type: number
-        discount:
-          type: number
-        total:
-          type: number
-        created_at:
-          type: string
-        updated_at:
-          type: string
+        fee_covered:
+          type:
+          - string
+          - 'null'
+        platform_fee:
+          type:
+          - string
+          - 'null'
+        processing_fee:
+          type:
+          - string
+          - 'null'
+        check_number:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        check_deposited_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        company:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        internal_note:
+          type:
+          - string
+          - 'null'
+          maxLength: 131070
+        first_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        last_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        email:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        phone:
+          type:
+          - string
+          - 'null'
+        address_1:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        address_2:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        city:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        state:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        zipcode:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        country:
+          type:
+          - string
+          - 'null'
+        dedication_type:
+          $ref: '#/components/schemas/DedicationType'
+        dedication_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        dedication_recipient_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        dedication_recipient_email:
+          type:
+          - string
+          - 'null'
+        giving_space_message:
+          type:
+          - string
+          - 'null'
+          maxLength: 65535
+        appeal_code:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        appeal_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        appeal_status:
+          type:
+          - string
+          - 'null'
       required:
-      - type
-      - subtype
-      - description
-      - quantity
-      - price
-      - discount
-      - total
-      - created_at
-      - updated_at
-      title: TransactionLineItemResource
+      - method
+      - transacted_at
+      - amount
+      title: StoreTransactionRequest
   responses:
+    NotFoundHttpException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
     AuthorizationException:
       description: Authorization error
       content:
@@ -995,18 +1007,6 @@ components:
             required:
             - message
             - errors
-    NotFoundHttpException:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
     ModelNotFoundException:
       description: Not found
       content:

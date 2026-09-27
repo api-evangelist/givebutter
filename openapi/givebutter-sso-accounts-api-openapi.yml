@@ -27,6 +27,19 @@ paths:
       summary: Sso account
       x-summary-source: derived
 components:
+  responses:
+    AuthenticationException:
+      description: Unauthenticated
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
   schemas:
     SsoAccountResource:
       type: object
@@ -96,19 +109,6 @@ components:
       - updated_at
       - last_campaign_id
       title: SsoAccountResource
-  responses:
-    AuthenticationException:
-      description: Unauthenticated
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
   securitySchemes:
     http:
       type: http

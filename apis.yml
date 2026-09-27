@@ -43,6 +43,7 @@ tags:
 - Payments
 - Webhook
 - Event
+- A2A
 tags_raw:
 - Donations
 - Fundraising
@@ -51,6 +52,7 @@ tags_raw:
 - Payments
 - Webhooks
 - Events
+- A2A
 created: '2025-01-07'
 modified: '2026-09-12'
 url: https://raw.githubusercontent.com/api-evangelist/givebutter/refs/heads/main/apis.yml
@@ -296,6 +298,8 @@ apis:
   humanURL: https://docs.givebutter.com/api-reference/tickets/list-all-tickets
   baseURL: https://api.givebutter.com/v1
   tags:
+  - Ticketing
+  tags_raw:
   - Tickets
   properties:
   - type: OpenAPI
@@ -504,3 +508,10 @@ x-enrichment:
   status: enriched
   artifacts_added: 35
   pass: local-v3
+x-a2a:
+  verified: true
+  probed: '2026-09-26'
+  url: "https://docs.givebutter.com/.well-known/agent-card.json"
+  grade: "conformant"
+  protocol_version: "0.3"
+  control: 404
