@@ -305,234 +305,64 @@ paths:
         '422':
           $ref: '#/components/responses/ValidationException'
 components:
+  responses:
+    NotFoundHttpException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    AuthorizationException:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    ValidationException:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Errors overview.
+              errors:
+                type: object
+                description: A detailed description of each field that failed validation.
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+            required:
+            - message
+            - errors
   schemas:
-    PaymentMethodEnum:
-      type: string
-      enum:
-      - ach
-      - card
-      - cash
-      - check
-      - digital_wallet
-      - donor_advised_fund
-      - paypal
-      - venmo
-      - cashapp
-      - terminal
-      - stock
-      - in-kind
-      - property
-      - other
-      - none
-      title: PaymentMethodEnum
-    TransactionLineItemResource:
-      type: object
-      properties:
-        type:
-          type: string
-        subtype:
-          type: string
-        description:
-          type: string
-        quantity:
-          type: integer
-        price:
-          type: number
-        discount:
-          type: number
-        total:
-          type: number
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - type
-      - subtype
-      - description
-      - quantity
-      - price
-      - discount
-      - total
-      - created_at
-      - updated_at
-      title: TransactionLineItemResource
-    UpdateTransactionRequest:
-      type: object
-      properties:
-        transaction_id:
-          type: string
-        internal_note:
-          type:
-          - string
-          - 'null'
-          maxLength: 131070
-        check_number:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        check_deposited_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        custom_fields:
-          type: array
-          items:
-            type: string
-        team_id:
-          type: string
-        campaign_member_id:
-          type: string
-        fund_id:
-          type: string
-        campaign_id:
-          type: string
-        method:
-          type: string
-        transacted_at:
-          type: string
-        appeal_id:
-          type: string
-        offline_payment_received:
-          type: string
-        dedication:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/DedicationType'
-            name:
-              type: string
-              maxLength: 255
-            recipient_name:
-              type:
-              - string
-              - 'null'
-              maxLength: 255
-            recipient_email:
-              type:
-              - string
-              - 'null'
-              format: email
-          required:
-          - type
-          - name
-          - recipient_name
-          - recipient_email
-      title: UpdateTransactionRequest
-    DedicationType:
-      type: string
-      enum:
-      - in_memory_of
-      - in_honor_of
-      title: DedicationType
-    ExternalIdResource:
-      type: object
-      properties:
-        id:
-          type: integer
-        label:
-          type: string
-        external_id:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - label
-      - external_id
-      - created_at
-      - updated_at
-      title: ExternalIdResource
-    GivingSpaceResource:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        amount:
-          type: number
-        message:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - name
-      - amount
-      - message
-      - created_at
-      - updated_at
-      title: GivingSpaceResource
-    DedicationResource:
-      type: object
-      properties:
-        type:
-          type: string
-        name:
-          type: string
-        recipient:
-          type: object
-          properties:
-            name:
-              type:
-              - string
-              - 'null'
-            email:
-              type:
-              - string
-              - 'null'
-          required:
-          - name
-          - email
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - type
-      - name
-      - recipient
-      - created_at
-      - updated_at
-      title: DedicationResource
-    CustomFieldResponseResource:
-      type: object
-      properties:
-        id:
-          type: integer
-        field_id:
-          type: integer
-        title:
-          type: string
-        description:
-          type:
-          - string
-          - 'null'
-        type:
-          type: string
-        value:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - field_id
-      - title
-      - description
-      - type
-      - value
-      - created_at
-      - updated_at
-      title: CustomFieldResponseResource
     TransactionResource:
       anyOf:
       - type: object
@@ -775,6 +605,163 @@ components:
         - is_recurring
         - payout_id
       title: TransactionResource
+    UpdateTransactionRequest:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+        internal_note:
+          type:
+          - string
+          - 'null'
+          maxLength: 131070
+        check_number:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        check_deposited_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        custom_fields:
+          type: array
+          items:
+            type: string
+        team_id:
+          type: string
+        campaign_member_id:
+          type: string
+        fund_id:
+          type: string
+        campaign_id:
+          type: string
+        method:
+          type: string
+        transacted_at:
+          type: string
+        appeal_id:
+          type: string
+        offline_payment_received:
+          type: string
+        dedication:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/DedicationType'
+            name:
+              type: string
+              maxLength: 255
+            recipient_name:
+              type:
+              - string
+              - 'null'
+              maxLength: 255
+            recipient_email:
+              type:
+              - string
+              - 'null'
+              format: email
+          required:
+          - type
+          - name
+          - recipient_name
+          - recipient_email
+      title: UpdateTransactionRequest
+    GivingSpaceResource:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          type: number
+        message:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - name
+      - amount
+      - message
+      - created_at
+      - updated_at
+      title: GivingSpaceResource
+    DedicationResource:
+      type: object
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        recipient:
+          type: object
+          properties:
+            name:
+              type:
+              - string
+              - 'null'
+            email:
+              type:
+              - string
+              - 'null'
+          required:
+          - name
+          - email
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - type
+      - name
+      - recipient
+      - created_at
+      - updated_at
+      title: DedicationResource
+    DedicationType:
+      type: string
+      enum:
+      - in_memory_of
+      - in_honor_of
+      title: DedicationType
+    TransactionLineItemResource:
+      type: object
+      properties:
+        type:
+          type: string
+        subtype:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: number
+        discount:
+          type: number
+        total:
+          type: number
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - type
+      - subtype
+      - description
+      - quantity
+      - price
+      - discount
+      - total
+      - created_at
+      - updated_at
+      title: TransactionLineItemResource
     StoreTransactionRequest:
       type: object
       properties:
@@ -962,63 +949,76 @@ components:
       - transacted_at
       - amount
       title: StoreTransactionRequest
-  responses:
-    NotFoundHttpException:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
-    AuthorizationException:
-      description: Authorization error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
-    ValidationException:
-      description: Validation error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Errors overview.
-              errors:
-                type: object
-                description: A detailed description of each field that failed validation.
-                additionalProperties:
-                  type: array
-                  items:
-                    type: string
-            required:
-            - message
-            - errors
-    ModelNotFoundException:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
+    CustomFieldResponseResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        field_id:
+          type: integer
+        title:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        type:
+          type: string
+        value:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - field_id
+      - title
+      - description
+      - type
+      - value
+      - created_at
+      - updated_at
+      title: CustomFieldResponseResource
+    ExternalIdResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        external_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - label
+      - external_id
+      - created_at
+      - updated_at
+      title: ExternalIdResource
+    PaymentMethodEnum:
+      type: string
+      enum:
+      - ach
+      - card
+      - cash
+      - check
+      - digital_wallet
+      - donor_advised_fund
+      - paypal
+      - venmo
+      - cashapp
+      - terminal
+      - stock
+      - in-kind
+      - property
+      - other
+      - none
+      title: PaymentMethodEnum
   securitySchemes:
     http:
       type: http

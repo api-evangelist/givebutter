@@ -264,7 +264,106 @@ paths:
         '404':
           $ref: '#/components/responses/ModelNotFoundException'
 components:
+  responses:
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    AuthorizationException:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    ValidationException:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Errors overview.
+              errors:
+                type: object
+                description: A detailed description of each field that failed validation.
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+            required:
+            - message
+            - errors
   schemas:
+    DiscountCodeType:
+      type: string
+      enum:
+      - percentage
+      - fixed
+      title: DiscountCodeType
+    CampaignDiscountCodeResource:
+      type: object
+      properties:
+        id:
+          type: string
+        campaign_id:
+          type: string
+        items:
+          type: string
+        code:
+          type: string
+        type:
+          type: string
+        amount:
+          type: number
+        used:
+          type: string
+        uses:
+          type: string
+        active:
+          type: string
+        all_items:
+          type: string
+        total_discount:
+          type: string
+        starts_at:
+          type: string
+        expires_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - campaign_id
+      - code
+      - type
+      - amount
+      - used
+      - uses
+      - active
+      - total_discount
+      - starts_at
+      - expires_at
+      - created_at
+      - updated_at
+      title: CampaignDiscountCodeResource
     UpdateCampaignDiscountCodeRequest:
       type: object
       properties:
@@ -344,105 +443,6 @@ components:
       - amount
       - code
       title: StoreCampaignDiscountCodeRequest
-    CampaignDiscountCodeResource:
-      type: object
-      properties:
-        id:
-          type: string
-        campaign_id:
-          type: string
-        items:
-          type: string
-        code:
-          type: string
-        type:
-          type: string
-        amount:
-          type: number
-        used:
-          type: string
-        uses:
-          type: string
-        active:
-          type: string
-        all_items:
-          type: string
-        total_discount:
-          type: string
-        starts_at:
-          type: string
-        expires_at:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - campaign_id
-      - code
-      - type
-      - amount
-      - used
-      - uses
-      - active
-      - total_discount
-      - starts_at
-      - expires_at
-      - created_at
-      - updated_at
-      title: CampaignDiscountCodeResource
-    DiscountCodeType:
-      type: string
-      enum:
-      - percentage
-      - fixed
-      title: DiscountCodeType
-  responses:
-    AuthorizationException:
-      description: Authorization error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
-    ValidationException:
-      description: Validation error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Errors overview.
-              errors:
-                type: object
-                description: A detailed description of each field that failed validation.
-                additionalProperties:
-                  type: array
-                  items:
-                    type: string
-            required:
-            - message
-            - errors
-    ModelNotFoundException:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
   securitySchemes:
     http:
       type: http

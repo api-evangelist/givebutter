@@ -254,38 +254,6 @@ paths:
           $ref: '#/components/responses/ModelNotFoundException'
 components:
   schemas:
-    TransactionLineItemResource:
-      type: object
-      properties:
-        type:
-          type: string
-        subtype:
-          type: string
-        description:
-          type: string
-        quantity:
-          type: integer
-        price:
-          type: number
-        discount:
-          type: number
-        total:
-          type: number
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - type
-      - subtype
-      - description
-      - quantity
-      - price
-      - discount
-      - total
-      - created_at
-      - updated_at
-      title: TransactionLineItemResource
     MessageResource:
       type: object
       properties:
@@ -381,188 +349,6 @@ components:
       - canceled_at
       - next_bill_date
       title: RecurringPlanResource
-    ContactActivityResource:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        source:
-          type: string
-        data:
-          type: string
-        resource:
-          anyOf:
-          - $ref: '#/components/schemas/TransactionResource'
-          - type: object
-            properties:
-              id:
-                type: string
-            required:
-            - id
-          - type: 'null'
-          - $ref: '#/components/schemas/RecurringPlanResource'
-          - $ref: '#/components/schemas/TicketResource'
-          - $ref: '#/components/schemas/MessageResource'
-        resource_type:
-          type:
-          - string
-          - 'null'
-          enum:
-          - transaction
-          - plan
-          - ticket
-          - message
-          - mail_piece
-          - soft_credit
-          - subscription_log
-          - null
-        created_by:
-          $ref: '#/components/schemas/PublicUserResource'
-        occurred_at:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - type
-      - source
-      - data
-      - resource
-      - resource_type
-      - occurred_at
-      - created_at
-      - updated_at
-      title: ContactActivityResource
-    PublicUserResource:
-      type: object
-      properties:
-        id:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        email:
-          type: string
-      required:
-      - id
-      - first_name
-      - last_name
-      - email
-      title: PublicUserResource
-    ExternalIdResource:
-      type: object
-      properties:
-        id:
-          type: integer
-        label:
-          type: string
-        external_id:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - label
-      - external_id
-      - created_at
-      - updated_at
-      title: ExternalIdResource
-    GivingSpaceResource:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        amount:
-          type: number
-        message:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - name
-      - amount
-      - message
-      - created_at
-      - updated_at
-      title: GivingSpaceResource
-    StoreContactActivityRequest:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - email
-          - meeting
-          - note
-          - phone_call
-          - sms
-          - completed_task
-          - volunteer_activity
-        note:
-          type:
-          - string
-          - 'null'
-        subject:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        occurred_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        timezone:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-      required:
-      - type
-      title: StoreContactActivityRequest
-    CustomFieldResponseResource:
-      type: object
-      properties:
-        id:
-          type: integer
-        field_id:
-          type: integer
-        title:
-          type: string
-        description:
-          type:
-          - string
-          - 'null'
-        type:
-          type: string
-        value:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - field_id
-      - title
-      - description
-      - type
-      - value
-      - created_at
-      - updated_at
-      title: CustomFieldResponseResource
     TransactionResource:
       anyOf:
       - type: object
@@ -805,66 +591,41 @@ components:
         - is_recurring
         - payout_id
       title: TransactionResource
-    TicketResource:
+    StoreContactActivityRequest:
       type: object
       properties:
-        id:
+        type:
           type: string
-        id_suffix:
-          type: string
-        transaction_id:
-          type: string
-        name:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        email:
-          type: string
-        phone:
-          type: string
-        title:
-          type: string
-        description:
-          type: string
-        price:
-          type: number
-        pdf:
-          type: string
-        checked_in_at:
-          type: string
-        custom_fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomFieldResponseResource'
-        created_at:
-          type: string
-        updated_at:
-          type: string
-        retail_price:
+          enum:
+          - email
+          - meeting
+          - note
+          - phone_call
+          - sms
+          - completed_task
+          - volunteer_activity
+        note:
           type:
           - string
           - 'null'
+        subject:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        occurred_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        timezone:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
       required:
-      - id
-      - id_suffix
-      - transaction_id
-      - name
-      - first_name
-      - last_name
-      - email
-      - phone
-      - title
-      - description
-      - price
-      - pdf
-      - checked_in_at
-      - custom_fields
-      - created_at
-      - updated_at
-      - retail_price
-      title: TicketResource
+      - type
+      title: StoreContactActivityRequest
     DedicationResource:
       type: object
       properties:
@@ -933,7 +694,258 @@ components:
       - video_message.sent
       - video_message.deleted
       title: ContactActivityTypeEnum
+    TransactionLineItemResource:
+      type: object
+      properties:
+        type:
+          type: string
+        subtype:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: number
+        discount:
+          type: number
+        total:
+          type: number
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - type
+      - subtype
+      - description
+      - quantity
+      - price
+      - discount
+      - total
+      - created_at
+      - updated_at
+      title: TransactionLineItemResource
+    CustomFieldResponseResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        field_id:
+          type: integer
+        title:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        type:
+          type: string
+        value:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - field_id
+      - title
+      - description
+      - type
+      - value
+      - created_at
+      - updated_at
+      title: CustomFieldResponseResource
+    ContactActivityResource:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        source:
+          type: string
+        data:
+          type: string
+        resource:
+          anyOf:
+          - $ref: '#/components/schemas/TransactionResource'
+          - type: object
+            properties:
+              id:
+                type: string
+            required:
+            - id
+          - type: 'null'
+          - $ref: '#/components/schemas/RecurringPlanResource'
+          - $ref: '#/components/schemas/TicketResource'
+          - $ref: '#/components/schemas/MessageResource'
+        resource_type:
+          type:
+          - string
+          - 'null'
+          enum:
+          - transaction
+          - plan
+          - ticket
+          - message
+          - mail_piece
+          - soft_credit
+          - subscription_log
+          - null
+        created_by:
+          $ref: '#/components/schemas/PublicUserResource'
+        occurred_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - type
+      - source
+      - data
+      - resource
+      - resource_type
+      - occurred_at
+      - created_at
+      - updated_at
+      title: ContactActivityResource
+    TicketResource:
+      type: object
+      properties:
+        id:
+          type: string
+        id_suffix:
+          type: string
+        transaction_id:
+          type: string
+        name:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        pdf:
+          type: string
+        checked_in_at:
+          type: string
+        custom_fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomFieldResponseResource'
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        retail_price:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - id_suffix
+      - transaction_id
+      - name
+      - first_name
+      - last_name
+      - email
+      - phone
+      - title
+      - description
+      - price
+      - pdf
+      - checked_in_at
+      - custom_fields
+      - created_at
+      - updated_at
+      - retail_price
+      title: TicketResource
+    PublicUserResource:
+      type: object
+      properties:
+        id:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+      required:
+      - id
+      - first_name
+      - last_name
+      - email
+      title: PublicUserResource
+    ExternalIdResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        external_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - label
+      - external_id
+      - created_at
+      - updated_at
+      title: ExternalIdResource
+    GivingSpaceResource:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          type: number
+        message:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - name
+      - amount
+      - message
+      - created_at
+      - updated_at
+      title: GivingSpaceResource
   responses:
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
     AuthorizationException:
       description: Authorization error
       content:
@@ -966,18 +978,6 @@ components:
             required:
             - message
             - errors
-    ModelNotFoundException:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
   securitySchemes:
     http:
       type: http

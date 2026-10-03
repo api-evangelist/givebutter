@@ -135,6 +135,66 @@ paths:
           $ref: '#/components/responses/AuthorizationException'
 components:
   schemas:
+    AddressResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        account_id:
+          type:
+          - integer
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        address_1:
+          type: string
+        address_2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        state:
+          type:
+          - string
+          - 'null'
+        zipcode:
+          type:
+          - string
+          - 'null'
+        country:
+          type: string
+        type:
+          type: string
+        is_primary:
+          type: boolean
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - id
+      - account_id
+      - name
+      - address_1
+      - address_2
+      - city
+      - state
+      - zipcode
+      - country
+      - type
+      - is_primary
+      - created_at
+      - updated_at
+      title: AddressResource
     ContactResource:
       type: object
       properties:
@@ -416,133 +476,6 @@ components:
       - updated_at
       - first_time_supporter_at
       title: PointOfContactResource
-    AddressResource:
-      type: object
-      properties:
-        id:
-          type: integer
-        account_id:
-          type:
-          - integer
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        address_1:
-          type: string
-        address_2:
-          type:
-          - string
-          - 'null'
-        city:
-          type: string
-        state:
-          type:
-          - string
-          - 'null'
-        zipcode:
-          type:
-          - string
-          - 'null'
-        country:
-          type: string
-        type:
-          type: string
-        is_primary:
-          type: boolean
-        created_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        updated_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      required:
-      - id
-      - account_id
-      - name
-      - address_1
-      - address_2
-      - city
-      - state
-      - zipcode
-      - country
-      - type
-      - is_primary
-      - created_at
-      - updated_at
-      title: AddressResource
-    ExternalIdResource:
-      type: object
-      properties:
-        id:
-          type: integer
-        label:
-          type: string
-        external_id:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - label
-      - external_id
-      - created_at
-      - updated_at
-      title: ExternalIdResource
-    App.Http.Resources.API.AddressResource:
-      type: object
-      properties:
-        address_1:
-          type: string
-        address_2:
-          type:
-          - string
-          - 'null'
-        city:
-          type: string
-        state:
-          type:
-          - string
-          - 'null'
-        zipcode:
-          type:
-          - string
-          - 'null'
-        country:
-          type: string
-        type:
-          type: string
-        is_primary:
-          type: boolean
-        created_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        updated_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      required:
-      - address_1
-      - address_2
-      - city
-      - state
-      - zipcode
-      - country
-      - type
-      - is_primary
-      - created_at
-      - updated_at
-      title: App.Http.Resources.API.AddressResource
     AssociatedCompanyResource:
       type: object
       properties:
@@ -650,9 +583,76 @@ components:
       - type
       - value
       title: PhoneResource
+    App.Http.Resources.API.AddressResource:
+      type: object
+      properties:
+        address_1:
+          type: string
+        address_2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        state:
+          type:
+          - string
+          - 'null'
+        zipcode:
+          type:
+          - string
+          - 'null'
+        country:
+          type: string
+        type:
+          type: string
+        is_primary:
+          type: boolean
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - address_1
+      - address_2
+      - city
+      - state
+      - zipcode
+      - country
+      - type
+      - is_primary
+      - created_at
+      - updated_at
+      title: App.Http.Resources.API.AddressResource
+    ExternalIdResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        external_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - label
+      - external_id
+      - created_at
+      - updated_at
+      title: ExternalIdResource
   responses:
-    AuthorizationException:
-      description: Authorization error
+    ModelNotFoundException:
+      description: Not found
       content:
         application/json:
           schema:
@@ -663,8 +663,8 @@ components:
                 description: Error overview.
             required:
             - message
-    ModelNotFoundException:
-      description: Not found
+    AuthorizationException:
+      description: Authorization error
       content:
         application/json:
           schema:

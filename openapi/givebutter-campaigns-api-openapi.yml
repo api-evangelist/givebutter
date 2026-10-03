@@ -233,7 +233,116 @@ paths:
         '404':
           $ref: '#/components/responses/ModelNotFoundException'
 components:
+  responses:
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    AuthorizationException:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    ValidationException:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Errors overview.
+              errors:
+                type: object
+                description: A detailed description of each field that failed validation.
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+            required:
+            - message
+            - errors
   schemas:
+    EventResource:
+      type: object
+      properties:
+        title:
+          type: string
+        type:
+          type: string
+        location_name:
+          type: string
+        address_formatted:
+          type: string
+        google_place_id:
+          type: string
+        start_at:
+          type: string
+        end_at:
+          type: string
+        timezone:
+          type: string
+        details:
+          type: string
+        private:
+          type: string
+        tickets_required:
+          type: string
+        livestream:
+          type: string
+        livestream_start_at:
+          type: string
+        livestream_end_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - title
+      - type
+      - location_name
+      - address_formatted
+      - google_place_id
+      - start_at
+      - end_at
+      - timezone
+      - details
+      - private
+      - tickets_required
+      - livestream
+      - livestream_start_at
+      - livestream_end_at
+      - created_at
+      - updated_at
+      title: EventResource
+    CampaignSettingResource:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      required:
+      - name
+      - value
+      title: CampaignSettingResource
     StoreCampaignRequest:
       type: object
       properties:
@@ -1060,80 +1169,6 @@ components:
       - type
       - title
       title: StoreCampaignRequest
-    CampaignResource:
-      type: object
-      properties:
-        id:
-          type: string
-        code:
-          type: string
-        account_id:
-          type: string
-        event_id:
-          type: string
-        type:
-          type: string
-        title:
-          type: string
-        subtitle:
-          type: string
-        description:
-          type: string
-        slug:
-          type: string
-        url:
-          type: string
-        goal:
-          type:
-          - integer
-          - 'null'
-        raised:
-          type: number
-        donors:
-          type: integer
-        currency:
-          type: string
-        cover:
-          type: string
-        status:
-          type: string
-        timezone:
-          type: string
-        end_at:
-          type: string
-        event:
-          $ref: '#/components/schemas/EventResource'
-        settings:
-          type: array
-          items:
-            $ref: '#/components/schemas/CampaignSettingResource'
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - code
-      - account_id
-      - event_id
-      - type
-      - title
-      - subtitle
-      - description
-      - slug
-      - url
-      - goal
-      - raised
-      - donors
-      - currency
-      - cover
-      - status
-      - timezone
-      - end_at
-      - settings
-      - created_at
-      - updated_at
-      title: CampaignResource
     UpdateCampaignRequest:
       type: object
       properties:
@@ -1994,115 +2029,80 @@ components:
             discriminator:
               propertyName: name
       title: UpdateCampaignRequest
-    CampaignSettingResource:
+    CampaignResource:
       type: object
       properties:
-        name:
+        id:
           type: string
-        value:
+        code:
           type: string
-      required:
-      - name
-      - value
-      title: CampaignSettingResource
-    EventResource:
-      type: object
-      properties:
-        title:
+        account_id:
+          type: string
+        event_id:
           type: string
         type:
           type: string
-        location_name:
+        title:
           type: string
-        address_formatted:
+        subtitle:
           type: string
-        google_place_id:
+        description:
           type: string
-        start_at:
+        slug:
           type: string
-        end_at:
+        url:
+          type: string
+        goal:
+          type:
+          - integer
+          - 'null'
+        raised:
+          type: number
+        donors:
+          type: integer
+        currency:
+          type: string
+        cover:
+          type: string
+        status:
           type: string
         timezone:
           type: string
-        details:
+        end_at:
           type: string
-        private:
-          type: string
-        tickets_required:
-          type: string
-        livestream:
-          type: string
-        livestream_start_at:
-          type: string
-        livestream_end_at:
-          type: string
+        event:
+          $ref: '#/components/schemas/EventResource'
+        settings:
+          type: array
+          items:
+            $ref: '#/components/schemas/CampaignSettingResource'
         created_at:
           type: string
         updated_at:
           type: string
       required:
-      - title
+      - id
+      - code
+      - account_id
+      - event_id
       - type
-      - location_name
-      - address_formatted
-      - google_place_id
-      - start_at
-      - end_at
+      - title
+      - subtitle
+      - description
+      - slug
+      - url
+      - goal
+      - raised
+      - donors
+      - currency
+      - cover
+      - status
       - timezone
-      - details
-      - private
-      - tickets_required
-      - livestream
-      - livestream_start_at
-      - livestream_end_at
+      - end_at
+      - settings
       - created_at
       - updated_at
-      title: EventResource
-  responses:
-    AuthorizationException:
-      description: Authorization error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
-    ValidationException:
-      description: Validation error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Errors overview.
-              errors:
-                type: object
-                description: A detailed description of each field that failed validation.
-                additionalProperties:
-                  type: array
-                  items:
-                    type: string
-            required:
-            - message
-            - errors
-    ModelNotFoundException:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
+      title: CampaignResource
   securitySchemes:
     http:
       type: http
