@@ -33,84 +33,7 @@ paths:
       summary: Sso campaigns show
       x-summary-source: derived
 components:
-  responses:
-    AuthenticationException:
-      description: Unauthenticated
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
   schemas:
-    CampaignSettingResource:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-      required:
-      - name
-      - value
-      title: CampaignSettingResource
-    EventResource:
-      type: object
-      properties:
-        title:
-          type: string
-        type:
-          type: string
-        location_name:
-          type: string
-        address_formatted:
-          type: string
-        google_place_id:
-          type: string
-        start_at:
-          type: string
-        end_at:
-          type: string
-        timezone:
-          type: string
-        details:
-          type: string
-        private:
-          type: string
-        tickets_required:
-          type: string
-        livestream:
-          type: string
-        livestream_start_at:
-          type: string
-        livestream_end_at:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - title
-      - type
-      - location_name
-      - address_formatted
-      - google_place_id
-      - start_at
-      - end_at
-      - timezone
-      - details
-      - private
-      - tickets_required
-      - livestream
-      - livestream_start_at
-      - livestream_end_at
-      - created_at
-      - updated_at
-      title: EventResource
     CampaignResource:
       type: object
       properties:
@@ -185,6 +108,83 @@ components:
       - created_at
       - updated_at
       title: CampaignResource
+    CampaignSettingResource:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      required:
+      - name
+      - value
+      title: CampaignSettingResource
+    EventResource:
+      type: object
+      properties:
+        title:
+          type: string
+        type:
+          type: string
+        location_name:
+          type: string
+        address_formatted:
+          type: string
+        google_place_id:
+          type: string
+        start_at:
+          type: string
+        end_at:
+          type: string
+        timezone:
+          type: string
+        details:
+          type: string
+        private:
+          type: string
+        tickets_required:
+          type: string
+        livestream:
+          type: string
+        livestream_start_at:
+          type: string
+        livestream_end_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - title
+      - type
+      - location_name
+      - address_formatted
+      - google_place_id
+      - start_at
+      - end_at
+      - timezone
+      - details
+      - private
+      - tickets_required
+      - livestream
+      - livestream_start_at
+      - livestream_end_at
+      - created_at
+      - updated_at
+      title: EventResource
+  responses:
+    AuthenticationException:
+      description: Unauthenticated
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
   securitySchemes:
     http:
       type: http

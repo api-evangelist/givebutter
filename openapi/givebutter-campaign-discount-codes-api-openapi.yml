@@ -264,58 +264,7 @@ paths:
         '404':
           $ref: '#/components/responses/ModelNotFoundException'
 components:
-  responses:
-    ModelNotFoundException:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
-    AuthorizationException:
-      description: Authorization error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
-    ValidationException:
-      description: Validation error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Errors overview.
-              errors:
-                type: object
-                description: A detailed description of each field that failed validation.
-                additionalProperties:
-                  type: array
-                  items:
-                    type: string
-            required:
-            - message
-            - errors
   schemas:
-    DiscountCodeType:
-      type: string
-      enum:
-      - percentage
-      - fixed
-      title: DiscountCodeType
     CampaignDiscountCodeResource:
       type: object
       properties:
@@ -364,6 +313,12 @@ components:
       - created_at
       - updated_at
       title: CampaignDiscountCodeResource
+    DiscountCodeType:
+      type: string
+      enum:
+      - percentage
+      - fixed
+      title: DiscountCodeType
     UpdateCampaignDiscountCodeRequest:
       type: object
       properties:
@@ -443,6 +398,51 @@ components:
       - amount
       - code
       title: StoreCampaignDiscountCodeRequest
+  responses:
+    AuthorizationException:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    ValidationException:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Errors overview.
+              errors:
+                type: object
+                description: A detailed description of each field that failed validation.
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+            required:
+            - message
+            - errors
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
   securitySchemes:
     http:
       type: http

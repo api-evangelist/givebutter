@@ -158,41 +158,57 @@ paths:
           $ref: '#/components/responses/ModelNotFoundException'
 components:
   schemas:
-    AddressResource:
+    PhoneResource:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      required:
+      - type
+      - value
+      title: PhoneResource
+    EmailResource:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      required:
+      - type
+      - value
+      title: EmailResource
+    HouseholdResource:
       type: object
       properties:
         id:
           type: integer
-        account_id:
+        name:
+          type: string
+        head_contact_id:
           type:
           - integer
           - 'null'
-        name:
+        account_id:
+          type: integer
+        envelope_name:
           type:
           - string
           - 'null'
-        address_1:
-          type: string
-        address_2:
+        note:
           type:
           - string
           - 'null'
-        city:
-          type: string
-        state:
-          type:
-          - string
-          - 'null'
-        zipcode:
-          type:
-          - string
-          - 'null'
-        country:
-          type: string
-        type:
-          type: string
-        is_primary:
-          type: boolean
         created_at:
           type:
           - string
@@ -203,21 +219,158 @@ components:
           - string
           - 'null'
           format: date-time
+        contacts:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              account_id:
+                type: string
+              company_name:
+                type: string
+              first_name:
+                type: string
+              first_name_display:
+                type: string
+              last_name:
+                type: string
+              last_name_display:
+                type: string
+              middle_name:
+                type: string
+              name_display:
+                type: string
+              pronouns:
+                type: string
+              primary_email:
+                type: string
+              primary_phone:
+                type: string
+              type:
+                type: string
+            required:
+            - id
+            - account_id
+            - company_name
+            - first_name
+            - first_name_display
+            - last_name
+            - last_name_display
+            - middle_name
+            - name_display
+            - pronouns
+            - primary_email
+            - primary_phone
+            - type
       required:
       - id
-      - account_id
       - name
-      - address_1
-      - address_2
-      - city
-      - state
-      - zipcode
-      - country
-      - type
-      - is_primary
+      - head_contact_id
+      - account_id
+      - envelope_name
+      - note
       - created_at
       - updated_at
-      title: AddressResource
+      title: HouseholdResource
+    PointOfContactResource:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        prefix:
+          type: string
+        first_name:
+          type: string
+        middle_name:
+          type: string
+        last_name:
+          type: string
+        suffix:
+          type: string
+        gender:
+          type: string
+        pronouns:
+          type: string
+        dob:
+          type: string
+        employer:
+          type: string
+        title:
+          type: string
+        twitter_url:
+          type: string
+        linkedin_url:
+          type: string
+        facebook_url:
+          type: string
+        tiktok_url:
+          type: string
+        instagram_url:
+          type: string
+        website_url:
+          type: string
+        emails:
+          type: object
+          additionalProperties: {}
+        phones:
+          type: object
+          additionalProperties: {}
+        primary_email:
+          type: string
+        primary_phone:
+          type: string
+        is_email_subscribed:
+          type: string
+        is_phone_subscribed:
+          type: string
+        is_address_subscribed:
+          type: string
+        address_unsubscribed_at:
+          type: string
+        archived_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        first_time_supporter_at:
+          type: string
+      required:
+      - id
+      - type
+      - prefix
+      - first_name
+      - middle_name
+      - last_name
+      - suffix
+      - gender
+      - pronouns
+      - dob
+      - employer
+      - title
+      - twitter_url
+      - linkedin_url
+      - facebook_url
+      - tiktok_url
+      - instagram_url
+      - website_url
+      - emails
+      - phones
+      - primary_email
+      - primary_phone
+      - is_email_subscribed
+      - is_phone_subscribed
+      - is_address_subscribed
+      - address_unsubscribed_at
+      - archived_at
+      - created_at
+      - updated_at
+      - first_time_supporter_at
+      title: PointOfContactResource
     ContactResource:
       type: object
       properties:
@@ -387,119 +540,7 @@ components:
       - updated_at
       - salutation_name
       title: ContactResource
-    EmailResource:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        value:
-          type:
-          - string
-          - 'null'
-      required:
-      - type
-      - value
-      title: EmailResource
-    PointOfContactResource:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        prefix:
-          type: string
-        first_name:
-          type: string
-        middle_name:
-          type: string
-        last_name:
-          type: string
-        suffix:
-          type: string
-        gender:
-          type: string
-        pronouns:
-          type: string
-        dob:
-          type: string
-        employer:
-          type: string
-        title:
-          type: string
-        twitter_url:
-          type: string
-        linkedin_url:
-          type: string
-        facebook_url:
-          type: string
-        tiktok_url:
-          type: string
-        instagram_url:
-          type: string
-        website_url:
-          type: string
-        emails:
-          type: object
-          additionalProperties: {}
-        phones:
-          type: object
-          additionalProperties: {}
-        primary_email:
-          type: string
-        primary_phone:
-          type: string
-        is_email_subscribed:
-          type: string
-        is_phone_subscribed:
-          type: string
-        is_address_subscribed:
-          type: string
-        address_unsubscribed_at:
-          type: string
-        archived_at:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-        first_time_supporter_at:
-          type: string
-      required:
-      - id
-      - type
-      - prefix
-      - first_name
-      - middle_name
-      - last_name
-      - suffix
-      - gender
-      - pronouns
-      - dob
-      - employer
-      - title
-      - twitter_url
-      - linkedin_url
-      - facebook_url
-      - tiktok_url
-      - instagram_url
-      - website_url
-      - emails
-      - phones
-      - primary_email
-      - primary_phone
-      - is_email_subscribed
-      - is_phone_subscribed
-      - is_address_subscribed
-      - address_unsubscribed_at
-      - archived_at
-      - created_at
-      - updated_at
-      - first_time_supporter_at
-      title: PointOfContactResource
-    HouseholdStoreRequest:
+    HouseholdUpdateRequest:
       type: object
       properties:
         name:
@@ -518,9 +559,7 @@ components:
           - string
           - 'null'
           maxLength: 255
-      required:
-      - name
-      title: HouseholdStoreRequest
+      title: HouseholdUpdateRequest
     AssociatedCompanyResource:
       type: object
       properties:
@@ -613,27 +652,7 @@ components:
       - updated_at
       - first_time_supporter_at
       title: AssociatedCompanyResource
-    HouseholdUpdateRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          maxLength: 255
-        head_contact_id:
-          type:
-          - integer
-          - 'null'
-        note:
-          type:
-          - string
-          - 'null'
-        envelope_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-      title: HouseholdUpdateRequest
-    HouseholdResource:
+    App.Http.Resources.API.HouseholdResource:
       type: object
       properties:
         id:
@@ -655,60 +674,13 @@ components:
           - string
           - 'null'
         created_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
+          type: string
         updated_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
+          type: string
         contacts:
           type: array
           items:
-            type: object
-            properties:
-              id:
-                type: string
-              account_id:
-                type: string
-              company_name:
-                type: string
-              first_name:
-                type: string
-              first_name_display:
-                type: string
-              last_name:
-                type: string
-              last_name_display:
-                type: string
-              middle_name:
-                type: string
-              name_display:
-                type: string
-              pronouns:
-                type: string
-              primary_email:
-                type: string
-              primary_phone:
-                type: string
-              type:
-                type: string
-            required:
-            - id
-            - account_id
-            - company_name
-            - first_name
-            - first_name_display
-            - last_name
-            - last_name_display
-            - middle_name
-            - name_display
-            - pronouns
-            - primary_email
-            - primary_phone
-            - type
+            $ref: '#/components/schemas/ContactResource'
       required:
       - id
       - name
@@ -718,22 +690,7 @@ components:
       - note
       - created_at
       - updated_at
-      title: HouseholdResource
-    PhoneResource:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        value:
-          type:
-          - string
-          - 'null'
-      required:
-      - type
-      - value
-      title: PhoneResource
+      title: App.Http.Resources.API.HouseholdResource
     App.Http.Resources.API.AddressResource:
       type: object
       properties:
@@ -781,6 +738,88 @@ components:
       - created_at
       - updated_at
       title: App.Http.Resources.API.AddressResource
+    AddressResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        account_id:
+          type:
+          - integer
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        address_1:
+          type: string
+        address_2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        state:
+          type:
+          - string
+          - 'null'
+        zipcode:
+          type:
+          - string
+          - 'null'
+        country:
+          type: string
+        type:
+          type: string
+        is_primary:
+          type: boolean
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - id
+      - account_id
+      - name
+      - address_1
+      - address_2
+      - city
+      - state
+      - zipcode
+      - country
+      - type
+      - is_primary
+      - created_at
+      - updated_at
+      title: AddressResource
+    HouseholdStoreRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        head_contact_id:
+          type:
+          - integer
+          - 'null'
+        note:
+          type:
+          - string
+          - 'null'
+        envelope_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+      required:
+      - name
+      title: HouseholdStoreRequest
     ExternalIdResource:
       type: object
       properties:
@@ -801,58 +840,7 @@ components:
       - created_at
       - updated_at
       title: ExternalIdResource
-    App.Http.Resources.API.HouseholdResource:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        head_contact_id:
-          type:
-          - integer
-          - 'null'
-        account_id:
-          type: integer
-        envelope_name:
-          type:
-          - string
-          - 'null'
-        note:
-          type:
-          - string
-          - 'null'
-        created_at:
-          type: string
-        updated_at:
-          type: string
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContactResource'
-      required:
-      - id
-      - name
-      - head_contact_id
-      - account_id
-      - envelope_name
-      - note
-      - created_at
-      - updated_at
-      title: App.Http.Resources.API.HouseholdResource
   responses:
-    ModelNotFoundException:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
     AuthorizationException:
       description: Authorization error
       content:
@@ -885,6 +873,18 @@ components:
             required:
             - message
             - errors
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
   securitySchemes:
     http:
       type: http

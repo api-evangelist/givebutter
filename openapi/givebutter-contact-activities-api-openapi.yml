@@ -254,48 +254,6 @@ paths:
           $ref: '#/components/responses/ModelNotFoundException'
 components:
   schemas:
-    MessageResource:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-        channel:
-          type: string
-        internal_name:
-          type: string
-        subject:
-          type: string
-        preheader:
-          type: string
-        body:
-          type: string
-        recipient_filters:
-          type: string
-        recipient_count:
-          type: string
-        sent_at:
-          type: string
-        sending_at:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - status
-      - channel
-      - internal_name
-      - body
-      - recipient_filters
-      - recipient_count
-      - sent_at
-      - sending_at
-      - created_at
-      - updated_at
-      title: MessageResource
     RecurringPlanResource:
       type: object
       properties:
@@ -349,6 +307,26 @@ components:
       - canceled_at
       - next_bill_date
       title: RecurringPlanResource
+    ExternalIdResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        external_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - label
+      - external_id
+      - created_at
+      - updated_at
+      title: ExternalIdResource
     TransactionResource:
       anyOf:
       - type: object
@@ -591,172 +569,6 @@ components:
         - is_recurring
         - payout_id
       title: TransactionResource
-    StoreContactActivityRequest:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - email
-          - meeting
-          - note
-          - phone_call
-          - sms
-          - completed_task
-          - volunteer_activity
-        note:
-          type:
-          - string
-          - 'null'
-        subject:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        occurred_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        timezone:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-      required:
-      - type
-      title: StoreContactActivityRequest
-    DedicationResource:
-      type: object
-      properties:
-        type:
-          type: string
-        name:
-          type: string
-        recipient:
-          type: object
-          properties:
-            name:
-              type:
-              - string
-              - 'null'
-            email:
-              type:
-              - string
-              - 'null'
-          required:
-          - name
-          - email
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - type
-      - name
-      - recipient
-      - created_at
-      - updated_at
-      title: DedicationResource
-    ContactActivityTypeEnum:
-      type: string
-      enum:
-      - archived
-      - campaign.joined
-      - email
-      - email.subscribed
-      - email.unsubscribed
-      - letter
-      - meeting
-      - note
-      - phone_call
-      - recurring_plan.canceled
-      - recurring_plan.created
-      - recurring_plan.activated
-      - signup_form.submitted
-      - sms
-      - sms.subscribed
-      - sms.unsubscribed
-      - subscription_form.submitted
-      - completed_task
-      - created_task
-      - ticket.issued
-      - transaction.recieved
-      - transaction.succeeded
-      - transaction.acknowledged
-      - transaction.unacknowledged
-      - unarchived
-      - volunteer_activity
-      - soft_credited
-      - tagged
-      - untagged
-      - custom_field.updated
-      - video_message.sent
-      - video_message.deleted
-      title: ContactActivityTypeEnum
-    TransactionLineItemResource:
-      type: object
-      properties:
-        type:
-          type: string
-        subtype:
-          type: string
-        description:
-          type: string
-        quantity:
-          type: integer
-        price:
-          type: number
-        discount:
-          type: number
-        total:
-          type: number
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - type
-      - subtype
-      - description
-      - quantity
-      - price
-      - discount
-      - total
-      - created_at
-      - updated_at
-      title: TransactionLineItemResource
-    CustomFieldResponseResource:
-      type: object
-      properties:
-        id:
-          type: integer
-        field_id:
-          type: integer
-        title:
-          type: string
-        description:
-          type:
-          - string
-          - 'null'
-        type:
-          type: string
-        value:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - field_id
-      - title
-      - description
-      - type
-      - value
-      - created_at
-      - updated_at
-      title: CustomFieldResponseResource
     ContactActivityResource:
       type: object
       properties:
@@ -813,6 +625,109 @@ components:
       - created_at
       - updated_at
       title: ContactActivityResource
+    PublicUserResource:
+      type: object
+      properties:
+        id:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+      required:
+      - id
+      - first_name
+      - last_name
+      - email
+      title: PublicUserResource
+    DedicationResource:
+      type: object
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        recipient:
+          type: object
+          properties:
+            name:
+              type:
+              - string
+              - 'null'
+            email:
+              type:
+              - string
+              - 'null'
+          required:
+          - name
+          - email
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - type
+      - name
+      - recipient
+      - created_at
+      - updated_at
+      title: DedicationResource
+    CustomFieldResponseResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        field_id:
+          type: integer
+        title:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        type:
+          type: string
+        value:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - field_id
+      - title
+      - description
+      - type
+      - value
+      - created_at
+      - updated_at
+      title: CustomFieldResponseResource
+    GivingSpaceResource:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          type: number
+        message:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - name
+      - amount
+      - message
+      - created_at
+      - updated_at
+      title: GivingSpaceResource
     TicketResource:
       type: object
       properties:
@@ -873,79 +788,152 @@ components:
       - updated_at
       - retail_price
       title: TicketResource
-    PublicUserResource:
+    MessageResource:
       type: object
       properties:
         id:
           type: string
-        first_name:
+        status:
           type: string
-        last_name:
+        channel:
           type: string
-        email:
+        internal_name:
+          type: string
+        subject:
+          type: string
+        preheader:
+          type: string
+        body:
+          type: string
+        recipient_filters:
+          type: string
+        recipient_count:
+          type: string
+        sent_at:
+          type: string
+        sending_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
           type: string
       required:
       - id
-      - first_name
-      - last_name
-      - email
-      title: PublicUserResource
-    ExternalIdResource:
+      - status
+      - channel
+      - internal_name
+      - body
+      - recipient_filters
+      - recipient_count
+      - sent_at
+      - sending_at
+      - created_at
+      - updated_at
+      title: MessageResource
+    TransactionLineItemResource:
       type: object
       properties:
-        id:
+        type:
+          type: string
+        subtype:
+          type: string
+        description:
+          type: string
+        quantity:
           type: integer
-        label:
-          type: string
-        external_id:
-          type: string
+        price:
+          type: number
+        discount:
+          type: number
+        total:
+          type: number
         created_at:
           type: string
         updated_at:
           type: string
       required:
-      - id
-      - label
-      - external_id
+      - type
+      - subtype
+      - description
+      - quantity
+      - price
+      - discount
+      - total
       - created_at
       - updated_at
-      title: ExternalIdResource
-    GivingSpaceResource:
+      title: TransactionLineItemResource
+    StoreContactActivityRequest:
       type: object
       properties:
-        id:
+        type:
           type: string
-        name:
-          type: string
-        amount:
-          type: number
-        message:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
+          enum:
+          - email
+          - meeting
+          - note
+          - phone_call
+          - sms
+          - completed_task
+          - volunteer_activity
+        note:
+          type:
+          - string
+          - 'null'
+        subject:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        occurred_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        timezone:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
       required:
-      - id
-      - name
-      - amount
-      - message
-      - created_at
-      - updated_at
-      title: GivingSpaceResource
+      - type
+      title: StoreContactActivityRequest
+    ContactActivityTypeEnum:
+      type: string
+      enum:
+      - archived
+      - campaign.joined
+      - email
+      - email.subscribed
+      - email.unsubscribed
+      - letter
+      - meeting
+      - note
+      - phone_call
+      - recurring_plan.canceled
+      - recurring_plan.created
+      - recurring_plan.activated
+      - signup_form.submitted
+      - sms
+      - sms.subscribed
+      - sms.unsubscribed
+      - subscription_form.submitted
+      - completed_task
+      - created_task
+      - ticket.issued
+      - transaction.recieved
+      - transaction.succeeded
+      - transaction.acknowledged
+      - transaction.unacknowledged
+      - unarchived
+      - volunteer_activity
+      - soft_credited
+      - tagged
+      - untagged
+      - custom_field.updated
+      - video_message.sent
+      - video_message.deleted
+      title: ContactActivityTypeEnum
   responses:
-    ModelNotFoundException:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
     AuthorizationException:
       description: Authorization error
       content:
@@ -978,6 +966,18 @@ components:
             required:
             - message
             - errors
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
   securitySchemes:
     http:
       type: http

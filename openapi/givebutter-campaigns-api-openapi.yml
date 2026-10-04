@@ -233,51 +233,6 @@ paths:
         '404':
           $ref: '#/components/responses/ModelNotFoundException'
 components:
-  responses:
-    ModelNotFoundException:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
-    AuthorizationException:
-      description: Authorization error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
-    ValidationException:
-      description: Validation error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Errors overview.
-              errors:
-                type: object
-                description: A detailed description of each field that failed validation.
-                additionalProperties:
-                  type: array
-                  items:
-                    type: string
-            required:
-            - message
-            - errors
   schemas:
     EventResource:
       type: object
@@ -332,6 +287,80 @@ components:
       - created_at
       - updated_at
       title: EventResource
+    CampaignResource:
+      type: object
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        account_id:
+          type: string
+        event_id:
+          type: string
+        type:
+          type: string
+        title:
+          type: string
+        subtitle:
+          type: string
+        description:
+          type: string
+        slug:
+          type: string
+        url:
+          type: string
+        goal:
+          type:
+          - integer
+          - 'null'
+        raised:
+          type: number
+        donors:
+          type: integer
+        currency:
+          type: string
+        cover:
+          type: string
+        status:
+          type: string
+        timezone:
+          type: string
+        end_at:
+          type: string
+        event:
+          $ref: '#/components/schemas/EventResource'
+        settings:
+          type: array
+          items:
+            $ref: '#/components/schemas/CampaignSettingResource'
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - code
+      - account_id
+      - event_id
+      - type
+      - title
+      - subtitle
+      - description
+      - slug
+      - url
+      - goal
+      - raised
+      - donors
+      - currency
+      - cover
+      - status
+      - timezone
+      - end_at
+      - settings
+      - created_at
+      - updated_at
+      title: CampaignResource
     CampaignSettingResource:
       type: object
       properties:
@@ -2029,80 +2058,51 @@ components:
             discriminator:
               propertyName: name
       title: UpdateCampaignRequest
-    CampaignResource:
-      type: object
-      properties:
-        id:
-          type: string
-        code:
-          type: string
-        account_id:
-          type: string
-        event_id:
-          type: string
-        type:
-          type: string
-        title:
-          type: string
-        subtitle:
-          type: string
-        description:
-          type: string
-        slug:
-          type: string
-        url:
-          type: string
-        goal:
-          type:
-          - integer
-          - 'null'
-        raised:
-          type: number
-        donors:
-          type: integer
-        currency:
-          type: string
-        cover:
-          type: string
-        status:
-          type: string
-        timezone:
-          type: string
-        end_at:
-          type: string
-        event:
-          $ref: '#/components/schemas/EventResource'
-        settings:
-          type: array
-          items:
-            $ref: '#/components/schemas/CampaignSettingResource'
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - code
-      - account_id
-      - event_id
-      - type
-      - title
-      - subtitle
-      - description
-      - slug
-      - url
-      - goal
-      - raised
-      - donors
-      - currency
-      - cover
-      - status
-      - timezone
-      - end_at
-      - settings
-      - created_at
-      - updated_at
-      title: CampaignResource
+  responses:
+    AuthorizationException:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    ValidationException:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Errors overview.
+              errors:
+                type: object
+                description: A detailed description of each field that failed validation.
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+            required:
+            - message
+            - errors
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
   securitySchemes:
     http:
       type: http

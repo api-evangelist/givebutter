@@ -287,6 +287,18 @@ paths:
           $ref: '#/components/responses/ModelNotFoundException'
 components:
   responses:
+    AuthorizationException:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
     ModelNotFoundException:
       description: Not found
       content:
@@ -319,18 +331,6 @@ components:
             required:
             - message
             - errors
-    AuthorizationException:
-      description: Authorization error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
   schemas:
     WebhookResource:
       type: object
