@@ -1,0 +1,65 @@
+slug: givebutter
+provider: Givebutter
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Contacts
+  spec_file: givebutter-contacts-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.85
+  evidence: GET /v1/contacts 'List all contacts', POST /v1/contacts 'Create a contact', schemas ContactResource,
+    EmailResource, AddressResource, ExternalIdResource
+  reason: Full CRUD plus restore over contact master records with emails, addresses and external ids in
+    a donor CRM is customer/contact data management.
+- tag: Webhooks
+  spec_file: givebutter-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.82
+  evidence: GET /v1/webhooks webhooks.index 'List all webhooks'; POST /v1/webhooks 'Create a webhook';
+    schema WebhookResource
+  reason: The operations are full CRUD over outbound webhook subscriptions exposed to API consumers, which
+    is exactly the Webhook & Event Subscription Management sub-capability of the developer/API ecosystem
+    L1. It is integration plumbing, but the frame contains an explicit capability for it.
+- tag: Household Contacts
+  spec_file: givebutter-household-contacts-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.8
+  evidence: POST /v1/households/{household}/contacts  households.contacts.store  Add a contact to a household;
+    schemas ContactResource, PointOfContactResource, AssociatedCompanyResource
+  reason: Operations manage the relationship between donor contact records and household groupings in
+    the donor CRM — constituent/customer master data and identity grouping, i.e. Customer Data Management.
+- tag: Households
+  spec_file: givebutter-households-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.8
+  evidence: GET /v1/households  households.index  List all households; schemas HouseholdResource, ContactResource,
+    AddressResource, EmailResource
+  reason: CRUD over household records aggregating donor contacts, addresses, emails and phones — the golden-record/master
+    data layer of the donor CRM, which is Customer Data Management.
+- tag: Campaign Discount Codes
+  spec_file: givebutter-campaign-discount-codes-api-openapi.yml
+  capability_id: BC-440.30
+  capability_id_l1: BC-440
+  capability_name: Discount & Promotion Management
+  confidence: 0.76
+  evidence: POST /v1/campaigns/{campaign}/discount-codes  'Create a discount code', schema DiscountCodeType
+  reason: Lifecycle management of discount codes applied to campaign purchases/tickets is discount and
+    promotion management.
