@@ -1,0 +1,488 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/givebutter/integrations
+- https://composio.dev/toolkits/givebutter
+checked:
+- https://composio.dev/toolkits/givebutter
+- https://monid.ai/tools/givebutter
+- https://n8n.io/integrations/givebutter/
+- https://zapier.com/apps/givebutter/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: givebutter
+  url: https://zapier.com/apps/givebutter/integrations
+  external_url: https://givebutter.com/
+  partner_tier: BRONZE
+  triggers:
+  - key: new_campaign
+    label: New Campaign
+  - key: new_ticket
+    label: New Ticket
+  - key: new_transaction
+    label: New Transaction
+  - key: updated_campaign
+    label: Updated Campaign
+  actions:
+  - key: create_contact
+    label: Create Contact
+  searches: []
+- marketplace: composio
+  channel: agent-gateway
+  app: givebutter
+  url: https://composio.dev/toolkits/givebutter
+  identity: action-prefix
+  actions:
+  - key: GIVEBUTTER_ADD_CONTACT_TAGS
+  - key: GIVEBUTTER_ADD_HOUSEHOLD_CONTACT
+  - key: GIVEBUTTER_ARCHIVE_CONTACT
+  - key: GIVEBUTTER_CREATE_CAMPAIGN
+  - key: GIVEBUTTER_CREATE_CAMPAIGN_TICKET
+  - key: GIVEBUTTER_CREATE_CONTACT
+  - key: GIVEBUTTER_CREATE_CONTACT_ACTIVITY
+  - key: GIVEBUTTER_CREATE_DISCOUNT_CODE
+  - key: GIVEBUTTER_CREATE_FUND
+  - key: GIVEBUTTER_CREATE_HOUSEHOLD
+  - key: GIVEBUTTER_CREATE_TRANSACTION
+  - key: GIVEBUTTER_CREATE_WEBHOOK
+  - key: GIVEBUTTER_DELETE_CAMPAIGN
+  - key: GIVEBUTTER_DELETE_CONTACT_ACTIVITY
+  - key: GIVEBUTTER_DELETE_DISCOUNT_CODE
+  - key: GIVEBUTTER_DELETE_FUND
+  - key: GIVEBUTTER_DELETE_HOUSEHOLD
+  - key: GIVEBUTTER_DELETE_WEBHOOK
+  - key: GIVEBUTTER_GET_CAMPAIGN
+  - key: GIVEBUTTER_GET_CAMPAIGN_TICKET
+  - key: GIVEBUTTER_GET_CONTACT
+  - key: GIVEBUTTER_GET_CONTACT_ACTIVITY
+  - key: GIVEBUTTER_GET_DISCOUNT_CODE
+  - key: GIVEBUTTER_GET_FUND
+  - key: GIVEBUTTER_GET_HOUSEHOLD
+  - key: GIVEBUTTER_GET_MEMBERS
+  - key: GIVEBUTTER_GET_PAYOUTS
+  - key: GIVEBUTTER_GET_PLANS
+  - key: GIVEBUTTER_GET_TEAMS
+  - key: GIVEBUTTER_GET_TICKETS
+  - key: GIVEBUTTER_GET_TRANSACTIONS
+  - key: GIVEBUTTER_GET_WEBHOOK
+  - key: GIVEBUTTER_GET_WEBHOOKS
+  - key: GIVEBUTTER_GET_WEBHOOK_ACTIVITY
+  - key: GIVEBUTTER_LIST_CAMPAIGNS
+  - key: GIVEBUTTER_LIST_CAMPAIGN_TICKETS
+  - key: GIVEBUTTER_LIST_CONTACTS
+  - key: GIVEBUTTER_LIST_CONTACT_ACTIVITIES
+  - key: GIVEBUTTER_LIST_DISCOUNT_CODES
+  - key: GIVEBUTTER_LIST_FUNDS
+  - key: GIVEBUTTER_LIST_HOUSEHOLDS
+  - key: GIVEBUTTER_LIST_HOUSEHOLD_CONTACTS
+  - key: GIVEBUTTER_LIST_MESSAGES
+  - key: GIVEBUTTER_LIST_PLEDGES
+  - key: GIVEBUTTER_LIST_WEBHOOK_ACTIVITIES
+  - key: GIVEBUTTER_REMOVE_CONTACT_TAGS
+  - key: GIVEBUTTER_RESTORE_CONTACT
+  - key: GIVEBUTTER_SYNC_CONTACT_TAGS
+  - key: GIVEBUTTER_UPDATE_CAMPAIGN
+  - key: GIVEBUTTER_UPDATE_CAMPAIGN_PUT
+  - key: GIVEBUTTER_UPDATE_CONTACT
+  - key: GIVEBUTTER_UPDATE_CONTACT_ACTIVITY
+  - key: GIVEBUTTER_UPDATE_CONTACT_PUT
+  - key: GIVEBUTTER_UPDATE_DISCOUNT_CODE
+  - key: GIVEBUTTER_UPDATE_FUND
+  - key: GIVEBUTTER_UPDATE_HOUSEHOLD
+  - key: GIVEBUTTER_UPDATE_WEBHOOK
+  - key: GIVEBUTTER_UPDATE_WEBHOOK_PUT
+edges:
+- partner_name: Mailchimp
+  partner: mailchimp
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/mailchimp
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://mailchimp.com/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: Little Green Light
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/little-green-light
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: http://www.littlegreenlight.com/
+- partner_name: Gmail
+  partner: gmail
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/gmail
+  direction: third-party
+  category: Email
+  partner_url: https://mail.google.com/
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Constant Contact
+  partner: constant-contact
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/constant-contact
+  direction: third-party
+  category: Email Newsletters
+  partner_url: http://www.constantcontact.com/signup.jsp?pn=zapier
+- partner_name: QuickBooks Online
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/quickbooks
+  direction: third-party
+  category: Accounting
+  partner_url: http://intuit.com/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: Salesforce
+  partner: salesforce
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/salesforce
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.salesforce.com/
+- partner_name: monday.com
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/monday
+  direction: third-party
+  category: Project Management
+  partner_url: https://monday.com/
+- partner_name: Squarespace Forms
+  partner: squarespace
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/squarespace-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.squarespace.com/
+- partner_name: Google Forms
+  partner: google-forms
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/google-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://google.com/
+- partner_name: NeonCRM
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/neoncrm
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.neoncrm.com/
+- partner_name: Zoom
+  partner: zoom
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/zoom
+  direction: third-party
+  category: Video Conferencing
+  partner_url: https://www.zoom.us/
+- partner_name: Spektrix
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/spektrix
+  direction: third-party
+  category: Sales & CRM
+  partner_url: https://www.spektrix.com/
+- partner_name: Flodesk
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/flodesk
+  direction: third-party
+  category: Email Newsletters
+  partner_url: https://flodesk.com/
+- partner_name: LeadConnector
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/leadconnector
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.leadconnectorhq.com/
+- partner_name: Gravity Forms
+  partner: gravity-forms
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/gravity-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.gravityforms.com/?utm_campaign=partners&utm_source=zapier-listing-learn-more&utm_medium=free-placement
+- partner_name: Slack
+  partner: slack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/slack
+  direction: third-party
+  category: Team Chat
+  partner_url: https://slack.com/
+- partner_name: Wix
+  partner: wix
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/wix
+  direction: third-party
+  category: Website Builders
+  partner_url: https://www.wix.com/
+- partner_name: Jotform
+  partner: jotform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/jotform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://www.jotform.com/
+- partner_name: Brevo
+  partner: brevo
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/brevo
+  direction: third-party
+  category: Email Newsletters
+  partner_url: https://www.sendinblue.com/?utm_medium=plugin&utm_source=zapier
+- partner_name: Bloomerang
+  partner: bloomerang
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/bloomerang
+  direction: third-party
+  category: Fundraising
+  partner_url: https://bloomerang.co/
+- partner_name: Microsoft Excel
+  partner: null
+  partner_match: null
+  partner_candidate: zapier
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/excel
+  direction: third-party
+  category: Microsoft
+  partner_url: https://zapier.com/office.com
+- partner_name: Notion
+  partner: notion
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/notion
+  direction: third-party
+  category: Task Management
+  partner_url: https://www.notion.so/
+- partner_name: PayPal
+  partner: paypal
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/paypal
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://www.paypal.com/
+- partner_name: Eventbrite
+  partner: eventbrite
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/eventbrite
+  direction: third-party
+  category: Event Management
+  partner_url: https://eventbrite.com/
+- partner_name: Levitate
+  partner: levitate
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/levitate
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://levitate.ai/
+- partner_name: EveryAction
+  partner: bonterra-fka-everyaction
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/everyaction
+  direction: third-party
+  category: Contact Management
+  partner_url: https://www.everyaction.com/
+- partner_name: Xero
+  partner: xero
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/givebutter/integrations/xero
+  direction: third-party
+  category: Accounting
+  partner_url: https://xero5440.partnerlinks.io/uvwuuwrxyoi8
+templates:
+- title: Update subscribers in Mailchimp for new Givebutter transactions
+  url: https://zapier.com/apps/givebutter/integrations/mailchimp/352357/update-subscribers-in-mailchimp-for-new-givebutter-transactions
+  apps:
+  - givebutter
+  - mailchimp
+- title: Add gift records in Little Green Light for new Givebutter transactions
+  url: https://zapier.com/apps/givebutter/integrations/little-green-light/1000412/add-gift-records-in-little-green-light-for-new-givebutter-transactions
+  apps:
+  - givebutter
+  - little-green-light
+- title: Create and update contacts in Salesforce for new Givebutter transactions
+  url: https://zapier.com/apps/givebutter/integrations/salesforce/356427/create-and-update-contacts-in-salesforce-for-new-givebutter-transactions
+  apps:
+  - givebutter
+  - salesforce
+- title: Add rows to Google Sheets for new Givebutter transactions
+  url: https://zapier.com/apps/givebutter/integrations/google-sheets/356447/add-rows-to-google-sheets-for-new-givebutter-transactions
+  apps:
+  - givebutter
+  - google-sheets
+- title: Create contacts in Constant Contact with new transactions in Givebutter
+  url: https://zapier.com/apps/constant-contact/integrations/givebutter/355202/create-contacts-in-constant-contact-with-new-transactions-in-givebutter
+  apps:
+  - givebutter
+  - constant-contact
+- title: Add new Mailchimp subscribers as Givebutter contacts
+  url: https://zapier.com/apps/givebutter/integrations/mailchimp/761667/add-new-mailchimp-subscribers-as-givebutter-contacts
+  apps:
+  - mailchimp
+  - givebutter
+- title: Create and update contacts in HubSpot for new Givebutter transactions
+  url: https://zapier.com/apps/givebutter/integrations/hubspot/356420/create-and-update-contacts-in-hubspot-for-new-givebutter-transactions
+  apps:
+  - givebutter
+  - hubspot
+- title: Create sales receipts in QuickBooks Online for new Givebutter transactions
+  url: https://zapier.com/apps/givebutter/integrations/quickbooks/1407181/create-sales-receipts-in-quickbooks-online-for-new-givebutter-transactions
+  apps:
+  - givebutter
+  - quickbooks
+- title: Create Salesforce records from new Givebutter transactions
+  url: https://zapier.com/apps/givebutter/integrations/salesforce/1604521/create-salesforce-records-from-new-givebutter-transactions
+  apps:
+  - givebutter
+  - salesforce
+- title: Add new Givebutter transactions as payments in QuickBooks Online
+  url: https://zapier.com/apps/givebutter/integrations/quickbooks/356436/add-new-givebutter-transactions-as-payments-in-quickbooks-online
+  apps:
+  - givebutter
+  - quickbooks
+- title: Create Givebutter contacts from new Squarespace Forms form submissions
+  url: https://zapier.com/apps/givebutter/integrations/squarespace-forms/1260554/create-givebutter-contacts-from-new-squarespace-forms-form-submissions
+  apps:
+  - squarespace-forms
+  - givebutter
+- title: Create Airtable records for new Givebutter transactions
+  url: https://zapier.com/apps/airtable/integrations/givebutter/1221219/create-airtable-records-for-new-givebutter-transactions
+  apps:
+  - givebutter
+  - airtable
+template_total: 248
