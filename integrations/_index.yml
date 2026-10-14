@@ -182,7 +182,6 @@
   arazzo: null
 - slug: givebutter-monday-com
   label: monday.com
-  partner: monday-com
   partner_name: monday.com
   category: Project Management
   type: marketplace
@@ -190,7 +189,7 @@
   channel: ipaas-usage
   evidence: https://zapier.com/apps/givebutter/integrations/monday
   source: edge
-  status: pending-generation
+  status: pending-partner-spec
   arazzo: null
 - slug: givebutter-google-forms
   label: Google Forms
@@ -334,7 +333,6 @@
   arazzo: null
 - slug: givebutter-microsoft-excel
   label: Microsoft Excel
-  partner: microsoft-excel
   partner_name: Microsoft Excel
   category: Microsoft
   type: marketplace
@@ -342,7 +340,7 @@
   channel: ipaas-usage
   evidence: https://zapier.com/apps/givebutter/integrations/excel
   source: edge
-  status: pending-generation
+  status: pending-partner-spec
   arazzo: null
 - slug: givebutter-notion
   label: Notion
@@ -402,7 +400,7 @@
   channel: ipaas-usage
   evidence: https://zapier.com/apps/givebutter/integrations/everyaction
   source: edge
-  status: pending-partner-spec
+  status: pending-generation
   arazzo: null
 - slug: givebutter-xero
   label: Xero
@@ -415,4 +413,227 @@
   evidence: https://zapier.com/apps/givebutter/integrations/xero
   source: edge
   status: pending-generation
+  arazzo: null
+- slug: givebutter-meta
+  label: meta
+  partner_name: meta
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/meta
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-double-the-donation
+  label: double-the-donation
+  partner_name: double-the-donation
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/double-the-donation
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-thankview
+  label: thankview
+  partner_name: thankview
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/thankview
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-blackbaud
+  label: blackbaud
+  partner_name: blackbaud
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/blackbaud
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-bloomerang
+  label: bloomerang
+  partner_name: bloomerang
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/bloomerang
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-canva
+  label: canva
+  partner_name: canva
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/canva
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-donorsearch
+  label: donorsearch
+  partner_name: donorsearch
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/donorsearch
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-facebook
+  label: facebook
+  partner_name: facebook
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/facebook
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-godaddy
+  label: godaddy
+  partner_name: godaddy
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/godaddy
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-instagram
+  label: instagram
+  partner_name: instagram
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/instagram
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-linkedin
+  label: linkedin
+  partner_name: linkedin
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/linkedin
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-monday
+  label: monday
+  partner: monday-com
+  partner_name: monday
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/monday
+  source: edge
+  relationship: integration
+  status: pending-generation
+  arazzo: null
+- slug: givebutter-point
+  label: point
+  partner_name: point
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/point
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-squarespace
+  label: squarespace
+  partner: squarespace
+  partner_name: squarespace
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/squarespace
+  source: edge
+  relationship: integration
+  status: pending-generation
+  arazzo: null
+- slug: givebutter-storyraise
+  label: storyraise
+  partner_name: storyraise
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/storyraise
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-twitch
+  label: twitch
+  partner_name: twitch
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/twitch
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-twitter
+  label: twitter
+  partner_name: twitter
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/twitter
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-weebly
+  label: weebly
+  partner_name: weebly
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/weebly
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-whatsapp
+  label: whatsapp
+  partner_name: whatsapp
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/whatsapp
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-wix
+  label: wix
+  partner: wix
+  partner_name: wix
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/wix
+  source: edge
+  relationship: integration
+  status: pending-generation
+  arazzo: null
+- slug: givebutter-wordpress
+  label: wordpress
+  partner_name: wordpress
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/wordpress
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
+  arazzo: null
+- slug: givebutter-youtube
+  label: youtube
+  partner_name: youtube
+  type: claimed
+  channel: claimed
+  evidence: https://givebutter.com/integrations/youtube
+  source: edge
+  relationship: integration
+  status: pending-partner-spec
   arazzo: null
