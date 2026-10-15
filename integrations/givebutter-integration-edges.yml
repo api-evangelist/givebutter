@@ -4,6 +4,7 @@ source:
 - https://zapier.com/apps/givebutter/integrations
 - https://composio.dev/toolkits/givebutter
 checked:
+- https://a2aregistry.org/api/agents
 - https://composio.dev/toolkits/givebutter
 - https://givebutter.com/integrations
 - https://monid.ai/tools/givebutter
@@ -689,6 +690,39 @@ edges:
   partner_domain: semrush.com
   detected_by: sweep-nonprofit.py
   detected: '2026-10-14'
+- partner_name: A2A protocol (own Agent Card)
+  partner: null
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: A2A agent
+  evidence: https://docs.givebutter.com/.well-known/agent-card.json
+  channel: provider-built
+  relationship: compatible
+  shape: a2a
+  evidence_kind: own-wellknown
+  degree: conformant
+  report_only: true
+  a2a_card:
+    grade: conformant
+    verdict: live
+    protocol_version: '0.3'
+    deviations:
+    - supportedInterfaces-instead-of-additionalInterfaces
+    card_subject: docs
+  contract_reference:
+    register: provider's own /.well-known/agent-card.json
+    spec_file: null
+    standard: A2A
+    role: a2a-agent-card
+    registered_name: Givebutter
+    organization: Givebutter
+    matched_domain: givebutter.com
+    matched_by: own-domain
+    detected_by: sweep-ai-agents.py
+    detected: '2026-10-15'
+  detected_by: sweep-ai-agents.py
+  first_seen: '2026-10-15'
 templates:
 - title: Update subscribers in Mailchimp for new Givebutter transactions
   url: https://zapier.com/apps/givebutter/integrations/mailchimp/352357/update-subscribers-in-mailchimp-for-new-givebutter-transactions
