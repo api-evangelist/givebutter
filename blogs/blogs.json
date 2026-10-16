@@ -2,10 +2,10 @@
   "repo": "givebutter",
   "feeds": [
     {
-      "source": "https://help.givebutter.com/en/",
-      "feed_url": "https://help.givebutter.com/en/feed.xml",
+      "source": "https://givebutter.com/blog",
+      "feed_url": "https://givebutter.com/blog/rss.xml",
       "title": "",
-      "saved": 0,
+      "saved": 11,
       "method": "discovered"
     },
     {
@@ -16,6 +16,6 @@
       "method": "feed"
     }
   ],
-  "post_count": 62,
-  "fetched": "2026-10-03T12:30:02Z"
+  "post_count": 83,
+  "fetched": "2026-10-10T13:15:00Z"
 }
