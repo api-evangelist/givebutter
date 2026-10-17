@@ -313,50 +313,6 @@ components:
       - created_at
       - updated_at
       title: CampaignDiscountCodeResource
-    DiscountCodeType:
-      type: string
-      enum:
-      - percentage
-      - fixed
-      title: DiscountCodeType
-    UpdateCampaignDiscountCodeRequest:
-      type: object
-      properties:
-        items:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        amount:
-          type: number
-          minimum: 1
-          maximum: 100
-        type:
-          $ref: '#/components/schemas/DiscountCodeType'
-        active:
-          type: boolean
-        code:
-          type: string
-          maxLength: 255
-        uses:
-          type:
-          - number
-          - 'null'
-          minimum: 1
-        starts_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        expires_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      required:
-      - amount
-      title: UpdateCampaignDiscountCodeRequest
     StoreCampaignDiscountCodeRequest:
       type: object
       properties:
@@ -398,7 +354,63 @@ components:
       - amount
       - code
       title: StoreCampaignDiscountCodeRequest
+    UpdateCampaignDiscountCodeRequest:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        amount:
+          type: number
+          minimum: 1
+          maximum: 100
+        type:
+          $ref: '#/components/schemas/DiscountCodeType'
+        active:
+          type: boolean
+        code:
+          type: string
+          maxLength: 255
+        uses:
+          type:
+          - number
+          - 'null'
+          minimum: 1
+        starts_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        expires_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - amount
+      title: UpdateCampaignDiscountCodeRequest
+    DiscountCodeType:
+      type: string
+      enum:
+      - percentage
+      - fixed
+      title: DiscountCodeType
   responses:
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
     AuthorizationException:
       description: Authorization error
       content:
@@ -431,18 +443,6 @@ components:
             required:
             - message
             - errors
-    ModelNotFoundException:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
   securitySchemes:
     http:
       type: http

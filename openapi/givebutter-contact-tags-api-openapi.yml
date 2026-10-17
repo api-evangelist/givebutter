@@ -135,36 +135,6 @@ paths:
           $ref: '#/components/responses/AuthorizationException'
 components:
   schemas:
-    PhoneResource:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        value:
-          type:
-          - string
-          - 'null'
-      required:
-      - type
-      - value
-      title: PhoneResource
-    EmailResource:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        value:
-          type:
-          - string
-          - 'null'
-      required:
-      - type
-      - value
-      title: EmailResource
     PointOfContactResource:
       type: object
       properties:
@@ -262,175 +232,6 @@ components:
       - updated_at
       - first_time_supporter_at
       title: PointOfContactResource
-    ContactResource:
-      type: object
-      properties:
-        id:
-          type: string
-        external_id:
-          type: string
-        contact_since:
-          type: string
-        type:
-          type: string
-        prefix:
-          type: string
-        first_name:
-          type: string
-        preferred_name:
-          type: string
-        middle_name:
-          type: string
-        last_name:
-          type: string
-        suffix:
-          type: string
-        gender:
-          type: string
-        pronouns:
-          type: string
-        dob:
-          type: string
-        company:
-          type: string
-        employer:
-          type: string
-        company_name:
-          type: string
-        point_of_contact:
-          anyOf:
-          - $ref: '#/components/schemas/PointOfContactResource'
-          - type: 'null'
-        associated_companies:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AssociatedCompanyResource'
-        title:
-          type: string
-        website_url:
-          type: string
-        twitter_url:
-          type: string
-        linkedin_url:
-          type: string
-        facebook_url:
-          type: string
-        tiktok_url:
-          type: string
-        instagram_url:
-          type: string
-        emails:
-          type: array
-          items:
-            $ref: '#/components/schemas/EmailResource'
-        phones:
-          type: array
-          items:
-            $ref: '#/components/schemas/PhoneResource'
-        primary_email:
-          type: string
-        primary_phone:
-          type: string
-        note:
-          type: string
-        addresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/App.Http.Resources.API.AddressResource'
-        primary_address:
-          anyOf:
-          - $ref: '#/components/schemas/App.Http.Resources.API.AddressResource'
-          - type: 'null'
-        last_donation_amount:
-          type: string
-        stats:
-          type: object
-          properties:
-            total_contributions:
-              type: string
-            recurring_contributions:
-              type: string
-          required:
-          - total_contributions
-          - recurring_contributions
-        tags:
-          type: string
-        custom_fields:
-          type: array
-          items: {}
-        external_ids:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalIdResource'
-        is_email_subscribed:
-          type: string
-        is_phone_subscribed:
-          type: string
-        is_address_subscribed:
-          type: string
-        email_opt_in:
-          type: string
-        sms_opt_in:
-          type: string
-        address_unsubscribed_at:
-          type: string
-        archived_at:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-        salutation_name:
-          type: string
-      required:
-      - id
-      - external_id
-      - contact_since
-      - type
-      - prefix
-      - first_name
-      - preferred_name
-      - middle_name
-      - last_name
-      - suffix
-      - gender
-      - pronouns
-      - dob
-      - company
-      - employer
-      - company_name
-      - title
-      - website_url
-      - twitter_url
-      - linkedin_url
-      - facebook_url
-      - tiktok_url
-      - instagram_url
-      - emails
-      - phones
-      - primary_email
-      - primary_phone
-      - note
-      - addresses
-      - primary_address
-      - last_donation_amount
-      - stats
-      - tags
-      - custom_fields
-      - external_ids
-      - is_email_subscribed
-      - is_phone_subscribed
-      - is_address_subscribed
-      - email_opt_in
-      - sms_opt_in
-      - address_unsubscribed_at
-      - archived_at
-      - created_at
-      - updated_at
-      - salutation_name
-      title: ContactResource
     AssociatedCompanyResource:
       type: object
       properties:
@@ -630,6 +431,205 @@ components:
       - created_at
       - updated_at
       title: AddressResource
+    PhoneResource:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      required:
+      - type
+      - value
+      title: PhoneResource
+    ContactResource:
+      type: object
+      properties:
+        id:
+          type: string
+        external_id:
+          type: string
+        contact_since:
+          type: string
+        type:
+          type: string
+        prefix:
+          type: string
+        first_name:
+          type: string
+        preferred_name:
+          type: string
+        middle_name:
+          type: string
+        last_name:
+          type: string
+        suffix:
+          type: string
+        gender:
+          type: string
+        pronouns:
+          type: string
+        dob:
+          type: string
+        company:
+          type: string
+        employer:
+          type: string
+        company_name:
+          type: string
+        point_of_contact:
+          anyOf:
+          - $ref: '#/components/schemas/PointOfContactResource'
+          - type: 'null'
+        associated_companies:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AssociatedCompanyResource'
+        title:
+          type: string
+        website_url:
+          type: string
+        twitter_url:
+          type: string
+        linkedin_url:
+          type: string
+        facebook_url:
+          type: string
+        tiktok_url:
+          type: string
+        instagram_url:
+          type: string
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailResource'
+        phones:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneResource'
+        primary_email:
+          type: string
+        primary_phone:
+          type: string
+        note:
+          type: string
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/App.Http.Resources.API.AddressResource'
+        primary_address:
+          anyOf:
+          - $ref: '#/components/schemas/App.Http.Resources.API.AddressResource'
+          - type: 'null'
+        last_donation_amount:
+          type: string
+        stats:
+          type: object
+          properties:
+            total_contributions:
+              type: string
+            recurring_contributions:
+              type: string
+          required:
+          - total_contributions
+          - recurring_contributions
+        tags:
+          type: string
+        custom_fields:
+          type: array
+          items: {}
+        external_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalIdResource'
+        is_email_subscribed:
+          type: string
+        is_phone_subscribed:
+          type: string
+        is_address_subscribed:
+          type: string
+        email_opt_in:
+          type: string
+        sms_opt_in:
+          type: string
+        address_unsubscribed_at:
+          type: string
+        archived_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        salutation_name:
+          type: string
+      required:
+      - id
+      - external_id
+      - contact_since
+      - type
+      - prefix
+      - first_name
+      - preferred_name
+      - middle_name
+      - last_name
+      - suffix
+      - gender
+      - pronouns
+      - dob
+      - company
+      - employer
+      - company_name
+      - title
+      - website_url
+      - twitter_url
+      - linkedin_url
+      - facebook_url
+      - tiktok_url
+      - instagram_url
+      - emails
+      - phones
+      - primary_email
+      - primary_phone
+      - note
+      - addresses
+      - primary_address
+      - last_donation_amount
+      - stats
+      - tags
+      - custom_fields
+      - external_ids
+      - is_email_subscribed
+      - is_phone_subscribed
+      - is_address_subscribed
+      - email_opt_in
+      - sms_opt_in
+      - address_unsubscribed_at
+      - archived_at
+      - created_at
+      - updated_at
+      - salutation_name
+      title: ContactResource
+    EmailResource:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      required:
+      - type
+      - value
+      title: EmailResource
     ExternalIdResource:
       type: object
       properties:
@@ -651,6 +651,18 @@ components:
       - updated_at
       title: ExternalIdResource
   responses:
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
     AuthorizationException:
       description: Authorization error
       content:
@@ -683,18 +695,6 @@ components:
             required:
             - message
             - errors
-    ModelNotFoundException:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
   securitySchemes:
     http:
       type: http

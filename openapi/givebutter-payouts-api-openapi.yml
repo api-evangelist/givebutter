@@ -141,31 +141,6 @@ paths:
         '404':
           $ref: '#/components/responses/ModelNotFoundException'
 components:
-  responses:
-    AuthorizationException:
-      description: Authorization error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
-    ModelNotFoundException:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
   schemas:
     PayoutResource:
       type: object
@@ -216,6 +191,31 @@ components:
       - created_at
       - updated_at
       title: PayoutResource
+  responses:
+    AuthorizationException:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
+    ModelNotFoundException:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
   securitySchemes:
     http:
       type: http

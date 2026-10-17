@@ -33,7 +33,31 @@ paths:
       summary: Sso campaigns show
       x-summary-source: derived
 components:
+  responses:
+    AuthenticationException:
+      description: Unauthenticated
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error overview.
+            required:
+            - message
   schemas:
+    CampaignSettingResource:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      required:
+      - name
+      - value
+      title: CampaignSettingResource
     CampaignResource:
       type: object
       properties:
@@ -108,17 +132,6 @@ components:
       - created_at
       - updated_at
       title: CampaignResource
-    CampaignSettingResource:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-      required:
-      - name
-      - value
-      title: CampaignSettingResource
     EventResource:
       type: object
       properties:
@@ -172,19 +185,6 @@ components:
       - created_at
       - updated_at
       title: EventResource
-  responses:
-    AuthenticationException:
-      description: Unauthenticated
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error overview.
-            required:
-            - message
   securitySchemes:
     http:
       type: http
