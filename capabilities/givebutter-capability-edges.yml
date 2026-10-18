@@ -12,7 +12,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 8
+edge_count: 11
 edges:
 - tag: Contacts
   spec_file: givebutter-contacts-api-openapi.yml
@@ -89,9 +89,37 @@ edges:
   capability_id: BC-4800.40
   capability_id_l1: BC-4800
   capability_name: Gift & Pledge Administration
+  confidence: 0.72
+  evidence: 'POST /v1/transactions  transactions.store  Create a transaction; schemas: DedicationResource,
+    GivingSpaceResource, PaymentMethodEnum'
+  reason: Operations record and maintain donation transactions with dedications and giving spaces on a
+    nonprofit fundraising platform, which is receipt and recording of gifts; mapped to Gift & Pledge Administration
+    with moderate confidence since the surface is generic payment-transaction CRUD.
+- tag: Campaign Members
+  spec_file: givebutter-campaign-members-api-openapi.yml
+  capability_id: BC-4800.30
+  capability_id_l1: BC-4800
+  capability_name: Fundraising Campaign Management
   confidence: 0.7
-  evidence: POST /v1/transactions transactions.store Create a transaction; schemas DedicationResource,
-    GivingSpaceResource
-  reason: Donation transactions with dedication and giving-space fields on a nonprofit fundraising platform
-    correspond to receipt and recording of gifts (Gift & Pledge Administration); some ambiguity vs general
-    receivables accounting.
+  evidence: '"GET /v1/campaigns/{campaign}/members campaigns.members.index List all campaign members"
+    on a "fundraising and donor-management platform for nonprofits"'
+  reason: Participants enrolled in a peer-to-peer fundraising campaign; operating these rosters is part
+    of fundraising campaign management.
+- tag: Campaign Teams
+  spec_file: givebutter-campaign-teams-api-openapi.yml
+  capability_id: BC-4800.30
+  capability_id_l1: BC-4800
+  capability_name: Fundraising Campaign Management
+  confidence: 0.7
+  evidence: '"GET /v1/campaigns/{campaign}/teams campaigns.teams.index List all campaign teams"'
+  reason: Team structures within peer-to-peer fundraising campaigns on a nonprofit fundraising platform
+    map to fundraising campaign management.
+- tag: Contacts
+  spec_file: givebutter-contacts-api-openapi.yml
+  capability_id: BC-4800.20
+  capability_id_l1: BC-4800
+  capability_name: Donor Relationship Management
+  confidence: 0.7
+  evidence: GET /v1/contacts 'List all contacts'; vendor provides 'a donor CRM'
+  reason: Contact records in a donor CRM are the donor master record; maps to Donor Relationship Management
+    within Institutional Advancement.
