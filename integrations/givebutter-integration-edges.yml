@@ -7,11 +7,13 @@ checked:
 - https://a2aregistry.org/api/agents
 - https://composio.dev/toolkits/givebutter
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+- https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
 - https://givebutter.com/integrations
 - https://monid.ai/tools/givebutter
 - https://n8n.io/integrations/givebutter/
 - https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/givebutter/integrations
+- monday-com/integrations/monday-com-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -692,6 +694,23 @@ edges:
   partner_domain: semrush.com
   detected_by: sweep-nonprofit.py
   detected: '2026-10-14'
+- partner_name: Monday.com (own)
+  partner: monday-com
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://monday.com/marketplace/listing/10000175
+  mirror_of: monday-com/integrations/monday-com-integration-edges.yml
+  apps:
+  - Givebutter
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: monday.com app
 - partner_name: A2A protocol (own Agent Card)
   partner: null
   partner_match: register
@@ -722,7 +741,7 @@ edges:
     matched_domain: givebutter.com
     matched_by: own-domain
     detected_by: sweep-ai-agents.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   detected_by: sweep-ai-agents.py
   first_seen: '2026-10-15'
 - partner_name: Zapier
@@ -758,7 +777,7 @@ edges:
   channel: open-source-node
   relationship: ipaas-bridge
   direction: third-party
-  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/givebutter
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/givebutter
   category: null
   contract_reference:
     register: Pipedream components (PipedreamHQ/pipedream components/)

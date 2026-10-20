@@ -637,6 +637,19 @@
   relationship: integration
   status: pending-partner-spec
   arazzo: null
+- slug: givebutter-monday-com-own
+  label: Monday.com (own)
+  partner: monday-com
+  partner_name: Monday.com (own)
+  category: monday.com app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://monday.com/marketplace/listing/10000175
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: givebutter-a2a-protocol-own-agent-card
   label: A2A protocol (own Agent Card)
   partner_name: A2A protocol (own Agent Card)
@@ -656,7 +669,7 @@
     matched_domain: givebutter.com
     matched_by: own-domain
     detected_by: sweep-ai-agents.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   status: not-a-workflow
   arazzo: null
 - slug: givebutter-zapier
@@ -691,7 +704,7 @@
   type: marketplace
   marketplace: pipedream-components
   channel: open-source-node
-  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/givebutter
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/givebutter
   source: edge
   relationship: ipaas-bridge
   contract_reference:
