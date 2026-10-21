@@ -14,6 +14,13 @@ checked:
 - https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/givebutter/integrations
 - monday-com/integrations/monday-com-integration-edges.yml
+- https://docs.stripe.com/stripe-apps
+- https://docs.stripe.com/stripe-apps/review-requirements
+- https://marketplace.stripe.com/
+- https://marketplace.stripe.com/appm/apps
+- https://stripe.com/partners/directory
+- https://stripe.com/partners/verified-partners
+- https://stripe.partners/sitemap.xml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -825,6 +832,56 @@ edges:
   direction: third-party
   category: Accounting
   partner_url: https://xero5440.partnerlinks.io/uvwuuwrxyoi8
+- partner_name: Stripe Partner Ecosystem
+  partner: stripe
+  partner_match: register
+  type: register
+  direction: partner-built
+  channel: standard-directory
+  relationship: standard-participant
+  evidence: https://stripe.partners/directory/givebutter
+  category: Stripe ecosystem partner
+  contract_reference:
+    register: Stripe Partner Ecosystem directory (stripe.com/partners/directory -> stripe.partners, PartnerPage
+      SSR __NUXT_DATA__)
+    standard: Stripe Partner Ecosystem
+    spec_file: null
+    role: stripe-verified-partner
+    registered_name: Givebutter
+    register_id: givebutter
+    partner_tier:
+    - Premier SaaS Platform Partner
+    matched_domain: givebutter.com
+    matched_by: domain
+    identity_source: the directory's own website field for the partner (no lookup)
+    signal_note: 'certified_products = ONE entry per verified product type (Premier Apps / SaaS Platform / Payments
+      Partner: Stripe verified the product integration; no dates printed, lapsed null = unknown); Premier Services
+      Partner is a services tier (partner_tier only); Certified Professional Developers certify PEOPLE (context);
+      callouts / products never counted'
+    context:
+      callouts:
+      - Marketplaces
+      stripe_products:
+      - Connect
+      - Payments
+      - Invoicing
+      - Billing
+      - Terminal
+      - Radar
+      - Identity
+      - Instant Payouts
+      - Link
+      location: Wilmington, United States
+    detected_by: sweep-stripe-app-marketplace.py
+    detected: '2026-10-21'
+    certified_products:
+    - product: Givebutter
+      product_type: SaaS platform with embedded Stripe (verified platform integration)
+      certifier: Stripe (Verified Partner program)
+      verification: Premier SaaS Platform Partner
+      lapsed: null
+  detected_by: sweep-stripe-app-marketplace.py
+  first_seen: '2026-10-21'
 templates:
 - title: Update subscribers in Mailchimp for new Givebutter transactions
   url: https://zapier.com/apps/givebutter/integrations/mailchimp/352357/update-subscribers-in-mailchimp-for-new-givebutter-transactions

@@ -759,3 +759,54 @@
   relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
+- slug: givebutter-stripe-partner-ecosystem
+  label: Stripe Partner Ecosystem
+  partner: stripe
+  partner_name: Stripe Partner Ecosystem
+  category: Stripe ecosystem partner
+  type: register
+  channel: standard-directory
+  evidence: https://stripe.partners/directory/givebutter
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Stripe Partner Ecosystem directory (stripe.com/partners/directory -> stripe.partners, PartnerPage
+      SSR __NUXT_DATA__)
+    standard: Stripe Partner Ecosystem
+    spec_file: null
+    role: stripe-verified-partner
+    registered_name: Givebutter
+    register_id: givebutter
+    partner_tier:
+    - Premier SaaS Platform Partner
+    matched_domain: givebutter.com
+    matched_by: domain
+    identity_source: the directory's own website field for the partner (no lookup)
+    signal_note: 'certified_products = ONE entry per verified product type (Premier Apps / SaaS Platform / Payments
+      Partner: Stripe verified the product integration; no dates printed, lapsed null = unknown); Premier Services
+      Partner is a services tier (partner_tier only); Certified Professional Developers certify PEOPLE (context);
+      callouts / products never counted'
+    context:
+      callouts:
+      - Marketplaces
+      stripe_products:
+      - Connect
+      - Payments
+      - Invoicing
+      - Billing
+      - Terminal
+      - Radar
+      - Identity
+      - Instant Payouts
+      - Link
+      location: Wilmington, United States
+    detected_by: sweep-stripe-app-marketplace.py
+    detected: '2026-10-21'
+    certified_products:
+    - product: Givebutter
+      product_type: SaaS platform with embedded Stripe (verified platform integration)
+      certifier: Stripe (Verified Partner program)
+      verification: Premier SaaS Platform Partner
+      lapsed: null
+  status: not-a-workflow
+  arazzo: null
