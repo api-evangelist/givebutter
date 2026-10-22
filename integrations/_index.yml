@@ -405,19 +405,6 @@
   relationship: integration
   status: pending-partner-spec
   arazzo: null
-- slug: givebutter-monday-com-own
-  label: Monday.com (own)
-  partner: monday-com
-  partner_name: Monday.com (own)
-  category: monday.com app
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://monday.com/marketplace/listing/10000175
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: givebutter-a2a-protocol-own-agent-card
   label: A2A protocol (own Agent Card)
   partner_name: A2A protocol (own Agent Card)
@@ -808,5 +795,31 @@
       certifier: Stripe (Verified Partner program)
       verification: Premier SaaS Platform Partner
       lapsed: null
+  status: not-a-workflow
+  arazzo: null
+- slug: givebutter-monday-com-own
+  label: Monday.com (own)
+  partner: monday-com
+  partner_name: Monday.com (own)
+  category: monday.com app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://monday.com/marketplace/listing/10000175
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: givebutter-wix-own
+  label: Wix (own)
+  partner: wix
+  partner_name: Wix (own)
+  category: Crowdfunding
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.wix.com/app-market/developer/givebutter-inc
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null

@@ -21,6 +21,7 @@ checked:
 - https://stripe.com/partners/directory
 - https://stripe.com/partners/verified-partners
 - https://stripe.partners/sitemap.xml
+- wix/integrations/wix-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -371,23 +372,6 @@ edges:
   partner_domain: semrush.com
   detected_by: sweep-nonprofit.py
   detected: '2026-10-14'
-- partner_name: Monday.com (own)
-  partner: monday-com
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://monday.com/marketplace/listing/10000175
-  mirror_of: monday-com/integrations/monday-com-integration-edges.yml
-  apps:
-  - Givebutter
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: monday.com app
 - partner_name: A2A protocol (own Agent Card)
   partner: null
   partner_match: register
@@ -882,6 +866,42 @@ edges:
       lapsed: null
   detected_by: sweep-stripe-app-marketplace.py
   first_seen: '2026-10-21'
+- partner_name: Monday.com (own)
+  partner: monday-com
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://monday.com/marketplace/listing/10000175
+  mirror_of: monday-com/integrations/monday-com-integration-edges.yml
+  apps:
+  - Givebutter
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: monday.com app
+- partner_name: Wix (own)
+  partner: wix
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.wix.com/app-market/developer/givebutter-inc
+  mirror_of: wix/integrations/wix-integration-edges.yml
+  apps:
+  - Givebutter
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Crowdfunding
+  badges:
+  - SELF_PUBLISHED
 templates:
 - title: Update subscribers in Mailchimp for new Givebutter transactions
   url: https://zapier.com/apps/givebutter/integrations/mailchimp/352357/update-subscribers-in-mailchimp-for-new-givebutter-transactions
