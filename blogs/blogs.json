@@ -5,8 +5,15 @@
       "source": "https://givebutter.com/blog",
       "feed_url": "https://givebutter.com/blog/rss.xml",
       "title": "",
-      "saved": 11,
+      "saved": 0,
       "method": "discovered"
+    },
+    {
+      "source": "https://givebutter.com/blog/rss.xml",
+      "feed_url": "https://givebutter.com/blog/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
     },
     {
       "source": "https://help.givebutter.com/en/feed.xml",
@@ -16,6 +23,6 @@
       "method": "feed"
     }
   ],
-  "post_count": 83,
-  "fetched": "2026-10-10T13:15:00Z"
+  "post_count": 135,
+  "fetched": "2026-10-17T14:53:57Z"
 }
