@@ -1,0 +1,184 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-28'
+method: searched
+source: https://givebutter.com/pricing
+sources:
+- https://givebutter.com/pricing
+provenance:
+  tool: engine/economics/harvest_pricing.py
+  run: 20261028T141238
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-28'
+  managed_tier: Givebutter Plus
+published: true
+note: 'Nonprofit fundraising platform pricing: free tier funded by optional donor tips, Givebutter Plus
+  contact-based subscription tiers (monthly/annual), plus transaction platform/processing fees when tips
+  disabled. Direct mail per-letter prices shown as placeholders (xx/yy).'
+plan_count: 10
+currency: USD
+plans:
+- name: Free forever
+  price_text: $0/month
+  price: 0
+  currency: USD
+  period: month
+  unit: account
+  included_quota: Unlimited users, contacts, email blasts, fundraising campaigns; donation forms, CRM,
+    events, auctions, 24/7 support
+- name: Givebutter Plus (starting)
+  price_text: Starting at $29/month
+  price: 29
+  currency: USD
+  period: month
+  unit: account
+  included_quota: Contact-based pricing; 250 or less contacts tier
+  overage: if you exceed the limit, you'll only pay for additional contacts in increments of 100
+- name: Givebutter Plus - tier 1 monthly
+  price_text: $29 /mo
+  price: 29
+  currency: USD
+  period: month
+  unit: account
+  included_quota: contact-based tier
+- name: Givebutter Plus - tier 2 monthly
+  price_text: $79 /mo
+  price: 79
+  currency: USD
+  period: month
+  unit: account
+  included_quota: contact-based tier
+- name: Givebutter Plus - tier 3 monthly
+  price_text: $129 /mo
+  price: 129
+  currency: USD
+  period: month
+  unit: account
+  included_quota: contact-based tier
+- name: Givebutter Plus - tier 1 annual
+  price_text: $348 billed annually
+  price: 348
+  currency: USD
+  period: year
+  unit: account
+  included_quota: annual billing
+- name: Givebutter Plus - tier 2 annual
+  price_text: $948 billed annually
+  price: 948
+  currency: USD
+  period: year
+  unit: account
+  included_quota: annual billing
+- name: Givebutter Plus - tier 3 annual
+  price_text: $1,548 billed annually
+  price: 1548
+  currency: USD
+  period: year
+  unit: account
+  included_quota: annual billing
+- name: Platform fee (tips disabled)
+  price_text: a flat 3% platform fee applies
+  price: 3
+  period: per-use
+  unit: transaction
+  included_quota: 0% platform fees when tips are enabled
+- name: Processing fee (tips disabled)
+  price_text: 2.9% + 30¢
+  currency: USD
+  period: per-use
+  unit: card transaction
+  included_quota: ACH 1.9% + 30¢; 0% when tips enabled
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  units:
+  - object
+  - transaction
+  plans:
+  - name: Free forever
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Givebutter Plus (starting)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Givebutter Plus - tier 1 monthly
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Givebutter Plus - tier 2 monthly
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Givebutter Plus - tier 3 monthly
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Givebutter Plus - tier 1 annual
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - year
+  - name: Givebutter Plus - tier 2 annual
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - year
+  - name: Givebutter Plus - tier 3 annual
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - year
+  - name: Platform fee (tips disabled)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
+  - name: Processing fee (tips disabled)
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
