@@ -93,7 +93,7 @@ plans:
   unit: card transaction
   included_quota: ACH 1.9% + 30¢; 0% when tips enabled
 x-canonical:
-  generated: '2026-11-01'
+  generated: '2026-11-02'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - hybrid
